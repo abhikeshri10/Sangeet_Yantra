@@ -6,12 +6,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.InputStreamReader;
 import java.sql.*;
-import java.sql.SQLException;
 
 public class Server {
 
-    public static void main(String args[]){
-       Database.getConnection();
+    public static void main(String args[]) {
+        Database.getConnection();
         ServerSocket serverSocket;
         Socket socket;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -22,20 +21,18 @@ public class Server {
             e.printStackTrace();
             return;
         }
-         while (true) {
+        while (true) {
             try {
                 socket = serverSocket.accept();
                 System.out.println("Client Connected");
                 Thread t = new Thread(new HandleQuery(socket));//listen message from client
                 t.start();
-               
-            } 
-            catch (IOException e) 
-            {
-                e.printStackTrace();
-                
-            }
-        
-    }
 
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+
+        }
+    }
 }
