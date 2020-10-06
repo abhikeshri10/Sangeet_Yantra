@@ -55,7 +55,7 @@ public class HandleQuery implements Runnable {
                 Query query = (Query) objectInputStream.readObject();
                 String request = query.getQuery();
                 //here we will check the first letter of request 
-                //and then using if else or switch case we can then trasnsfer the query to relevant position
+                //and then using if else or switch case we can then transfer the query to relevant position
             } catch (IOException | ClassNotFoundException e) {
                 try {
                     socket.close();
