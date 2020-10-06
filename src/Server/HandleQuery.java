@@ -8,6 +8,8 @@ package Server;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,7 +25,11 @@ public class HandleQuery implements Runnable {
         try {
             objectInputStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
-            e.printStackTrace();
+             try {
+                    socket.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(HandleQuery.class.getName()).log(Level.SEVERE, null, ex);
+                }
         }
     }
     public void Register(String s)//1st query type
@@ -50,8 +56,12 @@ public class HandleQuery implements Runnable {
                 String request = query.getQuery();
                 //here we will check the first letter of request 
                 //and then using if else or switch case we can then trasnsfer the query to relevant position
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IOException | ClassNotFoundException e) {
+                try {
+                    socket.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(HandleQuery.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             }
         }
