@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class Server {
 
     public static void main(String args[]) {
-        Database.getConnection();
+        Connection cnx=Database.getConnection();
         ServerSocket serverSocket;
         Socket socket = null;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -27,7 +27,7 @@ public class Server {
             try {
                 socket = serverSocket.accept();
                 System.out.println("Client Connected");
-                Thread t = new Thread(new HandleQuery(socket));//listen message from client
+                Thread t = new Thread(new HandleQuery(socket,cnx));//listen message from client
                 t.start();
 
             } catch (IOException e) {

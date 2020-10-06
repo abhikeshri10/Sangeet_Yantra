@@ -7,23 +7,27 @@ package Server;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java.sql.*;
 /**
  *
  * @author Abhishek keshri
  */
-public class HandleQuery implements Runnable {
+public class HandleQuery implements Runnable{
 
     Socket socket;
     ObjectInputStream objectInputStream;
 
-    HandleQuery(Socket socket) {
+    static Connection cnx;
+    HandleQuery(Socket socket, Connection cnx) {
         this.socket = socket;
+        this.cnx = cnx;
         try {
             objectInputStream = new ObjectInputStream(socket.getInputStream());
+
         } catch (IOException e) {
              try {
                     socket.close();
@@ -48,21 +52,28 @@ public class HandleQuery implements Runnable {
     {
         
     }
+
     @Override
     public void run(){
         while (true) {
             try {
-                Query query = (Query) objectInputStream.readObject();
-                String request = query.getQuery();
-                //here we will check the first letter of request 
-                //and then using if else or switch case we can then transfer the query to relevant position
-            } catch (IOException | ClassNotFoundException e) {
-                try {
-                    socket.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(HandleQuery.class.getName()).log(Level.SEVERE, null, ex);
+
+                String r=objectInputStream.readObject().toString();
+                PreparedStatement pr= cnx.prepareStatement(r);
+                ResultSet re= pr.executeQuery();
+                while(re.next())
+                {
+                    System.out.println(re.getString("Name"));
+                    System.out.println(re.getString("Email"));
+                    System.out.println(re.getString("Phone"));
                 }
 
+
+                //here we will check the first letter of request 
+                //and then using if else or switch case we can then transfer the query to relevant position
+            } catch (IOException | ClassNotFoundException|SQLException e) {
+
+                e.printStackTrace();
             }
         }
 
