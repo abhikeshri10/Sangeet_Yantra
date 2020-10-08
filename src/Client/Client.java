@@ -7,10 +7,9 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class Client {
-
+    public static Socket socket = null;
+    public static ObjectOutputStream objectOutputStream =null;
     public static void main(String[] args) {
-        Socket socket = null;
-
 
         try {
              socket = new Socket("localhost", 5436);
@@ -26,16 +25,16 @@ public class Client {
         try{
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             try {
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-                while(true)
-                {
+                objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 
-                    String s = bufferedReader.readLine();
+
+                    String s = "select * from student;";
                     Query query = new Query(s);
 
                     objectOutputStream.writeObject(query);
                     objectOutputStream.flush();
-                }
+                while(true)
+                {}
 
             }
             catch (IOException io)
