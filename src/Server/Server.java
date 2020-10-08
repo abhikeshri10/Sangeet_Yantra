@@ -10,11 +10,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Server {
+    public  static Connection cnx = null;
+    public static ServerSocket serverSocket = null;
+    public static Socket socket = null;
 
     public static void main(String args[]) {
-        Connection cnx=Database.getConnection();
-        ServerSocket serverSocket;
-        Socket socket = null;
+        cnx=Database.getConnection();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Server started");
         try {
@@ -27,16 +28,16 @@ public class Server {
             try {
                 socket = serverSocket.accept();
                 System.out.println("Client Connected");
-                Thread t = new Thread(new HandleQuery(socket,cnx));//listen message from client
+                Thread t = new Thread(new HandleQuery(socket));//listen message from client
                 t.start();
-
+                Thread t2 = new Thread(new SendResponse(socket));//send response to the client
+                t2.start();
             } catch (IOException e) {
                 try {
                     socket.close();
                 } catch (IOException ex) {
                     Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
 
             }
 

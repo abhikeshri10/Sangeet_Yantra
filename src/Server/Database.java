@@ -25,7 +25,7 @@ public class Database {
 
     private static String servername = "localhost";
     private static String username = "root";
-    private static String dbname  = "sangeet";
+    private static String dbname  = "student";
     private static Integer portnumber  = 3306;
     private static String password = "";
     public static Connection cnx;

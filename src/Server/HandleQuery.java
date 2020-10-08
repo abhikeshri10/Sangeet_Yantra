@@ -20,11 +20,12 @@ public class HandleQuery implements Runnable{
 
     Socket socket;
     ObjectInputStream objectInputStream;
-
-    static Connection cnx;
-    HandleQuery(Socket socket, Connection cnx) {
+    Response response;
+    //static Connection cnx;
+    HandleQuery(Socket socket/* ,Connection cnx*/) {
         this.socket = socket;
-        this.cnx = cnx;
+        //this.cnx = cnx;
+        response = new Response();
         try {
             objectInputStream = new ObjectInputStream(socket.getInputStream());
 
@@ -38,7 +39,7 @@ public class HandleQuery implements Runnable{
     }
     public void Register(String s)//1st query type
     {
-        
+        response.setQuery_status(true);
     }
     public void Login(String s)//2nd query type
     {
@@ -59,7 +60,7 @@ public class HandleQuery implements Runnable{
             try {
 
                 String r=objectInputStream.readObject().toString();
-                PreparedStatement pr= cnx.prepareStatement(r);
+                PreparedStatement pr= Server.cnx.prepareStatement(r);
                 ResultSet re= pr.executeQuery();
                 while(re.next())
                 {
