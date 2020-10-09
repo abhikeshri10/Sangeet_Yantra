@@ -17,7 +17,7 @@ import java.sql.*;
  * @author Abhishek keshri
  */
 public class HandleQuery implements Runnable{
-
+    public SendResponse sendResponse;
     Socket socket;
     ObjectInputStream objectInputStream;
     Response response;
@@ -37,9 +37,15 @@ public class HandleQuery implements Runnable{
                 }
         }
     }
+
+    public void setSendResponse(SendResponse sendResponse) {
+        this.sendResponse = sendResponse;
+    }
+
     public void Register(String s)//1st query type
     {
         response.setQuery_status(true);
+        sendResponse.setResponse(response);//setting the response object in the send thread
     }
     public void Login(String s)//2nd query type
     {
@@ -68,12 +74,9 @@ public class HandleQuery implements Runnable{
                     System.out.println(re.getString("Email"));
                     System.out.println(re.getString("Phone"));
                 }
-
-
-                //here we will check the first letter of request 
+                //here we will check the first letter of request
                 //and then using if else or switch case we can then transfer the query to relevant position
             } catch (IOException | ClassNotFoundException|SQLException e) {
-
                 e.printStackTrace();
             }
         }

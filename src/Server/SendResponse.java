@@ -7,6 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SendResponse implements Runnable{
+    public HandleQuery handleQuery;
+
     Socket socket ;
     ObjectOutputStream objectOutputStream;
     private Response response;
@@ -23,6 +25,10 @@ public class SendResponse implements Runnable{
                 Logger.getLogger(HandleQuery.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    public void setHandleQuery(HandleQuery handleQuery) {
+        this.handleQuery = handleQuery;
     }
 
     public void setResponse(Response response) {

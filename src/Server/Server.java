@@ -28,10 +28,16 @@ public class Server {
             try {
                 socket = serverSocket.accept();
                 System.out.println("Client Connected");
-                Thread t = new Thread(new HandleQuery(socket));//listen message from client
+                HandleQuery handleQuery = new HandleQuery(socket);//creating an instance of the recieve end
+                SendResponse sendResponse = new SendResponse(socket);//creating an instance of the send end
+
+                Thread t = new Thread(handleQuery);//listen message from client
                 t.start();
-                Thread t2 = new Thread(new SendResponse(socket));//send response to the client
+                Thread t2 = new Thread(sendResponse);//send response to the client
                 t2.start();
+
+                handleQuery.setSendResponse(sendResponse);
+                sendResponse.setHandleQuery(handleQuery);
             } catch (IOException e) {
                 try {
                     socket.close();
