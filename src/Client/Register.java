@@ -2,7 +2,6 @@ package Client;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
-
 import javax.swing.*;
 
 
@@ -23,12 +22,15 @@ public class Register {
         if(password1 == password2)
         {
             String s = "select * form user where Email = email or Username = username;";
+
            //send this query and wait for the response
             //response is stored as Resultset rs; if
             //while(rs.next)count++; if(count>0)
             //useralready exist try logging in or enter different username
             //if not
             String s2 = "insert into ";
+            //check if query status true
+            //Joptionpane regitration s
         }
         else{
             //pop up message the password entered is not correct

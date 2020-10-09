@@ -41,14 +41,14 @@ public class Client  extends Application {
             try {
                 objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 
-
-                    String s = "select * from student;";
-                    Query query = new Query(s);
-
-                    objectOutputStream.writeObject(query);
-                    objectOutputStream.flush();
-                while(true)
-                {}
+//
+//                    String s = "select * from student;";
+//                    Query query = new Query(s);
+//
+//                    objectOutputStream.writeObject(query);
+//                    objectOutputStream.flush();
+//                while(true)
+//                {}
 
             }
             catch (IOException io)
@@ -58,7 +58,7 @@ public class Client  extends Application {
 
             // Thread t = new Thread(new HandleClient(socket));
             // t.start();
-           // launch(args);
+         launch(args);
 
         } catch (Exception e) {
 

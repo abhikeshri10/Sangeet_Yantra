@@ -43,7 +43,8 @@ public class HandleQuery implements Runnable{
     }
 
     public void Register(String s)//1st query type
-    {
+    {   //response = new Response();
+
         response.setQuery_status(true);
         sendResponse.setResponse(response);//setting the response object in the send thread
     }
