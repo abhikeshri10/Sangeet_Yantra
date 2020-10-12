@@ -1,50 +1,47 @@
 package Server;
 
-import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.io.InputStreamReader;
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class Server {
-    public  static Connection cnx = null;
-    public static ServerSocket serverSocket = null;
-    public static Socket socket = null;
+import java.util.HashSet;
+import java.util.Set;
 
-    public static void main(String args[]) {
-        cnx=Database.getConnection();
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Server started");
+
+public class Server implements Runnable{
+    protected Set<HandleClient> handleClients = new HashSet<HandleClient>();
+    public  ServerSocket serverSocket ;
+    StartServer startServer;
+    Socket socket;
+    public Server(StartServer startServer, int port) {
+        this.startServer = startServer;
         try {
-            serverSocket = new ServerSocket(5436);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
+            serverSocket = new ServerSocket(port);
         }
-        while (true) {
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        Thread t = new Thread(this);
+        t.start();
+
+    }
+
+
+    @Override
+    public void run() {
+
+
+        while(true)
+        {
             try {
                 socket = serverSocket.accept();
-                System.out.println("Client Connected");
-                HandleQuery handleQuery = new HandleQuery(socket);//creating an instance of the recieve end
-                SendResponse sendResponse = new SendResponse(socket);//creating an instance of the send end
-
-                Thread t = new Thread(handleQuery);//listen message from client
-                t.start();
-                Thread t2 = new Thread(sendResponse);//send response to the client
-                t2.start();
-
-                handleQuery.setSendResponse(sendResponse);
-                sendResponse.setHandleQuery(handleQuery);
+                System.out.println("Client connected");
+                HandleClient handleClient = new HandleClient(startServer,socket);
+                startServer.handleClients.add(handleClient);
             } catch (IOException e) {
-                try {
-                    socket.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
+                e.printStackTrace();
             }
 
         }

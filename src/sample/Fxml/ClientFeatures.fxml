@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.ClientFeaturesController">
+    <children>
+        <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="600.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Playlist" />
+                        <MenuItem mnemonicParsing="false" text="Album" />
+                        <MenuItem mnemonicParsing="false" text="Songs" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <ListView layoutX="99.0" layoutY="56.0" prefHeight="311.0" prefWidth="407.0" />
+        <Label layoutX="111.0" layoutY="56.0" prefHeight="26.0" prefWidth="56.0" text="Name" />
+        <Separator layoutX="103.0" layoutY="82.0" prefHeight="18.0" prefWidth="393.0" />
+      <Label layoutX="192.0" layoutY="61.0" prefHeight="18.0" prefWidth="199.0" text="Label" />
+      <ComboBox layoutX="217.0" layoutY="107.0" prefWidth="150.0" promptText="Artist" />
+      <ComboBox layoutX="217.0" layoutY="162.0" prefWidth="150.0" promptText="Genre" />
+      <ComboBox layoutX="217.0" layoutY="219.0" prefWidth="150.0" promptText="Language" />
+      <Button fx:id="submitBT" layoutX="266.0" layoutY="287.0" mnemonicParsing="false" onAction="#submitFeatures" text="Submit" />
+    </children>
+</AnchorPane>
