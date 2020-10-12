@@ -50,12 +50,7 @@ public class Client implements Runnable{
         dataOutputStream.writeUTF(username);
         return Boolean.parseBoolean(dataInputStream.readUTF());
     }
-<<<<<<< HEAD
-
-    public boolean createClient (ClientInfo clientInfo)
-=======
-    public void createClient(ClientInfo clientInfo)
->>>>>>> 7efa4ce46b8c3d7719ce52011bfd6bf753f37b01
+    public boolean createClient(ClientInfo clientInfo)
     {
         try {
             dataOutputStream.writeUTF(QueryType.register);
@@ -68,7 +63,6 @@ public class Client implements Runnable{
 
             return false;
         }
-
     }
     @Override
     public void run() {

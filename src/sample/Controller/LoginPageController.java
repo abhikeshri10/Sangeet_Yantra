@@ -7,8 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import sample.*;
-
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,9 +35,6 @@ public class LoginPageController implements Initializable {
         boolean success = ClientMain.client.loginClient(usernameTF.getText(),passwordPF.getText());
         if(success)
         {
-<<<<<<< HEAD
-            JOptionPane.showMessageDialog(null, "Login Successfull");
-=======
             System.out.println("Successfully logged in");
             boolean isNewUser = ClientMain.client.isNewUser(usernameTF.getText());
             if(isNewUser)
@@ -50,11 +45,10 @@ public class LoginPageController implements Initializable {
             {
                 System.out.println("No the user is old user");
             }
->>>>>>> 7efa4ce46b8c3d7719ce52011bfd6bf753f37b01
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Login failed");
+            System.out.println("Login Failed");
         }
     }
 

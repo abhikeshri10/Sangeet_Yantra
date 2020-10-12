@@ -44,23 +44,6 @@ public class HandleClient implements Runnable{
         {   try{
 
             switch(Integer.parseInt(dataInputStream.readUTF())) {
-<<<<<<< HEAD
-                case 1: {
-                    Boolean isValidClient = databaseHandler.loginClient(dataInputStream.readUTF(), dataInputStream.readUTF());
-                    dataOutputStream.writeUTF(String.valueOf(isValidClient));
-                    break;
-                }
-                case 2: {
-                    ClientInfo clientInfo = (ClientInfo) objectInputStream.readObject();
-                    Boolean register = databaseHandler.createUser(clientInfo);
-                    dataOutputStream.writeUTF(String.valueOf(register));
-                    System.out.println("User Added");
-                    break;
-                }
-
-
-
-=======
                 case 1:
                 {
                     Boolean isValidClient = databaseHandler.loginClient(dataInputStream.readUTF(),dataInputStream.readUTF());
@@ -68,8 +51,13 @@ public class HandleClient implements Runnable{
                     break;
                 }
                 case 2:
->>>>>>> 7efa4ce46b8c3d7719ce52011bfd6bf753f37b01
-
+                {
+                    ClientInfo clientInfo = (ClientInfo) objectInputStream.readObject();
+                    Boolean register = databaseHandler.createUser(clientInfo);
+                    dataOutputStream.writeUTF(String.valueOf(register));
+                    System.out.println("User Added");
+                    break;
+                }
                 case 3:
                 {
                     Boolean is_new = databaseHandler.new_login(dataInputStream.readUTF());
@@ -79,11 +67,7 @@ public class HandleClient implements Runnable{
 
             }
         }
-<<<<<<< HEAD
-            catch (IOException | ClassNotFoundException e)
-=======
-            catch (IOException | SQLException e)
->>>>>>> 7efa4ce46b8c3d7719ce52011bfd6bf753f37b01
+            catch (IOException | SQLException | ClassNotFoundException e)
             {
                 e.printStackTrace();
             }

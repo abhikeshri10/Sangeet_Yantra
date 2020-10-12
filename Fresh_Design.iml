@@ -7,9 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="javafx" level="application" />
-    <orderEntry type="library" exported="" name="MySql" level="application" />
-    <orderEntry type="library" exported="" name="mysql-connector-java-5.1" level="project" />
-    <orderEntry type="library" name="jfoenix-8.0.7" level="project" />
+    <orderEntry type="library" name="javafx" level="application" />
+    <orderEntry type="library" name="MySql" level="application" />
   </component>
 </module>
