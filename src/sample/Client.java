@@ -1,6 +1,6 @@
 package sample;
 
-import Server.Server;
+import Server.*;
 
 import java.io.*;
 import java.net.Socket;
@@ -14,7 +14,7 @@ public class Client implements Runnable{
     public int serverPort;
     public String serverIP;
     public boolean isConnected;
-
+    public String username;
     public boolean connectToServer(String serverIP, int serverPort) {
         try {
             s = new Socket(serverIP, serverPort);
@@ -37,10 +37,19 @@ public class Client implements Runnable{
          dataOutputStream.writeUTF(QueryType.login);
          dataOutputStream.writeUTF(username);
          dataOutputStream.writeUTF(passwd);
-
+       if(Boolean.parseBoolean(dataInputStream.readUTF()))
+       {
+           this.username = username;
+        return true;
+       }
+        return false;
+    }
+    public boolean isNewUser(String username) throws IOException
+    {
+        dataOutputStream.writeUTF(QueryType.isNewUser);
+        dataOutputStream.writeUTF(username);
         return Boolean.parseBoolean(dataInputStream.readUTF());
     }
-
     public void createClient(ClientInfo clientInfo)
     {
 

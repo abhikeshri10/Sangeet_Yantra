@@ -45,13 +45,23 @@ public class HandleClient implements Runnable{
 
             switch(Integer.parseInt(dataInputStream.readUTF())) {
                 case 1:
+                {
                     Boolean isValidClient = databaseHandler.loginClient(dataInputStream.readUTF(),dataInputStream.readUTF());
                     dataOutputStream.writeUTF(String.valueOf(isValidClient));
+                    break;
+                }
                 case 2:
+
+                case 3:
+                {
+                    Boolean is_new = databaseHandler.new_login(dataInputStream.readUTF());
+                    dataOutputStream.writeUTF(String.valueOf(is_new));
+                    break;
+                }
 
             }
         }
-            catch (IOException e)
+            catch (IOException | SQLException e)
             {
                 e.printStackTrace();
             }

@@ -15,6 +15,7 @@ public class ClientInfo {
         this.phone = phone;
         this.username = username;
         this.password = password;
+
     }
 
 }

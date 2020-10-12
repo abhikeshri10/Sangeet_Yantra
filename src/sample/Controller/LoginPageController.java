@@ -20,6 +20,8 @@ public class LoginPageController implements Initializable {
     public Button loginBT;
     @FXML
     public Button registerBT;
+    @FXML
+    public Button homeBT;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String ip = "localhost";
@@ -33,7 +35,16 @@ public class LoginPageController implements Initializable {
         boolean success = ClientMain.client.loginClient(usernameTF.getText(),passwordPF.getText());
         if(success)
         {
-            System.out.println("Succesfully logged in");
+            System.out.println("Successfully logged in");
+            boolean isNewUser = ClientMain.client.isNewUser(usernameTF.getText());
+            if(isNewUser)
+            {
+                System.out.println("Yes the user is new user");
+            }
+            else
+            {
+                System.out.println("No the user is old user");
+            }
         }
         else
         {
@@ -43,6 +54,9 @@ public class LoginPageController implements Initializable {
 
     public void goToRegister(ActionEvent actionEvent) throws IOException {
         new SceneChanger().changeScene("FXML\\Register.fxml","Register",actionEvent);
+    }
 
+    public void openHome(ActionEvent actionEvent) throws IOException {
+        new SceneChanger().changeScene("FXML\\ClientFeatures.fxml","Sangeet Yantra",actionEvent);
     }
 }

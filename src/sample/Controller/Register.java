@@ -34,6 +34,6 @@ public class Register {
     }
 
     public void login(ActionEvent actionEvent) throws IOException {
-        new SceneChanger().changeScene("FXML\\Loginpage.fxml","LoginPage",actionEvent);
+        new SceneChanger().changeScene("FXML\\LoginPage.fxml","LoginPage",actionEvent);
     }
 }

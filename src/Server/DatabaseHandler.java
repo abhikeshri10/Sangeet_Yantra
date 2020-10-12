@@ -14,6 +14,11 @@ public class DatabaseHandler {
         USERNAME = "root";
         PASSWORD = "";
     }
+
+    /**
+     *
+     * @param clientInfo
+     */
     public void createUser(sample.ClientInfo clientInfo)  {
         try {
 
@@ -27,6 +32,12 @@ public class DatabaseHandler {
             System.out.println("Database connection failed");
         }
     }
+    /**
+     * check whether the user exist or not
+     * @param userName
+     * @param password
+     * @return
+     */
     public boolean loginClient(String userName,String password)
     {   try {
         dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -34,8 +45,7 @@ public class DatabaseHandler {
             dbstatement = dbconnection.prepareStatement(query);
             ResultSet rs = dbstatement.executeQuery();
             if (rs.next())
-            {
-                return true;
+            {  return true;
             }
             else
             {
@@ -48,6 +58,39 @@ public class DatabaseHandler {
         }
         return false;
     }
+
+    /**
+     * Checking whether the logged user is a new user or not
+     * this is for taking the entries of the features table
+     * @param userName
+     * @throws SQLException
+     * @return
+     */
+    public boolean new_login(String userName) throws SQLException {
+        dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+        String query = "SELECT * FROM userdata WHERE UserName = '" + userName +  "';";
+        dbstatement = dbconnection.prepareStatement(query);
+        ResultSet rs = dbstatement.executeQuery();
+        if(rs.getBoolean("new_login"))
+        {
+            return false;
+        }
+        else
+        {
+
+            String query2= "UPDATE userdata SET new_login='"+ "true" +"'WHERE UserName = '" + userName +"';";
+            dbstatement = dbconnection.prepareStatement(query2);
+            ResultSet rs2 = dbstatement.executeQuery();
+            return true;
+        }
+    }
+
+    /**
+     *
+     * @param query
+     * @return
+     * @throws SQLException
+     */
     private ResultSet Query(String query) throws SQLException {
         ResultSet resultSet = null;
         dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
