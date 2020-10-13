@@ -33,10 +33,10 @@ public class Register {
                 ClientInfo new_Client = new ClientInfo(name, email, phone, username, password1);
                 boolean check = ClientMain.client.createClient(new_Client);
                 if (check) {
-                    JOptionPane.showMessageDialog(null, "Sign up Successfull");
+                    JOptionPane.showMessageDialog(null, "Sign up Successfully");
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Sign up not Successfull");
+                    JOptionPane.showMessageDialog(null, "Sign up not Successfully");
 
 
                 }

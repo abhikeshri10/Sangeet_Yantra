@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import sample.*;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,25 +32,33 @@ public class LoginPageController implements Initializable {
         ClientMain.client.connectToServer(ip,port);
     }
 
-    public void login(ActionEvent actionEvent) throws IOException {
+    public void login(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
 
-        boolean success = ClientMain.client.loginClient(usernameTF.getText(),passwordPF.getText());
-        if(success)
+        ClientMain.client.clientInfo = ClientMain.client.loginClient(usernameTF.getText(),passwordPF.getText());
+        if(ClientMain.client.clientInfo!=null)
         {
             System.out.println("Successfully logged in");
-            boolean isNewUser = ClientMain.client.isNewUser(usernameTF.getText());
-            if(isNewUser)
-            {
-                System.out.println("Yes the user is new user");
+            if(ClientMain.client.clientInfo.new_login)
+            {   ClientMain.client.isNewUser(ClientMain.client.clientInfo.username);//checking whether the usr is a new useror not
+                new SceneChanger().changeScene("FXML\\ClientFeatures.fxml","UserFeatures",actionEvent);
             }
             else
             {
-                System.out.println("No the user is old user");
+                new SceneChanger().changeScene("FXML\\HomePage.fxml","Sangeet Yantra (Home) ",actionEvent);
             }
+//            boolean isNewUser = ClientMain.client.isNewUser(usernameTF.getText());
+//            if(isNewUser)
+//            {
+//                System.out.println("Yes the user is new user");
+//            }
+//            else
+//            {
+//                System.out.println("No the user is old user");
+//            }
         }
         else
         {
-            System.out.println("Login Failed");
+            JOptionPane.showMessageDialog(null, "Login Failed");
         }
     }
 
@@ -57,6 +67,6 @@ public class LoginPageController implements Initializable {
     }
 
     public void openHome(ActionEvent actionEvent) throws IOException {
-        new SceneChanger().changeScene("FXML\\ClientFeatures.fxml","Sangeet Yantra",actionEvent);
+        new SceneChanger().changeScene("FXML\\SongPlayer.fxml","Sangeet Yantra",actionEvent);
     }
 }
