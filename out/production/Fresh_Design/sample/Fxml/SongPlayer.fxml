@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.media.*?>
+
+<AnchorPane fx:id="Pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.SongPlayer">
+   <children>
+       <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="600.0">
+           <menus>
+               <Menu mnemonicParsing="false" text="File">
+                   <items>
+                       <MenuItem fx:id="playlistMenu" mnemonicParsing="false" onAction="#goToPlaylist" text="Playlist" />
+                       <MenuItem fx:id="albumMenu" mnemonicParsing="false" onAction="#goToAlbum" text="Album" />
+                       <MenuItem fx:id="songMenu" mnemonicParsing="false" onAction="#goToSong" text="Songs" />
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Offline">
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="Offline Features" />
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Help">
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="About" />
+                   </items>
+               </Menu>
+           </menus>
+       </MenuBar>
+      <ListView layoutX="121.0" layoutY="64.0" prefHeight="299.0" prefWidth="394.0" />
+      <Label fx:id="songName" layoutX="131.0" layoutY="64.0" prefHeight="31.0" prefWidth="57.0" text="Circles" textOverrun="CLIP" />
+      <Label layoutX="212.0" layoutY="67.0" prefHeight="25.0" prefWidth="139.0" text="Label" />
+      <Separator layoutX="130.0" layoutY="95.0" prefHeight="12.0" prefWidth="376.0" />
+      <MediaView fx:id="mediaview" fitHeight="200.0" fitWidth="200.0" layoutX="200.0" layoutY="100.0" />
+      <Slider fx:id="slider" layoutX="120.0" layoutY="300.0" majorTickUnit="10.0" minorTickCount="5" prefHeight="14.0" prefWidth="386.0" showTickLabels="true" />
+      <Button fx:id="playbtn" layoutX="121.0" layoutY="335.0" mnemonicParsing="false" onAction="#PlaySong" text="Play" />
+      <Button fx:id="nextbtn" layoutX="191.0" layoutY="335.0" mnemonicParsing="false" onAction="#PlayNext" text="Next" />
+      <Button fx:id="prevbtn" layoutX="262.0" layoutY="335.0" mnemonicParsing="false" onAction="#PlayPrev" text="Prev" />
+      <ComboBox fx:id="Queue" layoutX="4.0" layoutY="67.0" prefHeight="25.0" prefWidth="117.0" promptText="Queue" />
+      <ComboBox fx:id="Listi" layoutX="363.0" layoutY="67.0" onAction="#Openlist" prefHeight="25.0" prefWidth="109.0" promptText="SelectSongs" />
+      <ListView layoutY="200.0" prefHeight="0.0" prefWidth="0.0" />
+   </children>
+</AnchorPane>

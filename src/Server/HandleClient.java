@@ -3,6 +3,8 @@ package Server;
 import java.io.*;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.List;
+
 import sample.*;
 public class HandleClient implements Runnable{
     private StartServer startServer;
@@ -46,22 +48,68 @@ public class HandleClient implements Runnable{
             switch(Integer.parseInt(dataInputStream.readUTF())) {
                 case 1:
                 {
-                    Boolean isValidClient = databaseHandler.loginClient(dataInputStream.readUTF(),dataInputStream.readUTF());
-                    dataOutputStream.writeUTF(String.valueOf(isValidClient));
+                    sample.ClientInfo ClientInfo = databaseHandler.loginClient(dataInputStream.readUTF(),dataInputStream.readUTF());
+                    objectOutputStream.writeObject(ClientInfo);
                     break;
                 }
                 case 2:
-
+                {
+                    ClientInfo clientInfo = (ClientInfo) objectInputStream.readObject();
+                    Boolean register = databaseHandler.createUser(clientInfo);
+                    dataOutputStream.writeUTF(String.valueOf(register));
+                    System.out.println("User Added");
+                    break;
+                }
                 case 3:
                 {
                     Boolean is_new = databaseHandler.new_login(dataInputStream.readUTF());
-                    dataOutputStream.writeUTF(String.valueOf(is_new));
+
                     break;
                 }
+                case 4:
+                {
+                    SongInfo songinfo=databaseHandler.loadSong(dataInputStream.readUTF());
+                    objectOutputStream.writeObject(songinfo);
+                    if(songinfo!=null)
+                        dataOutputStream.writeUTF(String.valueOf(true));
+                    else
+                        dataOutputStream.writeUTF(String.valueOf(false));
+                    break;
+                }
+                case 5:
+                {
+                    List<String> test= databaseHandler.getList();
+                    objectOutputStream.writeObject(test);
+                    break;
 
+
+                }
+                case 6:
+                {
+                    List<String> ls = databaseHandler.getArtist();
+                    objectOutputStream.writeObject(ls);
+                    break;
+                }
+                case 7:
+                {
+                    List<String> genre = databaseHandler.getGenre();
+                    objectOutputStream.writeObject(genre);
+                    break;
+                }
+                case 8:
+                {
+                    int user_id = dataInputStream.read();
+                    String artist = dataInputStream.readUTF();
+
+                    String genre = dataInputStream.readUTF();
+
+                    String language = dataInputStream.readUTF();
+                    databaseHandler.setFeatures(user_id,artist,genre,language);
+                    break;
+                }
             }
         }
-            catch (IOException | SQLException e)
+            catch (IOException | ClassNotFoundException e)
             {
                 e.printStackTrace();
             }

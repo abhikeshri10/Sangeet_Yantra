@@ -26,11 +26,27 @@ public class Register {
         String username = usernameTF.getText();
         String password1 = password1TF.getText();
         String password2 = password2TF.getText();
-        if(password1 == password2)
-        {
-            ClientInfo new_Client = new ClientInfo(name,email,phone,username,password1);
+        if (password1.equals(password2)) {
+            if (password1.length() < 8) {
+                JOptionPane.showMessageDialog(null, "Too short Password");
+            } else {
+                ClientInfo new_Client = new ClientInfo(name, email, phone, username, password1);
+                boolean check = ClientMain.client.createClient(new_Client);
+                if (check) {
+                    JOptionPane.showMessageDialog(null, "Sign up Successfully");
 
+                } else {
+                    JOptionPane.showMessageDialog(null, "Sign up not Successfully");
+
+
+                }
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Password mismatches");
         }
+
     }
 
     public void login(ActionEvent actionEvent) throws IOException {
