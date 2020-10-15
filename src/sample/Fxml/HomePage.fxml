@@ -12,6 +12,8 @@
               <MenuItem fx:id="playlistMenu" mnemonicParsing="false" onAction="#goToPlaylist" text="Playlist" />
                   <MenuItem fx:id="albumMenu" mnemonicParsing="false" onAction="#goToAlbum" text="Album" />
                   <MenuItem fx:id="songMenu" mnemonicParsing="false" onAction="#goToSong" text="Songs" />
+                <MenuItem fx:id="historyMenu" mnemonicParsing="false" onAction="#goToHistory" text="History" />
+                <MenuItem fx:id="groupMenu" mnemonicParsing="false" onAction="#goToGroup" text="Group" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Offline">
@@ -39,6 +41,6 @@
        <Label layoutX="111.0" layoutY="198.0" prefHeight="26.0" prefWidth="64.0" text="Username" />
        <Label fx:id="usernameLB" layoutX="192.0" layoutY="198.0" prefHeight="26.0" prefWidth="218.0" text="Label" />
        <Separator layoutX="106.0" layoutY="232.0" prefHeight="18.0" prefWidth="393.0" />
-      <Button fx:id="songBT" layoutX="141.0" layoutY="290.0" mnemonicParsing="false" onAction="#goSong" text="Songs" />
+
    </children>
 </AnchorPane>

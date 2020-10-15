@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.Controller.AlbumController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AlbumController">
+    <children>
+        <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="600.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem fx:id="playlistMenu" mnemonicParsing="false" onAction="#goToPlaylist" text="Playlist" />
+                        <MenuItem fx:id="albumMenu" mnemonicParsing="false" onAction="#goToAlbum" text="Album" />
+                        <MenuItem fx:id="songMenu" mnemonicParsing="false" onAction="#goToSong" text="Songs" />
+                        <MenuItem fx:id="historyMenu" mnemonicParsing="false" onAction="#goToHistory" text="History" />
+                        <MenuItem fx:id="groupMenu" mnemonicParsing="false" onAction="#goToGroup" text="Group" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Offline">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Offline Features" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Label fx:id="nameLB" layoutX="258.0" layoutY="38.0" prefHeight="18.0" prefWidth="83.0" text="      Name" />
+      <ComboBox fx:id="artistCB" layoutX="363.0" layoutY="86.0" prefWidth="150.0" promptText="Artists" />
+      <ComboBox fx:id="albumCB" layoutX="66.0" layoutY="86.0" prefWidth="150.0" promptText="Albums" />
+      <Button fx:id="playAlbum" layoutX="93.0" layoutY="157.0" mnemonicParsing="false" onAction="#playAlbum" prefHeight="26.0" prefWidth="96.0" text="Play Album" />
+      <Button fx:id="playArtist" layoutX="396.0" layoutY="157.0" mnemonicParsing="false" onAction="#playArtist" prefHeight="26.0" prefWidth="83.0" text="PlayArtist" />
+    </children>
 </AnchorPane>

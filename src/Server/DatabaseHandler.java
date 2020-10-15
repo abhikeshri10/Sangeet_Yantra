@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import sample.*;
 public class DatabaseHandler {
     private String USERNAME;
@@ -185,6 +186,10 @@ public class DatabaseHandler {
 
     }
 
+    /**
+     * Get songs in the database
+     * @return
+     */
     public List<String> getList() {
         try {
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -226,21 +231,459 @@ public class DatabaseHandler {
         }
        catch (SQLException sqle)
        {
-           System.out.println("Featurs insert error database");
+           System.out.println("Features insert error database");
        }
     }
+
     /**
-     *
-     * @param query
+     * Get playlist corresponding to the user
+     * todo add group playlist
+     * @param userid
      * @return
-     * @throws SQLException
      */
-    private ResultSet Query(String query) throws SQLException {
-        ResultSet resultSet = null;
-        dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
-        dbstatement = dbconnection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        resultSet = dbstatement.executeQuery();
-        return resultSet;
+   public List<String> getPlaylist(int userid) {
+       try{
+           dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+           String query = "Select * from playlist WHERE UserId ='"+userid+"';";
+           dbstatement = dbconnection.prepareStatement(query);
+           ResultSet rs = dbstatement.executeQuery();
+           List<String> ls = new ArrayList<String >();
+           while(rs.next())
+           {
+               String Playlist = rs.getString("PlaylistName");
+               ls.add(Playlist);
+           }
+
+           return ls;
+       }
+       catch (SQLException sql)
+       {
+           System.out.println("Database fetch error");
+       }
+       return null;
     }
 
+    /**
+     *
+     * @param userid
+     * @param playlistName
+     * @return
+     */
+    public boolean createPlaylist(int userid, String playlistName) {
+       try {
+           dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+           String query1 = "Select * from playlist Where PlaylistName='"+playlistName+"'And UserId='"+userid+"';";
+           dbstatement = dbconnection.prepareStatement(query1);
+           ResultSet rs2 = dbstatement.executeQuery();
+           if(rs2.next())
+           {    System.out.println("Playlist Already exists");
+               return false;
+           }
+           String query = "Insert into playlist Values(?,?,?);";
+           dbstatement = dbconnection.prepareStatement(query);
+           dbstatement.setString(1,null);
+           dbstatement.setString(2,playlistName);
+           dbstatement.setInt(3,userid);
+           int rs = dbstatement.executeUpdate();
+           return true;
+       }
+       catch (SQLException sqle)
+       {
+           System.out.println("Error in creation of playlist");
+           return false;
+
+       }
+
+
+    }
+
+    public boolean addSongToPlaylist(String playlist, String song) {
+       try{
+           dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+           int id=0;
+           int songid=0;
+           try{
+               String query = "Select * from playlist WHERE PlaylistName='"+playlist+"';";
+               dbstatement = dbconnection.prepareStatement(query);
+               ResultSet rs = dbstatement.executeQuery();
+               while (rs.next())
+               {
+                   id=rs.getInt("id");
+                   break;
+               }
+           }
+           catch (SQLException sqle)
+           {
+               System.out.println("Query  error");
+               return false;
+           }
+           try{
+               String query = "Select * from song WHERE SongName='"+song+"';";
+               dbstatement = dbconnection.prepareStatement(query);
+               ResultSet rs = dbstatement.executeQuery();
+               while (rs.next())
+               {
+                   songid = rs.getInt("id");
+                   break;
+               }
+           }
+           catch (SQLException sqle)
+           {
+               System.out.println("Song query error");
+               return false;
+           }
+           try{
+               String query = "Insert into playlistsong VALUES (?,?);";
+               dbstatement = dbconnection.prepareStatement(query);
+               dbstatement.setInt(1,id);
+               dbstatement.setInt(2,songid);
+               int rs = dbstatement.executeUpdate();
+               if(rs==1)
+               {
+                   System.out.println("Song insertion succcess");
+                   return  true;
+               }
+               else
+               {
+                   System.out.println("Song insertion error");
+                   return false;
+               }
+           }
+           catch (SQLException sqle)
+           {
+               System.out.println("Insert query error");
+               return false;
+           }
+       }catch (SQLException sqle)
+       {
+           System.out.println("Database fetch error");
+           return false;
+       }
+    }
+
+    public List<String> getAlbum() {
+        try{
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "Select * from album;";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet rs = dbstatement.executeQuery();
+            List<String> ls = new ArrayList<String >();
+            while(rs.next())
+            {
+                String Album = rs.getString("AlbumName");
+                ls.add(Album);
+            }
+            return ls;
+        }
+        catch (SQLException sql)
+        {
+            System.out.println("Database fetch error");
+        }
+        return null;
+    }
+
+    public List<String> getHistory(int userid) {
+        try{
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "Select * from history Where UserId ='"+userid+"'Order by Time DESC ;";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet rs = dbstatement.executeQuery();
+            List<Integer> ls = new ArrayList<Integer >();
+            while(rs.next())
+            {
+                int songId = rs.getInt("SongId");
+                ls.add(songId);
+            }
+            List<String> history = new ArrayList<String>();
+            for(int i=0;i<ls.size();i++)
+            {
+                String query2 = "Select * from song Where id='"+ls.get(i)+"';";
+                dbstatement = dbconnection.prepareStatement(query2);
+                ResultSet rs2= dbstatement.executeQuery();
+                while (rs2.next())
+                {
+                    history.add(rs2.getString("SongName"));
+                }
+            }
+            return history;
+        }
+        catch (SQLException sql)
+        {
+            System.out.println("Database fetch error");
+        }
+        return null;
+    }
+
+    public void addHistory(int userid, int songid) {
+        try{
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "Insert into history VALUES (?,?,?,CURRENT_TIMESTAMP )";
+            dbstatement = dbconnection.prepareStatement(query);
+            dbstatement.setString(1,null);
+            dbstatement.setInt(2,userid);
+            dbstatement.setInt(3,songid);
+            int rs = dbstatement.executeUpdate();
+            if(rs == 1)
+            {
+                System.out.println("History insertion successfully");
+            }
+            else
+            {
+                System.out.println("History insertion failed");
+
+            }
+        }
+        catch (SQLException sql)
+        {
+            System.out.println("Database fetch error");
+        }
+    }
+
+    /**
+     *
+     * @param groupName
+     * @param userid
+     * @return
+     */
+    public boolean createGroup(String groupName, int userid) {
+        try {
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query1 = "Select * from groups Where GroupName='"+groupName+"'And CreatorId='"+userid+"';";
+            dbstatement = dbconnection.prepareStatement(query1);
+            ResultSet rs2 = dbstatement.executeQuery();
+            if(rs2.next())
+            {   System.out.println("Playlist Already exists");
+                return false;
+            }
+            String query = "Insert into groups Values(?,?,?);";
+            dbstatement = dbconnection.prepareStatement(query);
+            dbstatement.setString(1,null);
+            dbstatement.setString(2,groupName);
+            dbstatement.setInt(3,userid);
+            int rs = dbstatement.executeUpdate();
+
+            //getting thr id of the inserted group
+            String query3 = "Select * from groups Where GroupName='"+groupName+"'And CreatorId='"+userid+"';";
+            dbstatement = dbconnection.prepareStatement(query3);
+            ResultSet rs3 = dbstatement.executeQuery();
+            int groupId=0;
+            if(rs3.next())
+            {
+                groupId = rs3.getInt("id");
+            }
+
+            //inserting the creator to the members of the groups
+            String query2 = "Insert into groupmembers Values(?,?);";
+            dbstatement = dbconnection.prepareStatement(query2);
+            dbstatement.setInt(1,groupId);
+            dbstatement.setInt(2,userid);
+            int rs4 = dbstatement.executeUpdate();
+            return true;
+        }
+        catch (SQLException sqle)
+        {
+            System.out.println("Error in creation of group");
+            return false;
+        }
+    }
+
+
+    public List<String> getGroupsCreated(int userid) {
+        try {
+            System.out.println("Group Request from "+userid);
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "Select * from groups Where CreatorId='" + userid + "';";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet rs2 = dbstatement.executeQuery();
+            List<String> getgroups = new ArrayList<String>();
+           while (rs2.next())
+           {
+              getgroups.add(rs2.getString("GroupName"));
+
+           }
+           if (getgroups == null)
+           {    System.out.println("No groups present");
+               return null;
+           }
+           return getgroups;
+        }
+        catch ( SQLException e)
+        {
+            return null;
+        }
+    }
+
+    public List<String> getUsers() {
+        try {
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "Select * from user_details;";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet rs2 = dbstatement.executeQuery();
+            List<String> getUsers = new ArrayList<String>();
+            while (rs2.next())
+            {
+                getUsers.add(rs2.getString("Name"));
+            }
+            return getUsers;
+        }
+        catch ( SQLException e)
+        {
+            return null;
+        }
+    }
+
+    public boolean addUserToGroup(String groupName, String userName) {
+        try{
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query3 = "Select * from groups Where GroupName='"+groupName+"';";
+            dbstatement = dbconnection.prepareStatement(query3);
+            ResultSet rs3 = dbstatement.executeQuery();
+            int groupId=0;
+            if(rs3.next())
+            {
+                groupId = rs3.getInt("id");
+            }
+            //getting userId of the user
+            String query4 = "Select * from user_details Where Name='"+userName+"';";
+            dbstatement = dbconnection.prepareStatement(query4);
+            ResultSet rs4 = dbstatement.executeQuery();
+            int UserId=0;
+            if(rs4.next())
+            {
+                UserId = rs4.getInt("id");
+            }
+
+            //inserting the creator to the members of the groups
+            String query2 = "Insert into groupmembers Values(?,?);";
+            dbstatement = dbconnection.prepareStatement(query2);
+            dbstatement.setInt(1,groupId);
+            dbstatement.setInt(2,UserId);
+            int rs5 = dbstatement.executeUpdate();
+            return true;
+        }
+        catch (SQLException e)
+        {
+            return false;
+        }
+    }
+
+    public List<String> getAllGroups(int userid) {
+        try {
+            System.out.println("Group Request from "+userid);
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "Select * from groupmembers Where UserId='" + userid + "';";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet rs2 = dbstatement.executeQuery();
+            List<Integer> getgroupsId = new ArrayList<Integer>();
+            while (rs2.next())
+            {
+                getgroupsId.add(rs2.getInt("GroupId"));
+
+            }
+            if (getgroupsId == null)
+            {    System.out.println("No groups present");
+                 return null;
+            }
+            List<String> groups = new ArrayList<String>();
+
+            for(int i=0;i<getgroupsId.size();i++)
+            {
+                String query3 = "Select * from groups Where id='"+getgroupsId.get(i)+"';";
+                dbstatement = dbconnection.prepareStatement(query3);
+                ResultSet rs3 = dbstatement.executeQuery();
+                if(rs3.next())
+                {   System.out.println("There is group");
+                   groups.add(rs3.getString("GroupName"));
+                }
+            }
+            return groups;
+        }
+        catch ( SQLException e)
+        {
+            return null;
+        }
+    }
+
+
+    public List<String> getGroupPlaylist(int userid) {
+        try {
+            System.out.println("Group playlist call");
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "Select * from groupmembers Where UserId='" + userid + "';";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet rs2 = dbstatement.executeQuery();
+            List<Integer> getgroupsId = new ArrayList<Integer>();
+            while (rs2.next())
+            {
+                getgroupsId.add(rs2.getInt("GroupId"));
+
+            }
+            if (getgroupsId == null)
+            {    System.out.println("No groups present");
+                return null;
+            }
+            List<Integer> playlistId = new ArrayList<Integer>();
+
+            for(int i=0;i<getgroupsId.size();i++)
+            {
+                String query3 = "Select * from groupplaylist Where GroupId='"+getgroupsId.get(i)+"';";
+                dbstatement = dbconnection.prepareStatement(query3);
+                ResultSet rs3 = dbstatement.executeQuery();
+                while(rs3.next())
+                {
+                    playlistId.add(rs3.getInt("PlaylistId"));
+                }
+            }
+            List<String> playlistName = new ArrayList<String>();
+
+            for(int i=0;i<playlistId.size();i++)
+            {
+                String query3 = "Select * from playlist Where id='"+playlistId.get(i)+"';";
+                dbstatement = dbconnection.prepareStatement(query3);
+                ResultSet rs3 = dbstatement.executeQuery();
+                if(rs3.next())
+                {
+                    playlistName.add(rs3.getString("PlaylistName"));
+                }
+            }
+            return playlistName;
+        }
+        catch ( SQLException e)
+        {   System.out.println("Group playlist Db error");
+            return null;
+        }
+    }
+
+    public boolean addPlaylisttoGroup(String groupname, String playlistName) {
+        try {
+
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "Select * from groups Where GroupName='" + groupname + "';";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet rs2 = dbstatement.executeQuery();
+            int groupId = 0;
+            if(rs2.next())
+            {
+                groupId = rs2.getInt("id");
+            }
+         int playlistid = 0;
+            String query3 = "Select * from playlist Where PlaylistName='"+playlistName+"';";
+            dbstatement = dbconnection.prepareStatement(query3);
+            ResultSet rs3 = dbstatement.executeQuery();
+            if(rs3.next())
+            {
+                playlistid = rs3.getInt("id");
+            }
+            String query4 = "Insert into groupplaylist VALUES(?,?);";
+            dbstatement = dbconnection.prepareStatement(query4);
+            dbstatement.setInt(1,groupId);
+            dbstatement.setInt(2,playlistid);
+            int rs = dbstatement.executeUpdate();
+            return true;
+        }
+        catch ( SQLException e)
+        {
+            return false;
+        }
+    }
 }

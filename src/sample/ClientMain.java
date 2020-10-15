@@ -12,7 +12,7 @@ public class ClientMain extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Fxml/LoginPage.fxml"));
         primaryStage.setTitle("Sangeet Yantra");
-        primaryStage.setScene(new Scene(root, 700, 600));
+        primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }
 

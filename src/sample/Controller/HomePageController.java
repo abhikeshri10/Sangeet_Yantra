@@ -18,7 +18,9 @@ public class HomePageController implements Initializable {
         public MenuItem playlistMenu;
         public MenuItem albumMenu;
         public MenuItem songMenu;
-        private ClientInfo clientInfo;
+        public MenuItem historyMenu;
+    public MenuItem groupMenu;
+    private ClientInfo clientInfo;
 
 
         @Override
@@ -31,18 +33,25 @@ public class HomePageController implements Initializable {
         }
 
         public void goToPlaylist(ActionEvent actionEvent) throws IOException {
-                new SceneChanger().changeScene("FXML\\Playlist.fxml","Playlist",actionEvent);
+                new SceneChanger().changeScene2("FXML\\Playlist.fxml","Playlist",nameLB);
         }
 
         public void goToAlbum(ActionEvent actionEvent) throws IOException {
-                new SceneChanger().changeScene("FXML\\Album.fxml","Album",actionEvent);
+                new SceneChanger().changeScene2("FXML\\Album.fxml","Album",nameLB);
         }
 
         public void goToSong(ActionEvent actionEvent) throws IOException {
-                new SceneChanger().changeScene("FXML\\SongPlayer.fxml","Sangeet Yantra",actionEvent);
+
+                new SceneChanger().changeScene2("FXML\\SongPlayer.fxml","Song", nameLB);
         }
 
-        public void goSong(ActionEvent actionEvent) throws IOException {
-                new SceneChanger().changeScene("FXML\\SongPlayer.fxml","Sangeet Yantra",actionEvent);
+
+        public void goToHistory(ActionEvent actionEvent) {
+
+                new SceneChanger().changeScene2("FXML\\History.fxml","Song", nameLB);
+        }
+
+        public void goToGroup(ActionEvent actionEvent) {
+                new SceneChanger().changeScene2("FXML\\Group.fxml","Group",nameLB);
         }
 }

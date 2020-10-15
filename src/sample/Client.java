@@ -19,6 +19,7 @@ public class Client implements Runnable{
     public String username;
     public static ClientInfo clientInfo;
     public static SongInfo songInfo;
+
     public boolean connectToServer(String serverIP, int serverPort) {
         try {
             s = new Socket(serverIP, serverPort);
@@ -131,6 +132,7 @@ public class Client implements Runnable{
             dataOutputStream.writeUTF(QueryType.playSong);
             dataOutputStream.writeUTF(text);
             songInfo=(SongInfo) objectInputStream.readObject();
+            this.addHistory(clientInfo.user_id,songInfo.id);
             return Boolean.parseBoolean(dataInputStream.readUTF());
         }
         catch(IOException| ClassNotFoundException e)
@@ -140,6 +142,19 @@ public class Client implements Runnable{
         }
 
     }
+
+    private void addHistory(int user_id, int songid) {
+        try{
+            dataOutputStream.writeUTF(QueryType.addHistory);
+            dataOutputStream.write(user_id);
+            dataOutputStream.write(songid);
+        }
+        catch (IOException e)
+        {
+            System.out.println("History addition failed");
+        }
+    }
+
     @Override
     public void run() {
 
@@ -157,7 +172,170 @@ public class Client implements Runnable{
             return null;
 
         }
+    }
+    public List<String> getPlaylist(int userid) {
+        try {
+            dataOutputStream.writeUTF(QueryType.getPlaylist);
+            dataOutputStream.write(userid);
+            List<String> list1 =(List<String>) objectInputStream.readObject();
+            // System.out.println(list1);
+            return list1;
+        }
+        catch(Exception e)
+        {
+            return null;
 
+        }
+    }
 
+    public boolean createPlaylist(int user_id, String playlistName) {
+        try{
+            dataOutputStream.writeUTF(QueryType.createPlaylist);
+            dataOutputStream.write(user_id);
+            dataOutputStream.writeUTF(playlistName);
+
+            return dataInputStream.readBoolean();
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+    public boolean addSongToPlaylist(String playlist, String song) {
+
+        try {
+            dataOutputStream.writeUTF(QueryType.addSongToPlaylist);
+            dataOutputStream.writeUTF(playlist);
+            dataOutputStream.writeUTF(song);
+            return dataInputStream.readBoolean();
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+    }
+
+    public List<String> getAlbum() {
+        try {
+            dataOutputStream.writeUTF(QueryType.getAlbum);
+
+            List<String> list1 =(List<String>) objectInputStream.readObject();
+            // System.out.println(list1);
+            return list1;
+        }
+        catch(Exception e)
+        {
+            return null;
+
+        }
+    }
+
+    public List<String> getHistory(int user_id) {
+        try{
+            dataOutputStream.writeUTF(QueryType.getHistory);
+            dataOutputStream.write(user_id);
+            List<String> history = (List<String>) objectInputStream.readObject();
+            return history;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    public boolean createGroup(String groupName, int user_id) {
+        try{
+            dataOutputStream.writeUTF(QueryType.createGroup);
+            dataOutputStream.writeUTF(groupName);
+            dataOutputStream.write(user_id);
+            return dataInputStream.readBoolean();
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+    public List<String> getGroupsCreated(int user_id) {
+        try{
+            dataOutputStream.writeUTF(QueryType.getGroupCreated);
+            dataOutputStream.write(user_id);
+            List<String> getGroupCreated = (List<String>) objectInputStream.readObject();
+            return getGroupCreated;
+
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    public List<String> getusers() {
+        try{
+            dataOutputStream.writeUTF(QueryType.getUsers);
+            List<String> getUsers= (List<String>) objectInputStream.readObject();
+            return getUsers;
+
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    public boolean addUserToGroup(String groupName, String userName) {
+        try{
+            dataOutputStream.writeUTF(QueryType.addUserToGroup);
+            dataOutputStream.writeUTF(groupName);
+            dataOutputStream.writeUTF(userName);
+            return dataInputStream.readBoolean();
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+    public List<String> getAllGroups(int user_id) {
+        try{
+            dataOutputStream.writeUTF(QueryType.getAllGroups);
+            dataOutputStream.write(user_id);
+            List<String> getGroupCreated = (List<String>) objectInputStream.readObject();
+            return getGroupCreated;
+
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    public List<String> getGroupPlaylist(int user_id) {
+        try{
+            dataOutputStream.writeUTF(QueryType.getGroupPlaylist);
+            dataOutputStream.write(user_id);
+            List<String> getGroupPlaylist = (List<String>) objectInputStream.readObject();
+            return getGroupPlaylist;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    public boolean addPlaylistToGroup(String groupName, String addPlaylist) {
+        try
+        {
+
+            dataOutputStream.writeUTF(QueryType.addPlaylistToGroup);
+            dataOutputStream.writeUTF(groupName);
+            dataOutputStream.writeUTF(addPlaylist);
+            return dataInputStream.readBoolean();
+        }catch (Exception e)
+        {
+            return false;
+        }
     }
 }

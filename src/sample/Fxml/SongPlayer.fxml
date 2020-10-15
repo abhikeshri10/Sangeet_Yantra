@@ -4,40 +4,48 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.media.*?>
 
-<AnchorPane fx:id="Pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.SongPlayer">
-   <children>
-       <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="600.0">
-           <menus>
-               <Menu mnemonicParsing="false" text="File">
-                   <items>
-                       <MenuItem fx:id="playlistMenu" mnemonicParsing="false" onAction="#goToPlaylist" text="Playlist" />
-                       <MenuItem fx:id="albumMenu" mnemonicParsing="false" onAction="#goToAlbum" text="Album" />
-                       <MenuItem fx:id="songMenu" mnemonicParsing="false" onAction="#goToSong" text="Songs" />
-                   </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="Offline">
-                   <items>
-                       <MenuItem mnemonicParsing="false" text="Offline Features" />
-                   </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="Help">
-                   <items>
-                       <MenuItem mnemonicParsing="false" text="About" />
-                   </items>
-               </Menu>
-           </menus>
-       </MenuBar>
-      <ListView layoutX="121.0" layoutY="64.0" prefHeight="299.0" prefWidth="394.0" />
-      <Label fx:id="songName" layoutX="131.0" layoutY="64.0" prefHeight="31.0" prefWidth="57.0" text="Circles" textOverrun="CLIP" />
-      <Label layoutX="212.0" layoutY="67.0" prefHeight="25.0" prefWidth="139.0" text="Label" />
-      <Separator layoutX="130.0" layoutY="95.0" prefHeight="12.0" prefWidth="376.0" />
-      <MediaView fx:id="mediaview" fitHeight="200.0" fitWidth="200.0" layoutX="200.0" layoutY="100.0" />
-      <Slider fx:id="slider" layoutX="120.0" layoutY="300.0" majorTickUnit="10.0" minorTickCount="5" prefHeight="14.0" prefWidth="386.0" showTickLabels="true" />
-      <Button fx:id="playbtn" layoutX="121.0" layoutY="335.0" mnemonicParsing="false" onAction="#PlaySong" text="Play" />
-      <Button fx:id="nextbtn" layoutX="191.0" layoutY="335.0" mnemonicParsing="false" onAction="#PlayNext" text="Next" />
-      <Button fx:id="prevbtn" layoutX="262.0" layoutY="335.0" mnemonicParsing="false" onAction="#PlayPrev" text="Prev" />
-      <ComboBox fx:id="Queue" layoutX="4.0" layoutY="67.0" prefHeight="25.0" prefWidth="117.0" promptText="Queue" />
-      <ComboBox fx:id="Listi" layoutX="363.0" layoutY="67.0" onAction="#Openlist" prefHeight="25.0" prefWidth="109.0" promptText="SelectSongs" />
-      <ListView layoutY="200.0" prefHeight="0.0" prefWidth="0.0" />
-   </children>
+<AnchorPane fx:id="Pane" prefHeight="513.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.SongPlayer">
+    <children>
+        <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="762.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem fx:id="playlistMenu" mnemonicParsing="false" onAction="#goToPlaylist" text="Playlist" />
+                        <MenuItem fx:id="albumMenu" mnemonicParsing="false" onAction="#goToAlbum" text="Album" />
+                        <MenuItem fx:id="songMenu" mnemonicParsing="false" onAction="#goToSong" text="Songs" />
+                        <MenuItem fx:id="historyMenu" mnemonicParsing="false" onAction="#goToHistory" text="History" />
+                        <MenuItem fx:id="groupMenu" mnemonicParsing="false" onAction="#goToGroup" text="Group" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Offline">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Offline Features" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <ListView layoutX="123.0" layoutY="60.0" prefHeight="370.0" prefWidth="532.0" />
+        <Label fx:id="songName" layoutX="171.0" layoutY="64.0" prefHeight="31.0" prefWidth="57.0" text="Circles" textOverrun="CLIP" />
+        <Label layoutX="290.0" layoutY="66.0" prefHeight="26.0" prefWidth="54.0" text="Label" />
+        <Separator layoutX="130.0" layoutY="95.0" prefHeight="12.0" prefWidth="516.0" />
+        <MediaView fx:id="mediaview" fitHeight="200.0" fitWidth="200.0" layoutX="200.0" layoutY="100.0" />
+        <Slider fx:id="slider" layoutX="134.0" layoutY="321.0" majorTickUnit="10.0" minorTickCount="5" prefHeight="34.0" prefWidth="505.0" showTickLabels="true" />
+        <Button fx:id="playbtn" layoutX="128.0" layoutY="385.0" mnemonicParsing="false" onAction="#PlaySong" prefHeight="26.0" prefWidth="67.0" text="Play" />
+        <Button fx:id="nextbtn" layoutX="205.0" layoutY="385.0" mnemonicParsing="false" onAction="#PlayNext" prefHeight="26.0" prefWidth="54.0" text="Next" />
+        <Button fx:id="prevbtn" layoutX="273.0" layoutY="385.0" mnemonicParsing="false" onAction="#PlayPrev" prefHeight="26.0" prefWidth="54.0" text="Prev" />
+        <ComboBox fx:id="Queue" layoutX="14.0" layoutY="51.0" prefHeight="26.0" prefWidth="106.0" promptText="Queue" />
+        <ComboBox fx:id="Listi" layoutX="401.0" layoutY="67.0" onAction="#Openlist" prefHeight="26.0" prefWidth="140.0" promptText="SelectSongs" />
+        <ListView layoutY="200.0" prefHeight="0.0" prefWidth="0.0" />
+        <Button fx:id="SpeedInc" layoutX="334.0" layoutY="385.0" mnemonicParsing="false" onAction="#Fast" prefHeight="26.0" prefWidth="53.0" text="&gt;&gt;&gt;" />
+        <Button fx:id="SpeedDec" layoutX="397.0" layoutY="385.0" mnemonicParsing="false" onAction="#Slow" text="&lt;&lt;&lt;" />
+        <Slider fx:id="volumeSlider" layoutX="524.0" layoutY="391.0" prefHeight="14.0" prefWidth="123.0" />
+        <Button fx:id="Repeat" layoutX="445.0" layoutY="385.0" mnemonicParsing="false" onAction="#setRepeat" text="Repeat" />
+        <Button layoutX="576.0" layoutY="67.0" mnemonicParsing="false" text="Shuffle" />
+      <Button fx:id="openlocal" layoutX="25.0" layoutY="372.0" mnemonicParsing="false" onAction="#openLocal" text="Open local" />
+    </children>
 </AnchorPane>
