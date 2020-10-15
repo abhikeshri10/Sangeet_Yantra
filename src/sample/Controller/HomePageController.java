@@ -11,38 +11,47 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HomePageController implements Initializable {
-        public Label nameLB;
-        public Label phoneLB;
-        public Label emailLB;
-        public Label usernameLB;
-        public MenuItem playlistMenu;
-        public MenuItem albumMenu;
-        public MenuItem songMenu;
-        private ClientInfo clientInfo;
+    public Label nameLB;
+    public Label phoneLB;
+    public Label emailLB;
+    public Label usernameLB;
+    public MenuItem playlistMenu;
+    public MenuItem albumMenu;
+    public MenuItem songMenu;
+    public MenuItem historyMenu;
+    public MenuItem groupMenu;
+    private ClientInfo clientInfo;
 
 
-        @Override
-        public void initialize(URL location, ResourceBundle resources) {
-                clientInfo = ClientMain.client.clientInfo;
-                nameLB.setText(clientInfo.name);
-                emailLB.setText(clientInfo.email);
-                phoneLB.setText(clientInfo.phone);
-                usernameLB.setText(clientInfo.username);
-        }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        clientInfo = ClientMain.client.clientInfo;
+        nameLB.setText(clientInfo.name);
+        emailLB.setText(clientInfo.email);
+        phoneLB.setText(clientInfo.phone);
+        usernameLB.setText(clientInfo.username);
+    }
 
-        public void goToPlaylist(ActionEvent actionEvent) throws IOException {
-                new SceneChanger().changeScene("FXML\\Playlist.fxml","Playlist",actionEvent);
-        }
+    public void goToPlaylist(ActionEvent actionEvent) throws IOException {
+        new SceneChanger().changeScene2("FXML\\Playlist.fxml","Playlist",nameLB);
+    }
 
-        public void goToAlbum(ActionEvent actionEvent) throws IOException {
-                new SceneChanger().changeScene("FXML\\Album.fxml","Album",actionEvent);
-        }
+    public void goToAlbum(ActionEvent actionEvent) throws IOException {
+        new SceneChanger().changeScene2("FXML\\Album.fxml","Album",nameLB);
+    }
 
-        public void goToSong(ActionEvent actionEvent) throws IOException {
-                new SceneChanger().changeScene("FXML\\SongPlayer.fxml","Sangeet Yantra",actionEvent);
-        }
+    public void goToSong(ActionEvent actionEvent) throws IOException {
 
-        public void goSong(ActionEvent actionEvent) throws IOException {
-                new SceneChanger().changeScene("FXML\\SongPlayer.fxml","Sangeet Yantra",actionEvent);
-        }
+        new SceneChanger().changeScene2("FXML\\SongPlayer.fxml","Song", nameLB);
+    }
+
+
+    public void goToHistory(ActionEvent actionEvent) {
+
+        new SceneChanger().changeScene2("FXML\\History.fxml","Song", nameLB);
+    }
+
+    public void goToGroup(ActionEvent actionEvent) {
+        new SceneChanger().changeScene2("FXML\\Group.fxml","Group",nameLB);
+    }
 }

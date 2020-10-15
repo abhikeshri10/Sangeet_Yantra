@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Register">
+   <children>
+      <TextField fx:id="nameTF" layoutX="197.0" layoutY="47.0" prefHeight="26.0" prefWidth="206.0" promptText="Enter your Name" />
+      <TextField fx:id="emailTF" layoutX="197.0" layoutY="101.0" prefHeight="26.0" prefWidth="206.0" promptText="Enter Email Id" />
+      <TextField fx:id="phoneTF" layoutX="197.0" layoutY="163.0" prefHeight="26.0" prefWidth="206.0" promptText="Enter Phone Number" />
+      <TextField fx:id="usernameTF" layoutX="201.0" layoutY="213.0" prefHeight="26.0" prefWidth="206.0" promptText="Enter your username" />
+      <Button fx:id="register" layoutX="201.0" layoutY="341.0" mnemonicParsing="false" onAction="#register" text="Register" />
+      <Button fx:id="loginbtn" layoutX="357.0" layoutY="341.0" mnemonicParsing="false" onAction="#login" text="Login" />
+      <PasswordField fx:id="password1TF" layoutX="201.0" layoutY="263.0" prefHeight="26.0" prefWidth="206.0" promptText="Enter your password" />
+      <PasswordField fx:id="password2TF" layoutX="200.0" layoutY="296.0" prefHeight="26.0" prefWidth="206.0" promptText="Retype your password" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="424.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.HistoryController">
+   <children>
+       <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="600.0">
+           <menus>
+               <Menu mnemonicParsing="false" text="File">
+                   <items>
+                       <MenuItem fx:id="playlistMenu" mnemonicParsing="false" onAction="#goToPlaylist" text="Playlist" />
+                       <MenuItem fx:id="albumMenu" mnemonicParsing="false" onAction="#goToAlbum" text="Album" />
+                       <MenuItem fx:id="songMenu" mnemonicParsing="false" onAction="#goToSong" text="Songs" />
+                       <MenuItem fx:id="historyMenu" mnemonicParsing="false" onAction="#goToHistory" text="History" />
+                       <MenuItem fx:id="groupMenu" mnemonicParsing="false" onAction="#goToGroup" text="Group" />
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Offline">
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="Offline Features" />
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Help">
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="About" />
+                   </items>
+               </Menu>
+           </menus>
+       </MenuBar>
+       <Label fx:id="nameLB" layoutX="193.0" layoutY="56.0" prefHeight="26.0" prefWidth="164.0" text="Label" />
+      <TextArea fx:id="historyTA" layoutX="75.0" layoutY="104.0" prefHeight="227.0" prefWidth="243.0" />
+      <Label fx:id="mostPlayed" layoutX="381.0" layoutY="208.0" prefHeight="39.0" prefWidth="225.0" text="Most Played">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="historyCB" layoutX="410.0" layoutY="104.0" prefWidth="150.0" promptText="History" />
+      <Button fx:id="playHistory" layoutX="451.0" layoutY="151.0" mnemonicParsing="false" text="Play Song" textFill="#cf2d2d" />
+      <Button fx:id="playMostPlayedBT" layoutX="407.0" layoutY="251.0" mnemonicParsing="false" onAction="#playMostPlayed" prefHeight="26.0" prefWidth="150.0" text="Play Most Played" />
+   </children>
+</AnchorPane>

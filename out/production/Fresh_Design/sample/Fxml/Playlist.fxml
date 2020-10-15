@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.Controller.PlaylistController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="455.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.PlaylistController">
     <children>
-        <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="600.0">
+        <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="665.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
                         <MenuItem fx:id="playlistMenu" mnemonicParsing="false" onAction="#goToPlaylist" text="Playlist" />
                         <MenuItem fx:id="albumMenu" mnemonicParsing="false" onAction="#goToAlbum" text="Album" />
                         <MenuItem fx:id="songMenu" mnemonicParsing="false" onAction="#goToSong" text="Songs" />
+                        <MenuItem fx:id="historyMenu" mnemonicParsing="false" onAction="#goToHistory" text="History" />
+                        <MenuItem fx:id="groupMenu" mnemonicParsing="false" onAction="#goToGroup" text="Group" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Offline">
@@ -32,6 +28,20 @@
                 </Menu>
             </menus>
         </MenuBar>
+      <Label fx:id="nameLB" layoutX="258.0" layoutY="38.0" prefHeight="18.0" prefWidth="83.0" text="      Name" />
+      <Label layoutX="71.0" layoutY="67.0" prefHeight="18.0" prefWidth="99.0" text="Create Playlist" />
+      <TextField fx:id="playlistNameTF" layoutX="46.0" layoutY="107.0" promptText="Enter the name of Playlist" />
+      <Button fx:id="createPlaylistBT" layoutX="74.0" layoutY="155.0" mnemonicParsing="false" onAction="#createPlaylist" text=" Create Playlist" />
+      <Label layoutX="332.0" layoutY="58.0" prefHeight="18.0" prefWidth="116.0" text="Available Playlist" />
+      <ComboBox fx:id="selectPlaylistCB" layoutX="313.0" layoutY="85.0" prefWidth="150.0" promptText="Select Playlist" />
+      <Button layoutX="349.0" layoutY="137.0" mnemonicParsing="false" text="Play playlist" />
+      <Label layoutX="62.0" layoutY="197.0" prefHeight="18.0" prefWidth="116.0" text="Modify Playlist" />
+      <ComboBox fx:id="selectPlaylist2CB" layoutX="45.0" layoutY="228.0" prefWidth="150.0" promptText="Select Playlist" />
+      <ComboBox fx:id="addSong2CB" layoutX="45.0" layoutY="267.0" prefWidth="150.0" promptText="Add Song" />
+      <Button fx:id="addSong2BT" layoutX="86.0" layoutY="309.0" mnemonicParsing="false" onAction="#addPlaylistSong" text="Add Song" />
+      <Label layoutX="355.0" layoutY="181.0" prefHeight="18.0" prefWidth="107.0" text="Group Playlist" />
+      <ComboBox fx:id="groupPlaylistCB" layoutX="323.0" layoutY="216.0" prefWidth="150.0" promptText="Group Playlists" />
+      <Button fx:id="playGroupPlaylistBT" layoutX="359.0" layoutY="280.0" mnemonicParsing="false" onAction="#playGroupPlaylist" text="Play playlist" />
     </children>
 
 </AnchorPane>
