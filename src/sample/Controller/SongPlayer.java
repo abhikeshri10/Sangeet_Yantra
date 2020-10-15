@@ -12,25 +12,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-import javafx.stage.FileChooser;
+import javafx.scene.media.*;
 import javafx.util.Duration;
 import sample.ClientMain;
 import sample.SceneChanger;
 import sample.Song;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.ResourceBundle;
 
 public class SongPlayer implements Initializable {
-    public ComboBox Queue;
+
     public Label songName;
     public Slider slider;
     public Button playbtn;
@@ -46,6 +41,8 @@ public class SongPlayer implements Initializable {
     public Button SpeedDec;
     public Button Repeat;
     public Slider volumeSlider;
+    public Button Shuffle;
+    public Button allSongbtn;
     boolean test=false;
     Song song =new Song();
 
@@ -65,6 +62,7 @@ public class SongPlayer implements Initializable {
 
 
 
+
     }
 
     public void Openlist(ActionEvent actionEvent) {
@@ -76,34 +74,29 @@ public class SongPlayer implements Initializable {
             System.out.println("Executed");
             try {
                 Media m = new Media(ClientMain.client.songInfo.file.toURI().toURL().toString());
+
+//                List<Track>subtitle =m.getTracks();
+//                System.out.println(subtitle.add());
+
+
+                // subtitle.getTrackID();
                 if (player != null) {
                     player.dispose();
                 }
+
 
 
                 player = new MediaPlayer(m);
 
                 mediaview.setMediaPlayer(player);
                 player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
-               @Override
-        public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
-         slider.setValue(newValue.toSeconds());
-                   } });
-
-
-                player.onEndOfMediaProperty().addListener(new ChangeListener<Runnable>() {
                     @Override
-                    public void changed(ObservableValue<? extends Runnable> observable, Runnable oldValue, Runnable newValue) {
-                        if(!test) {
-                            Listi.getSelectionModel().selectNext();
-                        }
-                        {
-                            Listi.getSelectionModel();
-                        }
-                    }
+                    public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
+                        slider.setValue(newValue.toSeconds());
+                    } });
 
 
-                });
+
 
 
                 slider.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -127,6 +120,19 @@ public class SongPlayer implements Initializable {
                         slider.setMax(total.toSeconds());
                     }
                 });
+                player.setOnEndOfMedia(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(!test) {
+                            Listi.getSelectionModel().selectNext();
+                            PlayNext(actionEvent);
+                        }
+                        {
+                            Openlist(actionEvent);
+                            PlaySong(actionEvent);
+                        }
+                    }
+                });
 
 
 
@@ -137,8 +143,8 @@ public class SongPlayer implements Initializable {
                         player.setVolume(volumeSlider.getValue()/100);
                     }
                 });
-                player.play();
-                playbtn.setText("Pause");
+                player.pause();
+                playbtn.setText("Play");
 
 
 
@@ -177,14 +183,17 @@ public class SongPlayer implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ListView<String> list = new ListView<String>();
-        List<String> list1= ClientMain.client.getSongs();
+
+
+        List<String> list1=ClientMain.client.getSongs(ClientMain.client.clientInfo.user_id);
+
 //        DoubleProperty widthProp = mediaview.fitWidthProperty();
 //        DoubleProperty heightProp = mediaview.fitHeightProperty();
 //
 //        widthProp.bind(Bindings.selectDouble(mediaview.sceneProperty(), "width"));
 //        heightProp.bind(Bindings.selectDouble(mediaview.sceneProperty(), "height"));
 
-        System.out.println("INITIALISED");
+//        System.out.println("INITIALISED");
         try
         {
             System.out.println(list1);
@@ -199,12 +208,12 @@ public class SongPlayer implements Initializable {
     public void PlayNext(ActionEvent actionEvent) {
 
         Listi.getSelectionModel().selectNext();
-        // PlaySong(actionEvent);
+        PlaySong(actionEvent);
     }
 
     public void PlayPrev(ActionEvent actionEvent) {
         Listi.getSelectionModel().selectPrevious();
-        // PlaySong(actionEvent);
+        PlaySong(actionEvent);
     }
 
     public void goToPlaylist(ActionEvent actionEvent)  {
@@ -229,11 +238,6 @@ public class SongPlayer implements Initializable {
             player.dispose();
         new SceneChanger().changeScene2("FXML\\History.fxml","Song", songName);
     }
-    public void goToGroup(ActionEvent actionEvent) {
-        if(player!=null)
-            player.dispose();
-        new SceneChanger().changeScene2("FXML\\Group.fxml","Group",songName);
-    }
 
     public void Fast(ActionEvent actionEvent) {
         player.setRate(player.getRate()+0.5);
@@ -246,30 +250,29 @@ public class SongPlayer implements Initializable {
     public void setRepeat(ActionEvent actionEvent) {
         if(test==false)
         {
+            Repeat.setText("Circular");
             test=true;
         }
         else
         {
-            test=true;
+            Repeat.setText("Repeat");
+            test=false;
         }
     }
 
-    public void openLocal(ActionEvent actionEvent) {
-        try {
-            System.out.println("open song clicked");
-            FileChooser chooser = new FileChooser();
-            File file = chooser.showOpenDialog(null);
-            Media m = new Media(file.toURI().toURL().toString());
-            if (player != null) {
-                player.dispose();
-            }
+    public void Qshuffle(ActionEvent actionEvent) {
 
-            player = new MediaPlayer(m);
+    }
 
-            mediaview.setMediaPlayer(player);
+    public void opendefaultqueue(ActionEvent actionEvent) {
+        ClientMain.client.settoDeafault(ClientMain.client.clientInfo.user_id);
+        List<String> list1=ClientMain.client.getSongs(ClientMain.client.clientInfo.user_id);
+        Listi.getItems().addAll(list1);
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+    }
+    public void goToGroup(ActionEvent actionEvent) {
+        if(player!=null)
+            player.dispose();
+        new SceneChanger().changeScene2("FXML\\Group.fxml","Group",songName);
     }
 }

@@ -1,3 +1,4 @@
+
 package sample;
 
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ public class SceneChanger {
 
     public void changeScene(String sceneName, String title, ActionEvent event)  {
 
-        Parent new_scene;
+        Parent new_scene=null;
         try {
             new_scene = FXMLLoader.load(getClass().getResource(sceneName));
             Scene Home = new Scene(new_scene);
@@ -29,7 +30,7 @@ public class SceneChanger {
     }
     public void changeScene2(String sceneName, String title, Node label)  {
 
-        Parent new_scene;
+        Parent new_scene=null;
         try {
             new_scene = FXMLLoader.load(getClass().getResource(sceneName));
             Scene Home = new Scene(new_scene);

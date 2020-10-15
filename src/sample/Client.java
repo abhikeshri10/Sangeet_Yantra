@@ -160,12 +160,13 @@ public class Client implements Runnable{
 
     }
 
-    public List<String> getSongs() {
+    public List<String> getSongs (int user_id) {
         try {
             dataOutputStream.writeUTF(QueryType.getSong);
-            List<String> list1 =(List<String>) objectInputStream.readObject();
+            dataOutputStream.write(user_id);
+            clientInfo.setQueue((List<String>) objectInputStream.readObject());
             // System.out.println(list1);
-            return list1;
+            return clientInfo.getQueue();
         }
         catch(Exception e)
         {
@@ -336,6 +337,44 @@ public class Client implements Runnable{
         }catch (Exception e)
         {
             return false;
+        }
+    }
+    public void settoDeafault(int user_id) {
+        try {
+            dataOutputStream.writeUTF(QueryType.settoDeafult);
+            dataOutputStream.write(user_id);
+        }
+        catch (Exception e)
+        {
+
+        }
+
+    }
+    public void setAlbumtoqueue(String selectionModel, int user_id) {
+        try {
+            dataOutputStream.writeUTF(QueryType.getAlbumSongs);
+            dataOutputStream.write(user_id);
+            dataOutputStream.writeUTF(selectionModel);
+
+        }
+        catch(IOException e)
+        {
+            System.out.println("Album in Client");
+
+        }
+
+    }
+
+    public List<String> getAllSongs() {
+        try {
+            dataOutputStream.writeUTF(QueryType.getAllsong);
+            List<String> list1 = (List<String>) objectInputStream.readObject();
+            // System.out.println(list1);
+            return list1;
+        } catch (Exception e) {
+            System.out.println("Error in frtching all songs");
+            return null;
+
         }
     }
 }

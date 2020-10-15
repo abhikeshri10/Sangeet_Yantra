@@ -38,14 +38,13 @@
         <Button fx:id="playbtn" layoutX="128.0" layoutY="385.0" mnemonicParsing="false" onAction="#PlaySong" prefHeight="26.0" prefWidth="67.0" text="Play" />
         <Button fx:id="nextbtn" layoutX="205.0" layoutY="385.0" mnemonicParsing="false" onAction="#PlayNext" prefHeight="26.0" prefWidth="54.0" text="Next" />
         <Button fx:id="prevbtn" layoutX="273.0" layoutY="385.0" mnemonicParsing="false" onAction="#PlayPrev" prefHeight="26.0" prefWidth="54.0" text="Prev" />
-        <ComboBox fx:id="Queue" layoutX="14.0" layoutY="51.0" prefHeight="26.0" prefWidth="106.0" promptText="Queue" />
         <ComboBox fx:id="Listi" layoutX="401.0" layoutY="67.0" onAction="#Openlist" prefHeight="26.0" prefWidth="140.0" promptText="SelectSongs" />
         <ListView layoutY="200.0" prefHeight="0.0" prefWidth="0.0" />
         <Button fx:id="SpeedInc" layoutX="334.0" layoutY="385.0" mnemonicParsing="false" onAction="#Fast" prefHeight="26.0" prefWidth="53.0" text="&gt;&gt;&gt;" />
         <Button fx:id="SpeedDec" layoutX="397.0" layoutY="385.0" mnemonicParsing="false" onAction="#Slow" text="&lt;&lt;&lt;" />
         <Slider fx:id="volumeSlider" layoutX="524.0" layoutY="391.0" prefHeight="14.0" prefWidth="123.0" />
         <Button fx:id="Repeat" layoutX="445.0" layoutY="385.0" mnemonicParsing="false" onAction="#setRepeat" text="Repeat" />
-        <Button layoutX="576.0" layoutY="67.0" mnemonicParsing="false" text="Shuffle" />
-      <Button fx:id="openlocal" layoutX="25.0" layoutY="372.0" mnemonicParsing="false" onAction="#openLocal" text="Open local" />
+        <Button fx:id="Shuffle" layoutX="576.0" layoutY="67.0" mnemonicParsing="false" onAction="#Qshuffle" text="Shuffle" />
+        <Button fx:id="allSongbtn" layoutX="2.0" layoutY="28.0" mnemonicParsing="false" onAction="#opendefaultqueue" prefHeight="25.0" prefWidth="89.0" text="Allsongs" />
     </children>
 </AnchorPane>

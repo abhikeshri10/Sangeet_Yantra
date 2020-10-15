@@ -190,30 +190,59 @@ public class DatabaseHandler {
      * Get songs in the database
      * @return
      */
-    public List<String> getList() {
+    /**
+     * Get songs in the database
+     *
+     * @param userid
+     * @return
+     */
+    public List<String> getList(int userid) {
+        System.out.println("Function fdvlfdv;df executed");
         try {
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
-            String query = "Select Songname from song ;";
+            System.out.println(userid);
+            String query = " select songName from queue where userid=" + userid + ";";
+            System.out.println(query);
             dbstatement = dbconnection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            System.out.println(dbstatement);
             ResultSet rs = dbstatement.executeQuery();
-            //System.out.println(dbstatement);
-            List<String> test=new ArrayList<>();
-            while(rs.next())
-            {
-                String song=rs.getNString("SongName");
+
+            List<String> test = new ArrayList<>();
+            //rs.next();
+
+            if (rs.next() == false) {
+                query = "Select songName from song";
+                dbstatement = dbconnection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet re = dbstatement.executeQuery();
+                //System.out.println("false");
+
+                while (re.next()) {
+                    String song = re.getString("SongName");
+                    test.add(song);
+                    //System.out.println(song);
+                }
+                return test;
+            } else {
+//                System.out.println("Not empty set");
+                String song = rs.getNString("SongName");
                 test.add(song);
-                //System.out.println(song);
+                while (rs.next()) {
+                    song = rs.getNString("SongName");
+                    test.add(song);
+                    System.out.println(song);
+                }
+                return test;
             }
-            return test;
-        }
-        catch(Exception e)
-        {
+
+
+        } catch (Exception e) {
             System.out.println("Exception in fetching songs");
             e.printStackTrace();
             return null;
         }
 
     }
+
 
 
     public void setFeatures(int user_id, String artist, String genre, String language) {
@@ -686,4 +715,75 @@ public class DatabaseHandler {
             return false;
         }
     }
+    public void settoDefault(int userid) {
+        try {
+            String query = "delete from queue where UserId = " + userid + ";";
+            dbstatement = dbconnection.prepareStatement(query);
+            dbstatement.executeUpdate();
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
+    public void getalbumSongs(String albumname, int userid) {
+        try {
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "Select id from album where AlbumName = '" + albumname + "';";
+            dbstatement = dbconnection.prepareStatement(query);
+            System.out.println(query);
+            ResultSet rs = dbstatement.executeQuery();
+            rs.next();
+            int albumid = rs.getInt("id");
+            query = "select songName from song where AlbumId = " + albumid + ";";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet re = dbstatement.executeQuery();
+            List<String> test = null;
+            query = "delete from queue where UserId = " + userid + ";";
+            dbstatement = dbconnection.prepareStatement(query);
+            dbstatement.executeUpdate();
+            while (re.next()) {
+                String song = re.getString("SongName");
+                query = "INSERT INTO queue VALUES(?,?)";
+                dbstatement = dbconnection.prepareStatement(query);
+                dbstatement.setInt(1, userid);
+                dbstatement.setString(2, song);
+                dbstatement.executeUpdate();
+
+
+                //System.out.println(song);
+            }
+            System.out.println("Database album executed");
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public List<String> getAllsongs() {
+        try {
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "Select songName from song";
+            dbstatement = dbconnection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet re = dbstatement.executeQuery();
+            //System.out.println("false");
+            List<String>  test = new ArrayList<>();
+
+            while (re.next()) {
+                String song = re.getString("SongName");
+                test.add(song);
+                //System.out.println(song);
+            }
+            return test;
+        } catch (Exception e) {
+            System.out.println("error in getAllsongs in database handler");
+            e.printStackTrace();
+            return null;
+        }
+
+
+    }
+
 }

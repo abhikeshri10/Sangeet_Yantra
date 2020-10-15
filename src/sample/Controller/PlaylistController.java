@@ -1,5 +1,7 @@
 package sample.Controller;
 
+
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
@@ -12,6 +14,7 @@ import sample.SceneChanger;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -27,13 +30,35 @@ public class PlaylistController implements Initializable {
     public ComboBox selectPlaylist2CB;
     public ComboBox addSong2CB;
     public Button addSong2BT;
-
+    public Button modfiyPlaylist;
     public TextField playlistNameTF;
     public AnchorPane scrollPane;
     public ComboBox groupPlaylistCB;
     public Button playGroupPlaylistBT;
 
-
+    //    public void setScrollPane(List<String > ls)
+//    {
+//        for(int i=0;i<ls.size();i++)
+//        {
+//            CheckBox c = new CheckBox(ls.get(i));
+//            scrollPane.getChildren().add(c);
+//            String s=ls.get(i);
+//            EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+//
+//                public void handle(ActionEvent e)
+//                {
+//                    if (c.isSelected())
+//                        songList.add(s);
+//
+//                }
+//
+//            };
+//            c.setOnAction(event);
+//        }
+//
+//        // set event to checkbox
+//
+//    }
     public void goToPlaylist(ActionEvent actionEvent) {
         new SceneChanger().changeScene2("FXML\\Playlist.fxml", "Playlist", nameLB);
     }
@@ -48,24 +73,30 @@ public class PlaylistController implements Initializable {
     public void goToHistory(ActionEvent actionEvent) {
         new SceneChanger().changeScene2("FXML\\History.fxml","Song", nameLB);
     }
-    public void goToGroup(ActionEvent actionEvent) {
-        new SceneChanger().changeScene2("FXML\\Group.fxml","Group",nameLB);
-    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         clientInfo = ClientMain.client.clientInfo;
         nameLB.setText(clientInfo.name);
-        List<String> songs = ClientMain.client.getSongs();
+
+        List<String> songs = ClientMain.client.getAllSongs();
+        System.out.println(songs);
+
 
         addSong2CB.getItems().addAll(songs);
+        List<String> userplaylist = ClientMain.client.getPlaylist(clientInfo.user_id);
         selectPlaylistCB.getItems().addAll(ClientMain.client.getPlaylist(clientInfo.user_id));
-        selectPlaylist2CB.getItems().addAll(ClientMain.client.getPlaylist(clientInfo.user_id));
         List<String> groupPlaylist = ClientMain.client.getGroupPlaylist(clientInfo.user_id);
+        List<String> joined = new ArrayList<String>();
+        joined.addAll(userplaylist);
+        joined.addAll(groupPlaylist);
+        List<String> newList = joined.stream().distinct().collect(Collectors.toList());
+        selectPlaylist2CB.getItems().addAll(newList);
         if(groupPlaylist!=null)
         {
             groupPlaylistCB.getItems().addAll(groupPlaylist);
         }
-
     }
 
     /**
@@ -73,15 +104,15 @@ public class PlaylistController implements Initializable {
      */
     public void addSong(ActionEvent actionEvent) {
         String song;
-            song = selectSongCB.getSelectionModel().getSelectedItem().toString();
-            if(song==null)
-            {
-                JOptionPane.showMessageDialog(null, "Please select song");
-            }
-            else
-            {   System.out.println(song);
-                songList.add(song);
-            }
+        song = selectSongCB.getSelectionModel().getSelectedItem().toString();
+        if(song==null)
+        {
+            JOptionPane.showMessageDialog(null, "Please select song");
+        }
+        else
+        {   System.out.println(song);
+            songList.add(song);
+        }
 
     }
 
@@ -92,8 +123,6 @@ public class PlaylistController implements Initializable {
         if(status)
         {
             JOptionPane.showMessageDialog(null, "Playlist created Successfully");
-            selectPlaylistCB.getItems().addAll(ClientMain.client.getPlaylist(clientInfo.user_id));
-            selectPlaylist2CB.getItems().addAll(ClientMain.client.getPlaylist(clientInfo.user_id));
         }
         else
         {
@@ -114,7 +143,7 @@ public class PlaylistController implements Initializable {
         if(status)
         {
             JOptionPane.showMessageDialog(null, "Song inserted Successfully");
-       }
+        }
         else
         {
             JOptionPane.showMessageDialog(null, "Error in song insertion");
@@ -122,10 +151,13 @@ public class PlaylistController implements Initializable {
     }
 
 
-
-
-
+    public void goToGroup(ActionEvent actionEvent) {
+        new SceneChanger().changeScene2("FXML\\Group.fxml","Group",nameLB);
+    }
     public void playGroupPlaylist(ActionEvent actionEvent) {
 
     }
 }
+
+
+

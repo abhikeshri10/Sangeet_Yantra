@@ -22,4 +22,7 @@ public class QueryType {
     public static final String getAllGroups = "19";
     public static final String getGroupPlaylist = "20";
     public static final String addPlaylistToGroup = "21";
+    public static final String settoDeafult="22";
+    public static final String getAlbumSongs="23";
+    public static final String getAllsong="24";
 }

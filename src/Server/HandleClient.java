@@ -72,8 +72,10 @@ public class HandleClient implements Runnable{
                         dataOutputStream.writeUTF(String.valueOf(false));
                     break;
                 }
-                case 5: {
-                    List<String> test = databaseHandler.getList();
+                case 5:
+                {
+                    int userid = dataInputStream.read();
+                    List<String> test= databaseHandler.getList(userid);
                     objectOutputStream.writeObject(test);
                     break;
 
@@ -184,6 +186,29 @@ public class HandleClient implements Runnable{
                     String playlistName = dataInputStream.readUTF();
                     dataOutputStream.writeBoolean(databaseHandler.addPlaylisttoGroup(groupname,playlistName));
                     break;
+                }
+                case 22:
+                {
+
+                    int userid=dataInputStream.read();
+                    databaseHandler.settoDefault(userid);
+                    break;
+
+                }
+                case 23:
+                {
+                    int userid= dataInputStream.read();
+                    String albumname=dataInputStream.readUTF();
+                    databaseHandler.getalbumSongs(albumname,userid);
+                    break;
+
+                }
+                case 24:
+                {
+                    List<String> test= databaseHandler.getAllsongs();
+                    objectOutputStream.writeObject(test);
+                    break;
+
                 }
             }
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="465.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.GroupController">
+<children>
+    <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="673.0">
+        <menus>
+            <Menu mnemonicParsing="false" text="File">
+                <items>
+                    <MenuItem fx:id="playlistMenu" mnemonicParsing="false" onAction="#goToPlaylist" text="Playlist" />
+                    <MenuItem fx:id="albumMenu" mnemonicParsing="false" onAction="#goToAlbum" text="Album" />
+                    <MenuItem fx:id="songMenu" mnemonicParsing="false" onAction="#goToSong" text="Songs" />
+                    <MenuItem fx:id="historyMenu" mnemonicParsing="false" onAction="#goToHistory" text="History" />
+                    <MenuItem fx:id="groupMenu" mnemonicParsing="false" onAction="#goToGroup" text="Group" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Offline">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Offline Features" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+    <Label fx:id="nameLB" layoutX="207.0" layoutY="39.0" prefHeight="26.0" prefWidth="178.0" text="Label" />
+      <Label layoutX="75.0" layoutY="73.0" prefHeight="26.0" prefWidth="92.0" text="Create Group" />
+      <TextField fx:id="groupNameTF" layoutX="47.0" layoutY="108.0" promptText="Enter Group Name" />
+      <Button fx:id="createGroupBT" layoutX="59.0" layoutY="147.0" mnemonicParsing="false" onAction="#createGroup" prefHeight="26.0" prefWidth="124.0" text="Create Group" />
+      <Label layoutX="68.0" layoutY="205.0" prefHeight="18.0" prefWidth="124.0" text="Modify Groups users" />
+      <ComboBox fx:id="selectGroup1CB" layoutX="47.0" layoutY="232.0" prefWidth="150.0" promptText="Select Groups" />
+      <ComboBox fx:id="addUsersCB" layoutX="46.0" layoutY="279.0" prefWidth="150.0" promptText="Add Users" />
+      <Button fx:id="addUserBT" layoutX="79.0" layoutY="334.0" mnemonicParsing="false" onAction="#addUser" prefHeight="26.0" prefWidth="82.0" text="Add User" />
+      <Label layoutX="330.0" layoutY="78.0" prefHeight="18.0" prefWidth="139.0" text="Add Playlist to Groups" />
+      <ComboBox fx:id="selectGroup2CB" layoutX="310.0" layoutY="108.0" prefWidth="150.0" promptText="Select Groups" />
+      <Button fx:id="addPlaylistBT" layoutX="346.0" layoutY="202.0" mnemonicParsing="false" onAction="#addPlaylist" prefHeight="26.0" prefWidth="92.0" text="Add Playlist" />
+      <ComboBox fx:id="addPlaylistCB" layoutX="310.0" layoutY="148.0" prefWidth="150.0" promptText="Add Playlist" />
+</children>
+</AnchorPane>

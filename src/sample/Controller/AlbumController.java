@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AlbumController implements Initializable {
+public class AlbumController implements Initializable{
     public MenuItem playlistMenu;
     public MenuItem albumMenu;
     public MenuItem songMenu;
@@ -46,10 +46,14 @@ public class AlbumController implements Initializable {
     }
 
     public void playAlbum(ActionEvent actionEvent) {
-
+        ClientMain.client.setAlbumtoqueue(albumCB.getSelectionModel().getSelectedItem().toString(),clientInfo.user_id);
+        new SceneChanger().changeScene2("FXML\\SongPlayer.fxml","Song", nameLB);
     }
 
     public void playArtist(ActionEvent actionEvent) {
+
+        new SceneChanger().changeScene2("FXML\\SongPlayer.fxml","Song", nameLB);
+
     }
     public void goToHistory(ActionEvent actionEvent) {
         new SceneChanger().changeScene2("FXML\\History.fxml","Song", nameLB);
@@ -57,4 +61,6 @@ public class AlbumController implements Initializable {
     public void goToGroup(ActionEvent actionEvent) {
         new SceneChanger().changeScene2("FXML\\Group.fxml","Group",nameLB);
     }
+
+
 }
