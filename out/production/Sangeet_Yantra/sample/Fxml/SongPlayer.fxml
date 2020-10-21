@@ -30,7 +30,7 @@
             </menus>
         </MenuBar>
         <ListView layoutX="123.0" layoutY="60.0" prefHeight="370.0" prefWidth="532.0" />
-        <Label fx:id="songName" layoutX="171.0" layoutY="64.0" prefHeight="31.0" prefWidth="57.0" text="Circles" textOverrun="CLIP" />
+        <Label fx:id="songName" layoutX="171.0" layoutY="64.0" prefHeight="31.0" prefWidth="57.0" text="Current Song" textOverrun="CLIP" />
         <Label layoutX="290.0" layoutY="66.0" prefHeight="26.0" prefWidth="54.0" text="Label" />
         <Separator layoutX="130.0" layoutY="95.0" prefHeight="12.0" prefWidth="516.0" />
         <MediaView fx:id="mediaview" fitHeight="200.0" fitWidth="200.0" layoutX="200.0" layoutY="100.0" />
@@ -46,5 +46,6 @@
         <Button fx:id="Repeat" layoutX="445.0" layoutY="385.0" mnemonicParsing="false" onAction="#setRepeat" text="Repeat" />
         <Button fx:id="Shuffle" layoutX="576.0" layoutY="67.0" mnemonicParsing="false" onAction="#Qshuffle" text="Shuffle" />
         <Button fx:id="allSongbtn" layoutX="2.0" layoutY="28.0" mnemonicParsing="false" onAction="#opendefaultqueue" prefHeight="25.0" prefWidth="89.0" text="Allsongs" />
+      <TextArea fx:id="subtitleArea" editable="false" layoutY="83.0" prefHeight="238.0" prefWidth="123.0" />
     </children>
 </AnchorPane>

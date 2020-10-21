@@ -210,6 +210,21 @@ public class HandleClient implements Runnable{
                     break;
 
                 }
+                case 25:
+                {
+                    int userid= dataInputStream.read();
+                    String artistname=dataInputStream.readUTF();
+                    databaseHandler.getArtistsongs(artistname,userid);
+                    break;
+                }
+                case 26:
+                {
+                    int userid= dataInputStream.read();
+                    String playlistname=dataInputStream.readUTF();
+                    databaseHandler.getPlaylistsongs(playlistname,userid);
+                    break;
+
+                }
             }
 
         }

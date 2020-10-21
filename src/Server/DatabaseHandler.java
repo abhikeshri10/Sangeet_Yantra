@@ -113,6 +113,7 @@ public class DatabaseHandler {
 
 
     }
+
     public List<String> getArtist()
     {   try{
         dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -197,14 +198,14 @@ public class DatabaseHandler {
      * @return
      */
     public List<String> getList(int userid) {
-        System.out.println("Function fdvlfdv;df executed");
+
         try {
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
-            System.out.println(userid);
+//            System.out.println(userid);
             String query = " select songName from queue where userid=" + userid + ";";
-            System.out.println(query);
+//            System.out.println(query);
             dbstatement = dbconnection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            System.out.println(dbstatement);
+//            System.out.println(dbstatement);
             ResultSet rs = dbstatement.executeQuery();
 
             List<String> test = new ArrayList<>();
@@ -229,7 +230,7 @@ public class DatabaseHandler {
                 while (rs.next()) {
                     song = rs.getNString("SongName");
                     test.add(song);
-                    System.out.println(song);
+//                    System.out.println(song);
                 }
                 return test;
             }
@@ -731,7 +732,7 @@ public class DatabaseHandler {
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
             String query = "Select id from album where AlbumName = '" + albumname + "';";
             dbstatement = dbconnection.prepareStatement(query);
-            System.out.println(query);
+//            System.out.println(query);
             ResultSet rs = dbstatement.executeQuery();
             rs.next();
             int albumid = rs.getInt("id");
@@ -786,4 +787,79 @@ public class DatabaseHandler {
 
     }
 
+    public void getArtistsongs(String artistname, int userid) {
+        try {
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "Select id from artist where ArtistName = '" + artistname + "';";
+            dbstatement = dbconnection.prepareStatement(query);
+//            System.out.println(query);
+            ResultSet rs = dbstatement.executeQuery();
+            rs.next();
+            int artistid = rs.getInt("id");
+            query = "select SongId from songartist where ArtistId = " + artistid + ";";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet re = dbstatement.executeQuery();
+            query = "delete from queue where UserId = " + userid + ";";
+            dbstatement = dbconnection.prepareStatement(query);
+            dbstatement.executeUpdate();
+            while(re.next())
+            {
+                int songid=re.getInt("SongId");
+                String query1="select songName from song where id = " + songid + ";";
+                dbstatement = dbconnection.prepareStatement(query1);
+                ResultSet getsongname = dbstatement.executeQuery();
+                getsongname.next();
+                String song = getsongname.getString("SongName");
+                query = "INSERT INTO queue VALUES(?,?)";
+                dbstatement = dbconnection.prepareStatement(query);
+                dbstatement.setInt(1, userid);
+                dbstatement.setString(2, song);
+                dbstatement.executeUpdate();
+            }
+
+
+            System.out.println("Database album executed");
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void getPlaylistsongs(String playlistname, int userid) {
+        try {
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "Select id from playlist where playlistName = '" + playlistname + "' AND UserId = '"+userid + "';";
+            dbstatement=dbconnection.prepareStatement(query);
+            ResultSet rs=dbstatement.executeQuery();
+            rs.next();
+            int playlistid=rs.getInt("id");
+            query = "delete from queue where UserId = " + userid + ";";
+            dbstatement = dbconnection.prepareStatement(query);
+            dbstatement.executeUpdate();
+            query="Select SongId from playlistsong where PlaylistId ='"+playlistid+"';";
+            dbstatement = dbconnection.prepareStatement(query);
+            rs=dbstatement.executeQuery();
+            while(rs.next())
+            {
+                int songid=rs.getInt("SongId");
+                String query1="select songName from song where id = " + songid + ";";
+                dbstatement = dbconnection.prepareStatement(query1);
+                ResultSet getsongname = dbstatement.executeQuery();
+                getsongname.next();
+                String song = getsongname.getString("SongName");
+                query = "INSERT INTO queue VALUES(?,?)";
+                dbstatement = dbconnection.prepareStatement(query);
+                dbstatement.setInt(1, userid);
+                dbstatement.setString(2, song);
+                dbstatement.executeUpdate();
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

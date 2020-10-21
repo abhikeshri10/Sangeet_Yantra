@@ -10,5 +10,6 @@
     <orderEntry type="library" name="javafx" level="application" />
     <orderEntry type="library" name="MySql" level="application" />
     <orderEntry type="library" name="mysql-connector-java-5.1" level="project" />
+    <orderEntry type="library" name="jmf-2.1.1e" level="project" />
   </component>
 </module>

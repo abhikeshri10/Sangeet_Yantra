@@ -2,7 +2,7 @@ package sample;
 
 public class QueryType {
     public static final String login= "1";
-    public static final  String register= "2";
+    public static final String register= "2";
     public static final String isNewUser = "3";
     public static final String playSong ="4";
     public static final String getSong="5";
@@ -25,4 +25,6 @@ public class QueryType {
     public static final String settoDeafult="22";
     public static final String getAlbumSongs="23";
     public static final String getAllsong="24";
+    public static final String getArtistSongs="25";
+    public static final String getPlaylistSongs="26";
 }

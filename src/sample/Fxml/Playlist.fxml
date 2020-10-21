@@ -34,7 +34,7 @@
       <Button fx:id="createPlaylistBT" layoutX="74.0" layoutY="155.0" mnemonicParsing="false" onAction="#createPlaylist" text=" Create Playlist" />
       <Label layoutX="332.0" layoutY="58.0" prefHeight="18.0" prefWidth="116.0" text="Available Playlist" />
       <ComboBox fx:id="selectPlaylistCB" layoutX="313.0" layoutY="85.0" prefWidth="150.0" promptText="Select Playlist" />
-      <Button layoutX="349.0" layoutY="137.0" mnemonicParsing="false" text="Play playlist" />
+      <Button fx:id="playlist" layoutX="349.0" layoutY="137.0" mnemonicParsing="false" onAction="#playPlaylist" text="Play playlist" />
       <Label layoutX="62.0" layoutY="197.0" prefHeight="18.0" prefWidth="116.0" text="Modify Playlist" />
       <ComboBox fx:id="selectPlaylist2CB" layoutX="45.0" layoutY="228.0" prefWidth="150.0" promptText="Select Playlist" />
       <ComboBox fx:id="addSong2CB" layoutX="45.0" layoutY="267.0" prefWidth="150.0" promptText="Add Song" />

@@ -14,7 +14,6 @@ import sample.SceneChanger;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -35,6 +34,7 @@ public class PlaylistController implements Initializable {
     public AnchorPane scrollPane;
     public ComboBox groupPlaylistCB;
     public Button playGroupPlaylistBT;
+    public Button playlist;
 
     //    public void setScrollPane(List<String > ls)
 //    {
@@ -85,18 +85,10 @@ public class PlaylistController implements Initializable {
 
 
         addSong2CB.getItems().addAll(songs);
-        List<String> userplaylist = ClientMain.client.getPlaylist(clientInfo.user_id);
         selectPlaylistCB.getItems().addAll(ClientMain.client.getPlaylist(clientInfo.user_id));
-        List<String> groupPlaylist = ClientMain.client.getGroupPlaylist(clientInfo.user_id);
-        List<String> joined = new ArrayList<String>();
-        joined.addAll(userplaylist);
-        joined.addAll(groupPlaylist);
-        List<String> newList = joined.stream().distinct().collect(Collectors.toList());
-        selectPlaylist2CB.getItems().addAll(newList);
-        if(groupPlaylist!=null)
-        {
-            groupPlaylistCB.getItems().addAll(groupPlaylist);
-        }
+        selectPlaylist2CB.getItems().addAll(ClientMain.client.getPlaylist(clientInfo.user_id));
+        groupPlaylistCB.getItems().addAll(ClientMain.client.getGroupPlaylist(clientInfo.user_id));
+
     }
 
     /**
@@ -123,6 +115,8 @@ public class PlaylistController implements Initializable {
         if(status)
         {
             JOptionPane.showMessageDialog(null, "Playlist created Successfully");
+            new SceneChanger().changeScene2("FXML\\Playlist.fxml","Playlist",nameLB);
+
         }
         else
         {
@@ -155,7 +149,12 @@ public class PlaylistController implements Initializable {
         new SceneChanger().changeScene2("FXML\\Group.fxml","Group",nameLB);
     }
     public void playGroupPlaylist(ActionEvent actionEvent) {
+     
+    }
 
+    public void playPlaylist(ActionEvent actionEvent) {
+        ClientMain.client.setPlaylisttoqueue(selectPlaylistCB.getSelectionModel().getSelectedItem().toString(),clientInfo.user_id);
+        new SceneChanger().changeScene2("FXML\\SongPlayer.fxml","Song", nameLB);
     }
 }
 
