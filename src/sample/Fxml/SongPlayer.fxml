@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.media.*?>
 
-<AnchorPane fx:id="Pane" prefHeight="513.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.SongPlayer">
+<AnchorPane fx:id="Pane" prefHeight="591.0" prefWidth="1069.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.SongPlayer">
     <children>
-        <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="762.0">
+        <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="1069.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -47,5 +47,15 @@
         <Button fx:id="Shuffle" layoutX="576.0" layoutY="67.0" mnemonicParsing="false" onAction="#Qshuffle" text="Shuffle" />
         <Button fx:id="allSongbtn" layoutX="2.0" layoutY="28.0" mnemonicParsing="false" onAction="#opendefaultqueue" prefHeight="25.0" prefWidth="89.0" text="Allsongs" />
       <TextArea fx:id="subtitleArea" editable="false" layoutY="83.0" prefHeight="238.0" prefWidth="123.0" />
+      <ListView layoutX="698.0" layoutY="60.0" prefHeight="470.0" prefWidth="341.0" />
+      <Label layoutX="826.0" layoutY="71.0" prefHeight="18.0" prefWidth="67.0" text="QUEUE" />
+      <ComboBox fx:id="currentQueueCB" layoutX="794.0" layoutY="101.0" prefWidth="150.0" promptText="Current Queue" />
+      <Button fx:id="getCurrentPostitionBT" layoutX="721.0" layoutY="160.0" mnemonicParsing="false" onAction="#getCurrentPostion" text="Get Current postition" />
+      <TextField fx:id="newPostion" layoutX="785.0" layoutY="209.0" promptText="Set new postion (eg 1 , 2)" />
+      <Button fx:id="editPostionBT" layoutX="809.0" layoutY="254.0" mnemonicParsing="false" onAction="#editPosition" prefHeight="26.0" prefWidth="100.0" text="Edit Position" />
+      <TextField fx:id="currentPositionTF" editable="false" layoutX="893.0" layoutY="160.0" prefHeight="26.0" prefWidth="123.0" />
+      <ComboBox fx:id="selectSongs2CB" layoutX="794.0" layoutY="338.0" prefWidth="150.0" promptText="Select Songs" />
+      <Label layoutX="804.0" layoutY="300.0" text="Add Songs to the queue" />
+      <Button fx:id="addSongBT" layoutX="794.0" layoutY="397.0" mnemonicParsing="false" onAction="#addSong" prefHeight="26.0" prefWidth="149.0" text="Add Song to Queue" />
     </children>
 </AnchorPane>

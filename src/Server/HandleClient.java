@@ -225,6 +225,13 @@ public class HandleClient implements Runnable{
                     break;
 
                 }
+                case 27:
+                {
+                    List<String> newQueue = (List<String>) objectInputStream.readObject();
+                    int user_id = dataInputStream.read();
+                    databaseHandler.modifyQueue(newQueue,user_id);
+                    break;
+                }
             }
 
         }

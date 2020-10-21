@@ -83,7 +83,6 @@ public class PlaylistController implements Initializable {
         List<String> songs = ClientMain.client.getAllSongs();
         System.out.println(songs);
 
-
         addSong2CB.getItems().addAll(songs);
         selectPlaylistCB.getItems().addAll(ClientMain.client.getPlaylist(clientInfo.user_id));
         selectPlaylist2CB.getItems().addAll(ClientMain.client.getPlaylist(clientInfo.user_id));

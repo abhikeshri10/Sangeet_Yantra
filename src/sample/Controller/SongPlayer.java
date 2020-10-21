@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.Parent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.*;
 import javafx.util.Duration;
@@ -21,6 +22,7 @@ import sample.Song;
 import sample.SongInfo;
 
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
@@ -48,6 +50,14 @@ public class SongPlayer implements Initializable {
     public Button Shuffle;
     public Button allSongbtn;
     public TextArea subtitleArea;
+    public ComboBox currentQueueCB;
+    public Button getCurrentPostitionBT;
+    public TextField newPostion;
+    public Button editPostionBT;
+    public TextField currentPositionTF;
+    public ComboBox selectSongs2CB;
+    public Button addSongBT;
+    List<String> allsongs;
     boolean test=false;
     Song song =new Song();
     List<String> list1=null;
@@ -188,6 +198,12 @@ public class SongPlayer implements Initializable {
 
 
         list1=ClientMain.client.getSongs(ClientMain.client.clientInfo.user_id);
+        currentQueueCB.getItems().addAll(list1);
+        allsongs = ClientMain.client.getAllSongs();
+        allsongs.removeAll(list1);
+        selectSongs2CB.getItems().addAll(allsongs);
+        //selectSongs2CB.getItems().addAll(list1);
+
 //        DoubleProperty widthProp = mediaview.fitWidthProperty();
 //        DoubleProperty heightProp = mediaview.fitHeightProperty();
 //
@@ -288,5 +304,58 @@ public class SongPlayer implements Initializable {
         if(player!=null)
             player.dispose();
         new SceneChanger().changeScene2("FXML\\Group.fxml","Group",songName);
+    }
+
+    public void getCurrentPostion(ActionEvent actionEvent) {
+        int songposition = currentQueueCB.getSelectionModel().getSelectedIndex();
+        currentPositionTF.setText(""+(songposition+1)+"/"+list1.size());
+
+    }
+
+    public void editPosition(ActionEvent actionEvent) {
+        List<String > newQueue = list1;
+        int newposition = Integer.parseInt(newPostion.getText());
+        newposition--;
+        int currentPosition = currentQueueCB.getSelectionModel().getSelectedIndex();
+        if(newposition>currentPosition)
+        {
+            String temp = currentQueueCB.getSelectionModel().getSelectedItem().toString();
+            for(int i=currentPosition;i<newposition;i++)
+            {
+                newQueue.set(i,newQueue.get(i+1));
+
+            }
+            newQueue.set(newposition,temp);
+
+        }
+        else {
+            String temp = currentQueueCB.getSelectionModel().getSelectedItem().toString();
+            for(int i=currentPosition;i>newposition;i--)
+            {
+                newQueue.set(i,newQueue.get(i-1));
+
+            }
+            newQueue.set(newposition,temp);
+        }
+
+        ClientMain.client.modifyQueue(newQueue,ClientMain.client.clientInfo.user_id);
+        new SceneChanger().changeScene2("FXML//SongPlayer.fxml","Song",songName);
+    }
+
+    public void addSong(ActionEvent actionEvent) {
+        List<String > newQueue = list1;
+        if (allsongs.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Select a song to be added");
+
+        }
+        else
+        {
+            String song = selectSongs2CB.getSelectionModel().getSelectedItem().toString();
+            newQueue.add(song);
+            ClientMain.client.modifyQueue(newQueue,ClientMain.client.clientInfo.user_id);
+            new SceneChanger().changeScene2("FXML//SongPlayer.fxml","Song",songName);
+        }
+
     }
 }

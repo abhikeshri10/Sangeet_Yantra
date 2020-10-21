@@ -27,4 +27,5 @@ public class QueryType {
     public static final String getAllsong="24";
     public static final String getArtistSongs="25";
     public static final String getPlaylistSongs="26";
+    public static final String modifyQueue = "27";
 }

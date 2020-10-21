@@ -862,4 +862,25 @@ public class DatabaseHandler {
         }
 
     }
+
+    public void modifyQueue(List<String> newQueue, int user_id) {
+        try {
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+           String query = "delete from queue where UserId = " + user_id + ";";
+            dbstatement = dbconnection.prepareStatement(query);
+            dbstatement.executeUpdate();
+            for (int i=0;i<newQueue.size();i++)
+            {
+                query = "INSERT INTO queue VALUES(?,?)";
+                dbstatement = dbconnection.prepareStatement(query);
+                dbstatement.setInt(1, user_id);
+                dbstatement.setString(2, newQueue.get(i));
+                dbstatement.executeUpdate();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }
