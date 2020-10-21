@@ -6,6 +6,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
@@ -17,9 +18,12 @@ import javafx.util.Duration;
 import sample.ClientMain;
 import sample.SceneChanger;
 import sample.Song;
+import sample.SongInfo;
+
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.ResourceBundle;
@@ -43,8 +47,11 @@ public class SongPlayer implements Initializable {
     public Slider volumeSlider;
     public Button Shuffle;
     public Button allSongbtn;
+    public TextArea subtitleArea;
     boolean test=false;
     Song song =new Song();
+    List<String> list1=null;
+    
 
     public void PlaySong(ActionEvent actionEvent) {
 
@@ -66,127 +73,121 @@ public class SongPlayer implements Initializable {
     }
 
     public void Openlist(ActionEvent actionEvent) {
-        System.out.println("Clicked");
-        Boolean check= ClientMain.client.playSong(Listi.getSelectionModel().getSelectedItem().toString());
-        //System.out.println(Listi.getSelectionModel().getSelectedItem().toString());
-        if(check)
-        {
-            System.out.println("Executed");
-            try {
-                Media m = new Media(ClientMain.client.songInfo.file.toURI().toURL().toString());
+//        System.out.println("Clicked");
 
-//                List<Track>subtitle =m.getTracks();
-//                System.out.println(subtitle.add());
+        if (!Listi.getSelectionModel().isEmpty()) {
+            slider.setValue(0);
+
+            Boolean check = ClientMain.client.playSong(Listi.getSelectionModel().getSelectedItem().toString());
+            //System.out.println(Listi.getSelectionModel().getSelectedItem().toString());
+            if (check) {
+//                System.out.println("Executed");
+                try {
+                    Media m = new Media(ClientMain.client.songInfo.file.toURI().toURL().toString());
+                    songName.setText(Listi.getSelectionModel().getSelectedItem().toString());
 
 
-                // subtitle.getTrackID();
-                if (player != null) {
-                    player.dispose();
+
+
+
+
+                    // subtitle.getTrackID();
+                    if (player != null) {
+                        player.dispose();
+                    }
+
+
+                    player = new MediaPlayer(m);
+
+                    mediaview.setMediaPlayer(player);
+
+                    player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+                        @Override
+                        public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
+                            slider.setValue(newValue.toSeconds());
+                        }
+                    });
+
+
+                    slider.setOnMousePressed(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            player.seek(Duration.seconds(slider.getValue()));
+                        }
+                    });
+
+                    slider.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            player.seek(Duration.seconds(slider.getValue()));
+                        }
+                    });
+
+                    player.setOnReady(new Runnable() {
+                        @Override
+                        public void run() {
+                            Duration total = m.getDuration();
+                            slider.setMax(total.toSeconds());
+                        }
+                    });
+                    player.setOnEndOfMedia(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!test) {
+                                Listi.getSelectionModel().selectNext();
+                                PlayNext(actionEvent);
+                            }
+                            {
+                                Openlist(actionEvent);
+                                PlaySong(actionEvent);
+                            }
+                        }
+                    });
+
+
+
+                    volumeSlider.setValue(player.getVolume() * 100);
+                    volumeSlider.valueProperty().addListener(new InvalidationListener() {
+                        @Override
+                        public void invalidated(Observable observable) {
+                            player.setVolume(volumeSlider.getValue() / 100);
+                        }
+                    });
+                    player.pause();
+                    playbtn.setText("Play");
+
+
+                    System.out.println("song started");
+
+
+                    //song.startSong();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("Error in Song");
                 }
 
 
-
-                player = new MediaPlayer(m);
-
-                mediaview.setMediaPlayer(player);
-                player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
-                        slider.setValue(newValue.toSeconds());
-                    } });
-
-
-
-
-
-                slider.setOnMousePressed(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        player.seek(Duration.seconds(slider.getValue()));
-                    }
-                });
-
-                slider.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        player.seek(Duration.seconds(slider.getValue()));
-                    }
-                });
-
-                player.setOnReady(new Runnable() {
-                    @Override
-                    public void run() {
-                        Duration total = m.getDuration();
-                        slider.setMax(total.toSeconds());
-                    }
-                });
-                player.setOnEndOfMedia(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(!test) {
-                            Listi.getSelectionModel().selectNext();
-                            PlayNext(actionEvent);
-                        }
-                        {
-                            Openlist(actionEvent);
-                            PlaySong(actionEvent);
-                        }
-                    }
-                });
-
-
-
-                volumeSlider.setValue(player.getVolume()*100);
-                volumeSlider.valueProperty().addListener(new InvalidationListener() {
-                    @Override
-                    public void invalidated(Observable observable) {
-                        player.setVolume(volumeSlider.getValue()/100);
-                    }
-                });
-                player.pause();
-                playbtn.setText("Play");
-
-
-
-
-                System.out.println("song started");
-
-
-
-                //song.startSong();
-            } catch (Exception e)
-            {
-                e.printStackTrace();
-                System.out.println("Error in Song");
+            } else {
+                System.out.println("UI failed");
             }
 
 
-        }
-        else
-        {
-            System.out.println("UI failed");
-        }
-
-
-
-        //Listi.getChildren().addAll(list);
+            //Listi.getChildren().addAll(list);
 //        Listi.setMaxHeight(200);
 //        Listi.getItems().addAll(data);
 //        Listi.setVisible(true);
-        //  list.setItems(data);
+            //  list.setItems(data);
 
 
-
-
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ListView<String> list = new ListView<String>();
+//        ListView<String> list = new ListView<String>();
 
 
-        List<String> list1=ClientMain.client.getSongs(ClientMain.client.clientInfo.user_id);
-
+        list1=ClientMain.client.getSongs(ClientMain.client.clientInfo.user_id);
 //        DoubleProperty widthProp = mediaview.fitWidthProperty();
 //        DoubleProperty heightProp = mediaview.fitHeightProperty();
 //
@@ -196,7 +197,7 @@ public class SongPlayer implements Initializable {
 //        System.out.println("INITIALISED");
         try
         {
-            System.out.println(list1);
+//            System.out.println(list1);
             Listi.getItems().addAll(list1);
         }
         catch(Exception e)
@@ -261,13 +262,26 @@ public class SongPlayer implements Initializable {
     }
 
     public void Qshuffle(ActionEvent actionEvent) {
+        Collections.shuffle(list1);
+        if(player!=null)
+        {
+            player.dispose();
+        }
+        Listi.getItems().clear();
+        Listi.getItems().addAll(list1);
+
+
 
     }
 
     public void opendefaultqueue(ActionEvent actionEvent) {
         ClientMain.client.settoDeafault(ClientMain.client.clientInfo.user_id);
-        List<String> list1=ClientMain.client.getSongs(ClientMain.client.clientInfo.user_id);
-        Listi.getItems().addAll(list1);
+//        List<String> list1=ClientMain.client.getSongs(ClientMain.client.clientInfo.user_id);
+//        Listi.getItems().clear();
+//        Listi.getItems().addAll(list1);
+        if(player!=null)
+            player.dispose();
+        new SceneChanger().changeScene2("FXML\\SongPlayer.fxml","Song",songName);
 
     }
     public void goToGroup(ActionEvent actionEvent) {

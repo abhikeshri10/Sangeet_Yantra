@@ -30,7 +30,7 @@
            </menus>
        </MenuBar>
        <Label fx:id="nameLB" layoutX="193.0" layoutY="56.0" prefHeight="26.0" prefWidth="164.0" text="Label" />
-      <TextArea fx:id="historyTA" layoutX="75.0" layoutY="104.0" prefHeight="227.0" prefWidth="243.0" />
+      <TextArea fx:id="historyTA" editable="false" layoutX="75.0" layoutY="104.0" prefHeight="227.0" prefWidth="243.0" />
       <Label fx:id="mostPlayed" layoutX="381.0" layoutY="208.0" prefHeight="39.0" prefWidth="225.0" text="Most Played">
          <font>
             <Font size="14.0" />

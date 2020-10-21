@@ -51,7 +51,7 @@ public class AlbumController implements Initializable{
     }
 
     public void playArtist(ActionEvent actionEvent) {
-
+        ClientMain.client.setArtisttoqueue(artistCB.getSelectionModel().getSelectedItem().toString(),clientInfo.user_id);
         new SceneChanger().changeScene2("FXML\\SongPlayer.fxml","Song", nameLB);
 
     }

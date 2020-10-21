@@ -1,85 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a42529bf-d4ce-41f7-b6df-86e87c5ed389" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/19a2d6f9-2900-48a3-ad35-fc4f671fca2d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/19a2d6f9-2900-48a3-ad35-fc4f671fca2d/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7471685a-44fd-4b0b-b922-2f0efcb3903a.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7471685a-44fd-4b0b-b922-2f0efcb3903a/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dc9c2f2a-b12d-4142-8fba-45fc3325e0c6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dc9c2f2a-b12d-4142-8fba-45fc3325e0c6/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="9215da85-e6e0-40f3-83c8-dc7a7c5ba8f1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fresh_Design.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Fresh_Design.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/Server/DatabaseHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/Server/HandleClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/Server/Server.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/Server/StartServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Client.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/ClientInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/ClientMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/AlbumController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/ClientFeaturesController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/GroupController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/HistoryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/HomePageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/LoginPageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/PlaylistController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/Register.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/SongController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/SongPlayer$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/SongPlayer$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/SongPlayer$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/SongPlayer$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/SongPlayer$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/SongPlayer$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Controller/SongPlayer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Fxml/Album.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Fxml/Album.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Fxml/History.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Fxml/History.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Fxml/Playlist.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Fxml/Playlist.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Fxml/SongPlayer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Fxml/SongPlayer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Hash.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/QueryType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/SceneChanger.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/Song.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fresh_Design/sample/SongInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/DatabaseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/DatabaseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/HandleClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/HandleClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/AlbumController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/AlbumController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/PlaylistController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/PlaylistController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Fxml/History.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Fxml/History.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Fxml/Playlist.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Fxml/Playlist.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Fxml/SongPlayer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Fxml/SongPlayer.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/QueryType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/QueryType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/SongInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/SongInfo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/DatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/DatabaseHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/HandleClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/HandleClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ClientInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ClientInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller/AlbumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller/AlbumController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller/HomePageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller/PlaylistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller/PlaylistController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller/SongPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller/SongPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Fxml/Album.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Fxml/Album.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Fxml/History.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Fxml/History.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Fxml/Playlist.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Fxml/Playlist.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Fxml/SongPlayer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Fxml/SongPlayer.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/QueryType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/QueryType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/SceneChanger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/SceneChanger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/SongInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/SongInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,14 +45,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1iv82fBHLSzac87RSEsdCA1YYdL" />
+  <component name="ProjectId" id="1jBuT9YWigBmLehGJdr1en48NTD" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="oracle&#10;mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -130,6 +86,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ClientMain" />
@@ -140,59 +109,63 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a42529bf-d4ce-41f7-b6df-86e87c5ed389" name="Default Changelist" comment="" />
-      <created>1602776500009</created>
+      <changelist id="9215da85-e6e0-40f3-83c8-dc7a7c5ba8f1" name="Default Changelist" comment="" />
+      <created>1603289813719</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1602776500009</updated>
-      <workItem from="1602776501532" duration="376000" />
-      <workItem from="1602777249639" duration="46000" />
+      <updated>1603289813719</updated>
+      <workItem from="1603289815346" duration="218000" />
+      <workItem from="1603290057172" duration="319000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="499" y="167" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1602776519701">
+    <state x="361" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603290002961">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="167" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1536.824@0.0.1536.824" timestamp="1602776519701" />
-    <state x="473" y="153" key="FileChooserDialogImpl" timestamp="1602776513271">
+    <state x="361" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1603290002961" />
+    <state x="499" y="167" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1603290107758">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="473" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1602776513271" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1602777294778">
+    <state x="499" y="167" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1536.824@0.0.1536.824" timestamp="1603290107758" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1603290375662">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1602777294778" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1602777294778">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603290375662" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1603290375662">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1602777294778" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1602777294778">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603290375662" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1603290375661">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1602777294778" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1602777294778">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603290375661" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1603290375662">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1602777294778" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1602776521002">
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603290375662" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1603290033984">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1602776521002" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603290033984" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1603290033984">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1603290033984" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1603290033984">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1603290033984" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1603290033984">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1603290033984" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1603290109053">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1603290109053" />
   </component>
 </project>
