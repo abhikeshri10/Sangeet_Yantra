@@ -392,6 +392,7 @@ public class SongPlayer implements Initializable {
             if (player != null) {
                 player.dispose();
                 slider.adjustValue(0);
+                subtitleArea.clear();
             }
 
             player = new MediaPlayer(m);
@@ -422,9 +423,44 @@ public class SongPlayer implements Initializable {
             ClientMain.client.modifyQueue(newQueue, ClientMain.client.clientInfo.user_id);
             JOptionPane.showMessageDialog(null,"Selected song has been deleted");
 
-            new SceneChanger().changeScene2("FXML//SongPlayer.fxml", "Song", songName);
+            new SceneChanger().changeScene2("FXML\\SongPlayer.fxml", "Song", songName);
         }
 
+
+    }
+
+    public void downloadSong(ActionEvent actionEvent) {
+        File file =  ClientMain.client.songInfo.file;
+        try {
+            //FileReader fileReader = new FileReader(file);
+            String newPath = ClientMain.client.Downloadpath+"\\"+ClientMain.client.songInfo.SongName+".mp3";
+            File download = new File(newPath);
+            file.createNewFile();
+            FileInputStream instream = new FileInputStream(file);
+            FileOutputStream outstream = new FileOutputStream(download);
+
+            byte[] buffer = new byte[1024];
+
+            int length;
+            /*copying the contents from input stream to
+             * output stream using read and write methods
+             */
+            while ((length = instream.read(buffer)) > 0){
+                outstream.write(buffer, 0, length);
+            }
+            instream.close();
+            outstream.close();
+
+            System.out.println("File downloaded successfully!!");
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void offlineFeatures(ActionEvent actionEvent) {
+        new SceneChanger().changeScene2("FXML\\Offline.fxml","Offline",songName);
 
     }
 }

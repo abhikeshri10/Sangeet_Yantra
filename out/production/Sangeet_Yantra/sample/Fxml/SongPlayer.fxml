@@ -6,7 +6,7 @@
 
 <AnchorPane fx:id="Pane" prefHeight="633.0" prefWidth="1112.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.SongPlayer">
     <children>
-        <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="1112.0">
+        <MenuBar layoutY="2.0" prefHeight="200.0" prefWidth="1112.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -20,7 +20,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Offline">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Offline Features" />
+                        <MenuItem fx:id="offline" mnemonicParsing="false" onAction="#offlineFeatures" text="Offline Features" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -64,5 +64,6 @@
       <Button fx:id="localBT" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" onAction="#fetchLocal" prefHeight="26.0" prefWidth="100.0" text="Access Local" />
       <Button layoutX="419.0" layoutY="446.0" mnemonicParsing="false" text="Like" />
       <Button layoutX="515.0" layoutY="446.0" mnemonicParsing="false" text="Dislike" />
+      <Button fx:id="downloadBT" layoutX="18.0" layoutY="190.0" mnemonicParsing="false" onAction="#downloadSong" prefHeight="26.0" prefWidth="90.0" text="Download" />
     </children>
 </AnchorPane>
