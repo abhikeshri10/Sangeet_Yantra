@@ -4,8 +4,7 @@ package sample;
 
 
 
-import java.io.File;
-import java.io.Serializable;
+import java.io.*;
 
 public class SongInfo implements Serializable {
     public int id;
@@ -27,8 +26,30 @@ public class SongInfo implements Serializable {
         this.Date_Created=Date_Created;
         this.ImageId=ImageId;
         file =new File(SongAddress);
+        char t = 't';
+
+
         SongAddress.replace("mp3","srt");
-        subtitlefile=new File(SongAddress);
+        String srt = new String(".srt");
+        String subtitileAddress = SongAddress.substring(0,SongAddress.length()-4)+srt;
+
+        System.out.println(subtitileAddress);
+        subtitlefile=new File(subtitileAddress);
+//        BufferedReader reader = null;
+//        try {
+//
+//            reader= new BufferedReader(new InputStreamReader(new FileInputStream(subtitlefile), "UTF-8"));
+//            String line = null;
+//
+//            while ((line = reader.readLine())!=null)
+//            {
+//                System.out.println(line);
+//            }
+//        }
+//        catch (Exception e)
+//        {
+//
+//        }
     }
 
 

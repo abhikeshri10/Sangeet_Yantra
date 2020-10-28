@@ -367,4 +367,18 @@ public class Client implements Runnable {
             e.printStackTrace();
         }
     }
+
+    public void setGroupPlaylisttoqueue(String groupPlaylistName, int user_id) {
+        try {
+            dataOutputStream.writeUTF(QueryType.getGroupPlaylistSongs);
+            dataOutputStream.write(user_id);
+            dataOutputStream.writeUTF(groupPlaylistName);
+
+        } catch (IOException e) {
+            System.out.println("Playlist in Client");
+
+
+        }
+
+    }
 }

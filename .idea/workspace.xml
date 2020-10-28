@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9215da85-e6e0-40f3-83c8-dc7a7c5ba8f1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/DatabaseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/DatabaseHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/HandleClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/HandleClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/PlaylistController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/PlaylistController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music.gif" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$3.class" afterDir="false" />
@@ -15,7 +12,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$6.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Fxml/SongPlayer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Fxml/SongPlayer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/QueryType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/QueryType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/SongInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/SongInfo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/DatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/DatabaseHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/HandleClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/HandleClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Client.java" afterDir="false" />
@@ -23,11 +20,19 @@
       <change beforePath="$PROJECT_DIR$/src/sample/Controller/SongPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller/SongPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Fxml/SongPlayer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Fxml/SongPlayer.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/QueryType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/QueryType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/SongInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/SongInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -73,17 +78,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ClientMain" />
@@ -102,6 +96,11 @@
       <workItem from="1603289815346" duration="218000" />
       <workItem from="1603290057172" duration="319000" />
       <workItem from="1603290668713" duration="6196000" />
+      <workItem from="1603300265615" duration="708000" />
+      <workItem from="1603445848566" duration="1064000" />
+      <workItem from="1603449387100" duration="1686000" />
+      <workItem from="1603864654289" duration="5182000" />
+      <workItem from="1603889218745" duration="3332000" />
     </task>
     <servers />
   </component>
@@ -117,22 +116,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1536.824@0.0.1536.824" timestamp="1603290107758" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1603296872956">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1603892663080">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603296872956" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1603296872956">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603892663080" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1603892663079">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603296872956" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1603296872955">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603892663079" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1603892663079">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603296872955" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1603296872956">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603892663079" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1603892663079">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603296872956" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603892663079" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1603290033984">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

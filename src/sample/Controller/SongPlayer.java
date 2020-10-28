@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.*;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import sample.ClientMain;
 import sample.SceneChanger;
@@ -23,7 +24,8 @@ import sample.SongInfo;
 
 
 import javax.swing.*;
-import java.io.IOException;
+import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.List;
@@ -57,6 +59,7 @@ public class SongPlayer implements Initializable {
     public TextField currentPositionTF;
     public ComboBox selectSongs2CB;
     public Button addSongBT;
+    public ComboBox deleteSongsCB;
     List<String> allsongs;
     boolean test=false;
     Song song =new Song();
@@ -168,7 +171,7 @@ public class SongPlayer implements Initializable {
 
 
                     System.out.println("song started");
-
+                    setSubtitleArea();
 
                     //song.startSong();
                 } catch (Exception e) {
@@ -182,16 +185,36 @@ public class SongPlayer implements Initializable {
             }
 
 
-            //Listi.getChildren().addAll(list);
+//        Listi.getChildren().addAll(list);
 //        Listi.setMaxHeight(200);
 //        Listi.getItems().addAll(data);
 //        Listi.setVisible(true);
-            //  list.setItems(data);
+//        list.setItems(data);
 
 
         }
     }
+    void setSubtitleArea()
+    {      subtitleArea.clear();
+        File subtitilefile =ClientMain.client.songInfo.subtitlefile;
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(subtitilefile), "UTF-8"));
+            String line;
+            while ((line = reader.readLine()) != null)
+            {   if(line.length()>0)
+            {if((line.charAt(0)>='A'&&line.charAt(0)<='Z')||(line.charAt(0)>='a'&&line.charAt(0)<='z'))
+                subtitleArea.appendText(line+"\n");}
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        ListView<String> list = new ListView<String>();
@@ -202,6 +225,7 @@ public class SongPlayer implements Initializable {
         allsongs = ClientMain.client.getAllSongs();
         allsongs.removeAll(list1);
         selectSongs2CB.getItems().addAll(allsongs);
+        deleteSongsCB.getItems().addAll(list1);
         //selectSongs2CB.getItems().addAll(list1);
 
 //        DoubleProperty widthProp = mediaview.fitWidthProperty();
@@ -356,6 +380,51 @@ public class SongPlayer implements Initializable {
             ClientMain.client.modifyQueue(newQueue,ClientMain.client.clientInfo.user_id);
             new SceneChanger().changeScene2("FXML//SongPlayer.fxml","Song",songName);
         }
+
+    }
+
+    public void fetchLocal(ActionEvent actionEvent) {
+        try {
+            System.out.println("open song clicked");
+            FileChooser chooser = new FileChooser();
+            File file = chooser.showOpenDialog(null);
+            Media m = new Media(file.toURI().toURL().toString());
+            if (player != null) {
+                player.dispose();
+                slider.adjustValue(0);
+            }
+
+            player = new MediaPlayer(m);
+
+            mediaview.setMediaPlayer(player);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getNewSongs(ActionEvent actionEvent) {
+        new SceneChanger().changeScene2("FXML\\newSongs.fxml","New Songs on server",songName);
+    }
+
+    public void deleteSong(ActionEvent actionEvent) {
+        List<String > newQueue = list1;
+        if (list1.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Select a song to be added");
+
+        }
+        else
+        {
+
+            String song = deleteSongsCB.getSelectionModel().getSelectedItem().toString();
+            newQueue.remove(song);
+            ClientMain.client.modifyQueue(newQueue, ClientMain.client.clientInfo.user_id);
+            JOptionPane.showMessageDialog(null,"Selected song has been deleted");
+
+            new SceneChanger().changeScene2("FXML//SongPlayer.fxml", "Song", songName);
+        }
+
 
     }
 }

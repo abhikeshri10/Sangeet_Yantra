@@ -883,4 +883,39 @@ public class DatabaseHandler {
         }
 
     }
+
+    public void getGroupPlaylistsongs(String playlistname, int userid) {
+        try {
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "Select id from playlist where playlistName = '" + playlistname + "';";
+            dbstatement=dbconnection.prepareStatement(query);
+            ResultSet rs=dbstatement.executeQuery();
+            rs.next();
+            int playlistid=rs.getInt("id");
+            query = "delete from queue where UserId = " + userid + ";";
+            dbstatement = dbconnection.prepareStatement(query);
+            dbstatement.executeUpdate();
+            query="Select SongId from playlistsong where PlaylistId ='"+playlistid+"';";
+            dbstatement = dbconnection.prepareStatement(query);
+            rs=dbstatement.executeQuery();
+            while(rs.next())
+            {
+                int songid=rs.getInt("SongId");
+                String query1="select songName from song where id = " + songid + ";";
+                dbstatement = dbconnection.prepareStatement(query1);
+                ResultSet getsongname = dbstatement.executeQuery();
+                getsongname.next();
+                String song = getsongname.getString("SongName");
+                query = "INSERT INTO queue VALUES(?,?)";
+                dbstatement = dbconnection.prepareStatement(query);
+                dbstatement.setInt(1, userid);
+                dbstatement.setString(2, song);
+                dbstatement.executeUpdate();
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -232,6 +232,12 @@ public class HandleClient implements Runnable{
                     databaseHandler.modifyQueue(newQueue,user_id);
                     break;
                 }
+                case 28:
+                {   int user_id = dataInputStream.read();
+                    String playlistname=dataInputStream.readUTF();
+                    databaseHandler.getGroupPlaylistsongs(playlistname,user_id);
+                    break;
+                }
             }
 
         }

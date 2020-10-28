@@ -148,7 +148,8 @@ public class PlaylistController implements Initializable {
         new SceneChanger().changeScene2("FXML\\Group.fxml","Group",nameLB);
     }
     public void playGroupPlaylist(ActionEvent actionEvent) {
-     
+        ClientMain.client.setGroupPlaylisttoqueue(groupPlaylistCB.getSelectionModel().getSelectedItem().toString(),clientInfo.user_id);
+        new SceneChanger().changeScene2("FXML\\SongPlayer.fxml","Song", nameLB);
     }
 
     public void playPlaylist(ActionEvent actionEvent) {
