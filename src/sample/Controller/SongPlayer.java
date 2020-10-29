@@ -66,7 +66,6 @@ public class SongPlayer implements Initializable {
     boolean test=false;
     Song song =new Song();
     List<String> list1=null;
-    public AudioSpectrumListener spectrumListener;
     
 
     public void PlaySong(ActionEvent actionEvent) {
@@ -138,12 +137,12 @@ public class SongPlayer implements Initializable {
                         audio5.setMax(EqualizerBand.MAX_GAIN);
                         audio5.setValue(0);
                         audio1.valueProperty().addListener(new ChangeListener<Number>() {
-                        @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
-                            if (player != null) {
-                                player.getAudioEqualizer().getBands().get(1).setGain(newValue.doubleValue());
+                            @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
+                                if (player != null) {
+                                    player.getAudioEqualizer().getBands().get(1).setGain(newValue.doubleValue());
+                                }
                             }
-                        }
-                    });
+                        });
                         audio2.valueProperty().addListener(new ChangeListener<Number>() {
                             @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
                                 if (player != null) {
@@ -159,12 +158,12 @@ public class SongPlayer implements Initializable {
                             }
                         });
                         audio4.valueProperty().addListener(new ChangeListener<Number>() {
-                        @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
-                            if (player != null) {
-                                player.getAudioEqualizer().getBands().get(4).setGain(newValue.doubleValue());
+                            @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
+                                if (player != null) {
+                                    player.getAudioEqualizer().getBands().get(4).setGain(newValue.doubleValue());
+                                }
                             }
-                        }
-                    });
+                        });
                         audio5.valueProperty().addListener(new ChangeListener<Number>() {
                             @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
                                 if (player != null) {
@@ -186,9 +185,6 @@ public class SongPlayer implements Initializable {
                     }
 
                     mediaview.setMediaPlayer(player);
-
-
-
 
                     player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
                         @Override
@@ -468,6 +464,7 @@ public class SongPlayer implements Initializable {
             if (player != null) {
                 player.dispose();
                 slider.adjustValue(0);
+                subtitleArea.clear();
             }
 
             player = new MediaPlayer(m);
@@ -491,17 +488,54 @@ public class SongPlayer implements Initializable {
 
         }
         else
-        {   try {
+        {
 
-            String song = selectSongs2CB.getSelectionModel().getSelectedItem().toString();
+            String song = deleteSongsCB.getSelectionModel().getSelectedItem().toString();
             newQueue.remove(song);
             ClientMain.client.modifyQueue(newQueue, ClientMain.client.clientInfo.user_id);
-            new SceneChanger().changeScene2("FXML//SongPlayer.fxml", "Song", songName);
+            JOptionPane.showMessageDialog(null,"Selected song has been deleted");
+            if(player!=null)
+            {
+                player.dispose();
+            }
+            new SceneChanger().changeScene2("FXML\\SongPlayer.fxml", "Song", songName);
         }
-        catch (Exception e)
+
+
+    }
+
+    public void downloadSong(ActionEvent actionEvent) {
+        File file =  ClientMain.client.songInfo.file;
+        try {
+            //FileReader fileReader = new FileReader(file);
+            String newPath = ClientMain.client.Downloadpath+"\\"+ClientMain.client.songInfo.SongName+".mp3";
+            File download = new File(newPath);
+            file.createNewFile();
+            FileInputStream instream = new FileInputStream(file);
+            FileOutputStream outstream = new FileOutputStream(download);
+
+            byte[] buffer = new byte[1024];
+
+            int length;
+            /*copying the contents from input stream to
+             * output stream using read and write methods
+             */
+            while ((length = instream.read(buffer)) > 0){
+                outstream.write(buffer, 0, length);
+            }
+            instream.close();
+            outstream.close();
+
+            System.out.println("File downloaded successfully!!");
+        }catch (Exception e)
         {
             e.printStackTrace();
         }
-        }
+
+    }
+
+    public void offlineFeatures(ActionEvent actionEvent) {
+        new SceneChanger().changeScene2("FXML\\Offline.fxml","Offline",songName);
+
     }
 }

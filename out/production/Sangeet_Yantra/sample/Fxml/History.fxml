@@ -37,7 +37,7 @@
          </font>
       </Label>
       <ComboBox fx:id="historyCB" layoutX="410.0" layoutY="104.0" prefWidth="150.0" promptText="History" />
-      <Button fx:id="playHistory" layoutX="451.0" layoutY="151.0" mnemonicParsing="false" text="Play Song" textFill="#cf2d2d" />
+      <Button fx:id="playHistory" layoutX="451.0" layoutY="151.0" mnemonicParsing="false" onAction="#playSong" text="Play Song" textFill="#cf2d2d" />
       <Button fx:id="playMostPlayedBT" layoutX="407.0" layoutY="251.0" mnemonicParsing="false" onAction="#playMostPlayed" prefHeight="26.0" prefWidth="150.0" text="Play Most Played" />
    </children>
 </AnchorPane>

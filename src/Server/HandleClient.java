@@ -19,8 +19,8 @@ public class HandleClient implements Runnable{
      * @param startServer to get the start server instance
      * @param socket to get the socket of client
     * */
-
-    public HandleClient(StartServer startServer, Socket socket) {
+    Thread t;
+    public HandleClient(StartServer startServer, Socket socket) throws IOException {
         this.startServer = startServer;
         this.socket = socket;
         try {
@@ -31,10 +31,12 @@ public class HandleClient implements Runnable{
             databaseHandler = new DatabaseHandler();
         }
         catch (IOException e)
-        {
+        {   this.socket.close();
+
             e.printStackTrace();
         }
-        Thread t = new Thread(this);
+
+         t = new Thread(this);
         t.start();
     }
 
@@ -241,10 +243,13 @@ public class HandleClient implements Runnable{
             }
 
         }
-            catch (IOException | ClassNotFoundException e)
+            catch ( ClassNotFoundException e)
             {
-                System.out.println("client disconnected");
-                return;
+                e.printStackTrace();
+            }
+            catch (IOException ioe)
+            {
+                t.stop();
             }
         }
     }

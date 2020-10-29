@@ -67,6 +67,6 @@ public class LoginPageController implements Initializable {
     }
 
     public void openHome(ActionEvent actionEvent) throws IOException {
-        new SceneChanger().changeScene("FXML\\Playlist.fxml","Sangeet Yantra",actionEvent);
+        new SceneChanger().changeScene("FXML\\Offline.fxml","Sangeet Yantra",actionEvent);
     }
 }

@@ -17,7 +17,7 @@ public class Client implements Runnable {
     public String username;
     public static ClientInfo clientInfo;
     public static SongInfo songInfo;
-
+    public static String Downloadpath;
     public boolean connectToServer(String serverIP, int serverPort) {
         try {
             s = new Socket(serverIP, serverPort);

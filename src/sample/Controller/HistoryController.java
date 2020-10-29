@@ -8,8 +8,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import sample.ClientMain;
 import sample.SceneChanger;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,7 +24,7 @@ public class HistoryController implements Initializable {
     public ComboBox historyCB;
     public Button playHistory;
     public Button playMostPlayedBT;
-
+    List<String> history;
     public void goToPlaylist(ActionEvent actionEvent) throws IOException {
         new SceneChanger().changeScene2("FXML\\Playlist.fxml","Playlist",nameLB);
     }
@@ -38,7 +41,7 @@ public class HistoryController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         clientInfo = ClientMain.client.clientInfo;
         nameLB.setText(clientInfo.name);
-        List<String> history = ClientMain.client.getHistory(clientInfo.user_id);
+        history = ClientMain.client.getHistory(clientInfo.user_id);
         for(int i=0;i<history.size();i++)
         {
             historyTA.appendText(history.get(i)+"\n");
@@ -47,8 +50,7 @@ public class HistoryController implements Initializable {
         mostPlayed.setText(this.mostFrequent(history));
     }
 
-    public void playMostPlayed(ActionEvent actionEvent) {
-    }
+
 
     public void goToHistory(ActionEvent actionEvent) {
         new SceneChanger().changeScene2("FXML\\History.fxml","Song", nameLB);
@@ -91,5 +93,43 @@ public class HistoryController implements Initializable {
         }
 
         return res;
+    }
+
+    public void playSong(ActionEvent actionEvent) {
+        List<String > newQueue = new ArrayList<String>();
+        if (history.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Select a song to be added");
+
+        }
+        else
+        {
+
+            String song = historyCB.getSelectionModel().getSelectedItem().toString();
+            newQueue.add(song);
+            ClientMain.client.modifyQueue(newQueue, ClientMain.client.clientInfo.user_id);
+
+            new SceneChanger().changeScene2("FXML\\SongPlayer.fxml", "Song", nameLB);
+        }
+    }
+
+    public void playMostPlayed(ActionEvent actionEvent) {
+        List<String > newQueue = new ArrayList<String>();
+        if (history.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Select a song to be added");
+
+        }
+        else
+        {
+
+            String song = mostPlayed.getText();
+            newQueue.add(song);
+            ClientMain.client.modifyQueue(newQueue, ClientMain.client.clientInfo.user_id);
+
+            new SceneChanger().changeScene2("FXML\\SongPlayer.fxml", "Song", nameLB);
+        }
+
+
     }
 }

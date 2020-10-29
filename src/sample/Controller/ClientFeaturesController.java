@@ -12,6 +12,7 @@ import sample.ClientInfo;
 import sample.ClientMain;
 import sample.SceneChanger;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -57,6 +58,19 @@ public class ClientFeaturesController implements Initializable {
         {
             System.out.println("Error in setting combo box");
         }
+        String currentPath = System.getProperty("user.dir");
+        String path = currentPath+"\\" + ClientMain.client.clientInfo.name;
+        File file = new File(path);
+        boolean bool = file.mkdir();
+        if(bool)
+        {
+            ClientMain.client.Downloadpath = path;
+        }
+        else
+        {
+            System.out.println("The download file could not be created");
+        }
+
   }
 
     public void goToHome(ActionEvent actionEvent) throws IOException {

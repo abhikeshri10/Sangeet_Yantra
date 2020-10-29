@@ -30,6 +30,10 @@ public class HomePageController implements Initializable {
         emailLB.setText(clientInfo.email);
         phoneLB.setText(clientInfo.phone);
         usernameLB.setText(clientInfo.username);
+        String currentPath = System.getProperty("user.dir");
+        String path = currentPath+"\\" + ClientMain.client.clientInfo.name;
+        ClientMain.client.Downloadpath = path;
+
     }
 
     public void goToPlaylist(ActionEvent actionEvent) throws IOException {

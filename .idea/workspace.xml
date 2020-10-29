@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9215da85-e6e0-40f3-83c8-dc7a7c5ba8f1" name="Default Changelist" comment="" />
+    <list default="true" id="9215da85-e6e0-40f3-83c8-dc7a7c5ba8f1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Fxml/SongPlayer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Fxml/SongPlayer.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller/SongPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller/SongPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Fxml/SongPlayer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Fxml/SongPlayer.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,10 +47,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager" selected="Application.ClientMain">
     <configuration name="ClientMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -78,17 +78,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ClientMain" />
@@ -111,74 +100,47 @@
       <workItem from="1603445848566" duration="1064000" />
       <workItem from="1603449387100" duration="1686000" />
       <workItem from="1603864654289" duration="5182000" />
-      <workItem from="1603889218745" duration="2749000" />
-      <workItem from="1603898645632" duration="2808000" />
-      <workItem from="1603903736079" duration="1048000" />
-      <workItem from="1603942760219" duration="1210000" />
-      <workItem from="1603944001567" duration="1159000" />
+      <workItem from="1603889218745" duration="8774000" />
+      <workItem from="1603903354925" duration="1011000" />
+      <workItem from="1603906233861" duration="671000" />
+      <workItem from="1603907247178" duration="2278000" />
+      <workItem from="1603951190432" duration="552000" />
+      <workItem from="1603952267850" duration="121000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="163" y="0" key="#Project_Structure" timestamp="1603898743257">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="163" y="0" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1603898743257" />
     <state x="361" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603290002961">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1603290002961" />
-    <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603902440279">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1603904187550">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1603902440279" />
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1603904187550" />
     <state x="499" y="167" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1603290107758">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1536.824@0.0.1536.824" timestamp="1603290107758" />
-    <state x="480" y="249" key="DetectedRootsChooserDialog" timestamp="1603898736003">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1603952357896">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="480" y="249" key="DetectedRootsChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1603898736003" />
-    <state x="389" y="105" key="FileChooserDialogImpl" timestamp="1603898734276">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603952357896" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1603952357896">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1603898734276" />
-    <state width="1323" height="300" key="GridCell.Tab.0.bottom" timestamp="1603945161997">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603952357896" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1603952357895">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1323" height="300" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1603945161997" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603891884003" />
-    <state width="1323" height="300" key="GridCell.Tab.0.center" timestamp="1603945161997">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603952357895" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1603952357896">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1323" height="300" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1603945161997" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603891884003" />
-    <state width="1323" height="300" key="GridCell.Tab.0.left" timestamp="1603945161997">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1323" height="300" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1603945161997" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603891884002" />
-    <state width="1323" height="300" key="GridCell.Tab.0.right" timestamp="1603945161997">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1323" height="300" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1603945161997" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603891884003" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603952357896" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1603290033984">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

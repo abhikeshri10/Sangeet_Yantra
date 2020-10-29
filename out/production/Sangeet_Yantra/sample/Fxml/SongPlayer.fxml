@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.media.*?>
 
-<AnchorPane fx:id="Pane" prefHeight="699.0" prefWidth="1112.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.SongPlayer">
+<AnchorPane fx:id="Pane" prefHeight="646.0" prefWidth="1112.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.SongPlayer">
     <children>
-        <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="1112.0">
+        <MenuBar layoutY="2.0" prefHeight="674.0" prefWidth="1112.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -20,7 +20,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Offline">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Offline Features" />
+                        <MenuItem fx:id="offline" mnemonicParsing="false" onAction="#offlineFeatures" text="Offline Features" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -59,23 +59,24 @@
       <Label layoutX="804.0" layoutY="300.0" text="Add Songs to the queue" />
       <Button fx:id="addSongBT" layoutX="794.0" layoutY="397.0" mnemonicParsing="false" onAction="#addSong" prefHeight="26.0" prefWidth="149.0" text="Add Song to Queue" />
       <Label layoutX="784.0" layoutY="440.0" prefHeight="18.0" prefWidth="140.0" text="Delete Song" />
-      <ComboBox fx:id="deleteSongsCB" layoutX="784.0" layoutY="475.0" onAction="#deleteSong" prefHeight="26.0" prefWidth="220.0" promptText="CurreSelect Song to delete" />
-      <Button layoutX="833.0" layoutY="538.0" mnemonicParsing="false" text="Delete" />
+      <ComboBox fx:id="deleteSongsCB" layoutX="784.0" layoutY="475.0" prefHeight="26.0" prefWidth="220.0" promptText="CurreSelect Song to delete" />
+      <Button fx:id="deleteSongBT" layoutX="833.0" layoutY="538.0" mnemonicParsing="false" onAction="#deleteSong" text="Delete" />
       <Button fx:id="localBT" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" onAction="#fetchLocal" prefHeight="26.0" prefWidth="100.0" text="Access Local" />
-      <Button layoutX="584.0" layoutY="437.0" mnemonicParsing="false" text="Like" />
-      <Button layoutX="639.0" layoutY="437.0" mnemonicParsing="false" text="Dislike" />
-      <Slider fx:id="audio5" layoutX="395.0" layoutY="563.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
-      <Slider fx:id="audio2" layoutX="395.0" layoutY="472.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
-      <Slider fx:id="audio3" layoutX="395.0" layoutY="501.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
-      <Slider fx:id="audio4" layoutX="395.0" layoutY="531.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
-      <Slider fx:id="audio1" layoutX="395.0" layoutY="442.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
-      <Label layoutX="404.0" layoutY="587.0" prefHeight="17.0" prefWidth="77.0" text="Equaliser" />
-      <Label layoutX="510.0" layoutY="441.0" text="32Hz" />
-      <Label layoutX="510.0" layoutY="467.0" text="64Hz" />
-      <Label layoutX="510.0" layoutY="493.0" text="125Hz" />
-      <Label layoutX="510.0" layoutY="530.0" text="150Hz" />
-      <Label layoutX="510.0" layoutY="567.0" text="500Hz" />
-      <Slider fx:id="balance" layoutX="569.0" layoutY="568.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
-      <Label layoutX="605.0" layoutY="587.0" text="Balance" />
+      <Button layoutX="621.0" layoutY="480.0" mnemonicParsing="false" text="Like" />
+      <Button layoutX="621.0" layoutY="441.0" mnemonicParsing="false" text="Dislike" />
+      <Button fx:id="downloadBT" layoutX="18.0" layoutY="190.0" mnemonicParsing="false" onAction="#downloadSong" prefHeight="26.0" prefWidth="90.0" text="Download" />
+        <Slider fx:id="audio5" layoutX="395.0" layoutY="563.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
+        <Slider fx:id="audio2" layoutX="395.0" layoutY="472.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
+        <Slider fx:id="audio3" layoutX="395.0" layoutY="501.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
+        <Slider fx:id="audio4" layoutX="395.0" layoutY="531.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
+        <Slider fx:id="audio1" layoutX="395.0" layoutY="442.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
+        <Label layoutX="404.0" layoutY="587.0" prefHeight="17.0" prefWidth="77.0" text="Equaliser" />
+        <Label layoutX="510.0" layoutY="441.0" text="32Hz" />
+        <Label layoutX="510.0" layoutY="467.0" text="64Hz" />
+        <Label layoutX="510.0" layoutY="493.0" text="125Hz" />
+        <Label layoutX="510.0" layoutY="530.0" text="150Hz" />
+        <Label layoutX="510.0" layoutY="567.0" text="500Hz" />
+        <Slider fx:id="balance" layoutX="569.0" layoutY="568.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
+        <Label layoutX="605.0" layoutY="587.0" text="Balance" />
     </children>
 </AnchorPane>
