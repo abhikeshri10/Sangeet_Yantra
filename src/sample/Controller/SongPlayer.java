@@ -60,6 +60,8 @@ public class SongPlayer implements Initializable {
     public ComboBox selectSongs2CB;
     public Button addSongBT;
     public ComboBox deleteSongsCB;
+    public Slider audio1,audio2,audio3,audio4,audio5;
+    public Slider balance;
     List<String> allsongs;
     boolean test=false;
     Song song =new Song();
@@ -111,6 +113,76 @@ public class SongPlayer implements Initializable {
 
 
                     player = new MediaPlayer(m);
+                    AudioEqualizer ae=player.getAudioEqualizer();
+                    ObservableList<EqualizerBand> audiolist=ae.getBands();
+//                    System.out.println(audiolist.size());
+//                    System.out.println(audiolist);
+                    /**
+                     * Equaliser
+                     */
+                    {
+                        audio1.setMin(EqualizerBand.MIN_GAIN);
+                        audio1.setMax(EqualizerBand.MAX_GAIN);
+                        audio1.setValue(0);
+                        audio2.setMin(EqualizerBand.MIN_GAIN);
+                        audio2.setMax(EqualizerBand.MAX_GAIN);
+                        audio2.setValue(0);
+                        audio3.setMin(EqualizerBand.MIN_GAIN);
+                        audio3.setMax(EqualizerBand.MAX_GAIN);
+                        audio3.setValue(0);
+                        audio4.setMin(EqualizerBand.MIN_GAIN);
+                        audio4.setMax(EqualizerBand.MAX_GAIN);
+                        audio4.setValue(0);
+                        audio5.setMin(EqualizerBand.MIN_GAIN);
+                        audio5.setMax(EqualizerBand.MAX_GAIN);
+                        audio5.setValue(0);
+                        audio1.valueProperty().addListener(new ChangeListener<Number>() {
+                            @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
+                                if (player != null) {
+                                    player.getAudioEqualizer().getBands().get(1).setGain(newValue.doubleValue());
+                                }
+                            }
+                        });
+                        audio2.valueProperty().addListener(new ChangeListener<Number>() {
+                            @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
+                                if (player != null) {
+                                    player.getAudioEqualizer().getBands().get(2).setGain(newValue.doubleValue());
+                                }
+                            }
+                        });
+                        audio3.valueProperty().addListener(new ChangeListener<Number>() {
+                            @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
+                                if (player != null) {
+                                    player.getAudioEqualizer().getBands().get(3).setGain(newValue.doubleValue());
+                                }
+                            }
+                        });
+                        audio4.valueProperty().addListener(new ChangeListener<Number>() {
+                            @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
+                                if (player != null) {
+                                    player.getAudioEqualizer().getBands().get(4).setGain(newValue.doubleValue());
+                                }
+                            }
+                        });
+                        audio5.valueProperty().addListener(new ChangeListener<Number>() {
+                            @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
+                                if (player != null) {
+                                    player.getAudioEqualizer().getBands().get(5).setGain(newValue.doubleValue());
+                                }
+                            }
+                        });
+                        balance.setMin(-1);
+                        balance.setMax(1);
+                        balance.setValue(0);
+                        balance.valueProperty().addListener(new ChangeListener<Number>() {
+                            @Override public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number newValue) {
+                                if(player != null) player.setBalance(newValue.doubleValue());
+                            }
+                        });
+
+
+
+                    }
 
                     mediaview.setMediaPlayer(player);
 
@@ -422,7 +494,10 @@ public class SongPlayer implements Initializable {
             newQueue.remove(song);
             ClientMain.client.modifyQueue(newQueue, ClientMain.client.clientInfo.user_id);
             JOptionPane.showMessageDialog(null,"Selected song has been deleted");
-
+            if(player!=null)
+            {
+                player.dispose();
+            }
             new SceneChanger().changeScene2("FXML\\SongPlayer.fxml", "Song", songName);
         }
 
