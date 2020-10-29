@@ -17,20 +17,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.*;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
-import sample.ClientMain;
-import sample.SceneChanger;
-import sample.Song;
-import sample.SongInfo;
+import sample.*;
 
 
 import javax.swing.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Collections;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SongPlayer implements Initializable {
 
@@ -62,11 +56,12 @@ public class SongPlayer implements Initializable {
     public ComboBox deleteSongsCB;
     public Slider audio1,audio2,audio3,audio4,audio5;
     public Slider balance;
+    public TextArea trendingTA;
     List<String> allsongs;
     boolean test=false;
     Song song =new Song();
-    List<String> list1=null;
-    
+    List<String> list1=new ArrayList<>();
+    List<String> trending = new ArrayList<String>();
 
     public void PlaySong(ActionEvent actionEvent) {
 
@@ -81,10 +76,6 @@ public class SongPlayer implements Initializable {
             player.play();
             playbtn.setText("Pause");
         }
-
-
-
-
     }
 
     public void Openlist(ActionEvent actionEvent) {
@@ -94,6 +85,7 @@ public class SongPlayer implements Initializable {
             slider.setValue(0);
 
             Boolean check = ClientMain.client.playSong(Listi.getSelectionModel().getSelectedItem().toString());
+
             //System.out.println(Listi.getSelectionModel().getSelectedItem().toString());
             if (check) {
 //                System.out.println("Executed");
@@ -298,15 +290,12 @@ public class SongPlayer implements Initializable {
         allsongs.removeAll(list1);
         selectSongs2CB.getItems().addAll(allsongs);
         deleteSongsCB.getItems().addAll(list1);
-        //selectSongs2CB.getItems().addAll(list1);
-
-//        DoubleProperty widthProp = mediaview.fitWidthProperty();
-//        DoubleProperty heightProp = mediaview.fitHeightProperty();
-//
-//        widthProp.bind(Bindings.selectDouble(mediaview.sceneProperty(), "width"));
-//        heightProp.bind(Bindings.selectDouble(mediaview.sceneProperty(), "height"));
-
-//        System.out.println("INITIALISED");
+        trending = ClientMain.client.getTrending();
+        if(trending!=null)
+        {for(int i=0;i<trending.size();i++)
+        {
+            trendingTA.appendText(trending.get(i)+"\n");
+        }}
         try
         {
 //            System.out.println(list1);
@@ -476,9 +465,7 @@ public class SongPlayer implements Initializable {
         }
     }
 
-    public void getNewSongs(ActionEvent actionEvent) {
-        new SceneChanger().changeScene2("FXML\\newSongs.fxml","New Songs on server",songName);
-    }
+
 
     public void deleteSong(ActionEvent actionEvent) {
         List<String > newQueue = list1;
@@ -537,5 +524,37 @@ public class SongPlayer implements Initializable {
     public void offlineFeatures(ActionEvent actionEvent) {
         new SceneChanger().changeScene2("FXML\\Offline.fxml","Offline",songName);
 
+    }
+
+    /**
+     * fetch newly added songs to server
+     * @param actionEvent
+     */
+    public void newSongs(ActionEvent actionEvent) {
+        ClientMain.client.setNewSongs(ClientMain.client.clientInfo.user_id);
+        if(player!=null)
+            player.dispose();
+        new SceneChanger().changeScene2("FXML\\SongPlayer.fxml","Song",songName);
+
+    }
+
+    public void likeSong(ActionEvent actionEvent) {
+//      String song= Listi.getSelectionModel().getSelectedItem().toString();
+        ClientMain.client.songlike(ClientMain.client.songInfo.id,ClientMain.client.clientInfo.user_id,1);
+
+    }
+
+    public void DislikeSong(ActionEvent actionEvent) {
+        ClientMain.client.songlike(ClientMain.client.songInfo.id, ClientMain.client.clientInfo.user_id, 0);
+    }
+
+    /**
+     * play trending songs
+     * @param actionEvent
+     */
+    public void playTrending(ActionEvent actionEvent) {
+    List<String > newQueue = trending;
+        ClientMain.client.modifyQueue(newQueue,ClientMain.client.clientInfo.user_id);
+        new SceneChanger().changeScene2("FXML\\SongPlayer.fxml","Songs",songName);
     }
 }

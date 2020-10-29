@@ -33,7 +33,8 @@
         <Label fx:id="songName" layoutX="171.0" layoutY="64.0" prefHeight="31.0" prefWidth="57.0" text="Current Song" textOverrun="CLIP" />
         <Label layoutX="290.0" layoutY="66.0" prefHeight="26.0" prefWidth="54.0" text="Label" />
         <Separator layoutX="130.0" layoutY="95.0" prefHeight="12.0" prefWidth="516.0" />
-        <MediaView fx:id="mediaview" fitHeight="200.0" fitWidth="200.0" layoutX="200.0" layoutY="100.0" />
+        <MediaView fx:id="mediaview" fitHeight="200.0" fitWidth="500.0" layoutX="137.0" layoutY="109.0" />
+
         <Slider fx:id="slider" layoutX="134.0" layoutY="321.0" majorTickUnit="10.0" minorTickCount="5" prefHeight="34.0" prefWidth="505.0" showTickLabels="true" />
         <Button fx:id="playbtn" layoutX="128.0" layoutY="385.0" mnemonicParsing="false" onAction="#PlaySong" prefHeight="26.0" prefWidth="67.0" text="Play" />
         <Button fx:id="nextbtn" layoutX="205.0" layoutY="385.0" mnemonicParsing="false" onAction="#PlayNext" prefHeight="26.0" prefWidth="54.0" text="Next" />
@@ -43,5 +44,6 @@
 
         <Slider fx:id="volumeSlider" layoutX="524.0" layoutY="391.0" prefHeight="14.0" prefWidth="123.0" showTickLabels="true" />
          <Button fx:id="localBT" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" onAction="#fetchLocal" prefHeight="26.0" prefWidth="100.0" text="Access Local" />
+      <Button fx:id="stopBT" layoutX="361.0" layoutY="385.0" mnemonicParsing="false" onAction="#stop" text="Stop" />
     </children>
 </AnchorPane>

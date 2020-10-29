@@ -117,10 +117,25 @@ public class Client implements Runnable {
             dataOutputStream.writeUTF(text);
             songInfo = (SongInfo) objectInputStream.readObject();
             this.addHistory(clientInfo.user_id, songInfo.id);
+            this.addPlayCount(songInfo.id);
             return Boolean.parseBoolean(dataInputStream.readUTF());
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error in Playing song");
             return false;
+        }
+
+    }
+
+    private void addPlayCount(int songid) {
+        try{
+            dataOutputStream.writeUTF(QueryType.addPlayCount);
+
+            dataOutputStream.write(songid);
+
+        }
+        catch (IOException e)
+        {
+            System.out.println("Playcount insertion failed");
         }
 
     }
@@ -380,5 +395,43 @@ public class Client implements Runnable {
 
         }
 
+    }
+
+    public void setNewSongs(int user_id) {
+        try{
+            dataOutputStream.writeUTF(QueryType.setNewSongs);
+            dataOutputStream.write(user_id);
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error in sending new songs query");
+        }
+    }
+    public void songlike(int songid, int user_id, int i) {
+        try
+        {
+            dataOutputStream.writeUTF(QueryType.setlikes);
+            dataOutputStream.write(songid);
+            dataOutputStream.write(user_id);
+            dataOutputStream.write(i);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Song like dislikes in Client");
+        }
+    }
+
+    public List<String> getTrending() {
+        try
+        {
+            dataOutputStream.writeUTF(QueryType.getTrending);
+            List<String> trending = (List<String>) objectInputStream.readObject();
+            return trending;
+        }
+        catch (Exception e)
+        {
+            System.out.println("Get trending error");
+        }
+        return null;
     }
 }

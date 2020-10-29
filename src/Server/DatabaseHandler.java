@@ -918,4 +918,151 @@ public class DatabaseHandler {
             e.printStackTrace();
         }
     }
+
+    /**
+     *
+     * set new songs to the server queue
+     * @param userid
+     */
+    public void setNewSongs(int userid) {
+        try
+        {
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "delete from queue where UserId = " + userid + ";";
+            dbstatement = dbconnection.prepareStatement(query);
+            dbstatement.executeUpdate();
+            String query2 = "select * from song;";
+            dbstatement = dbconnection.prepareStatement(query2);
+            ResultSet rs  = dbstatement.executeQuery();
+            List<String> s = new ArrayList<>();
+            Timestamp ts = new Timestamp(System.currentTimeMillis());
+            System.out.println(ts);
+            while (rs.next())
+            {
+                Timestamp ts2 = rs.getTimestamp("DateCreated");
+                int TimeDifference = ts.getDate() - ts2.getDate();
+                if(TimeDifference<= 20)
+                {
+                    s.add(rs.getString("SongName"));
+                }
+            }
+            for(int i=0;i<s.size();i++) {
+                String query3 ="Insert into queue values(?,?);";
+                dbstatement = dbconnection.prepareStatement(query3);
+                dbstatement.setInt(1,userid);
+                dbstatement.setString(2,s.get(i));
+                dbstatement.executeUpdate();
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * @param songid
+     * @param user_id
+     * @param value
+     */
+    public void setlikes(int songid, int user_id, int value) {
+        try
+        {
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query="delete from songlikes where userId = " + user_id + " and songId = "+songid + ";";
+            dbstatement = dbconnection.prepareStatement(query);
+            System.out.println(dbstatement);
+            dbstatement.executeUpdate();
+            query="INSERT INTO songlikes VALUES(?,?,?)";
+            dbstatement = dbconnection.prepareStatement(query);
+            dbstatement.setInt(1,user_id);
+            dbstatement.setInt(2,songid);
+            dbstatement.setInt(3,value);
+            dbstatement.executeUpdate();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Set play count for recommendation and trending page
+     * @param songid
+     */
+    public void setPlayCount(int songid) {
+        try
+        {
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query ="Select * from songplaycount where SongId ='"+songid+"';";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet rs = dbstatement.executeQuery();
+            int PlayCount = 0;
+            if(rs.next())
+            {
+                PlayCount = rs.getInt("count");
+
+            }
+            if(PlayCount==0)
+            { query = "INSERT  into songplaycount values(?,?);";
+                PlayCount+=1;
+                dbstatement = dbconnection.prepareStatement(query);
+                dbstatement.setInt(1,songid);
+                dbstatement.setInt(2,PlayCount);
+                dbstatement.executeUpdate();
+                System.out.println("Play count added successfully!!");
+                return;
+            }
+            PlayCount+=1;
+            query="UPDATE songplaycount set count = '"+PlayCount+ "'Where SongId = '"+songid+"';";
+            dbstatement = dbconnection.prepareStatement(query);
+            dbstatement.executeUpdate();
+            System.out.println("Play count added successfully!!");
+        }
+        catch(Exception e)
+        {   System.out.println("Play count addition failed");
+            e.printStackTrace();
+        }
+    }
+
+    public List<String> getTrending() {
+        try
+        {
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query ="Select * from songplaycount Order by count DESC ;";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet rs = dbstatement.executeQuery();
+            List<Integer > trendingID = new ArrayList<>();
+
+            while (rs.next())
+            {
+                int count = rs.getInt("count");
+                if(count>=5)
+                {
+                    trendingID.add(rs.getInt("SongId"));
+                }
+            }
+            int flag= 0;
+            List<String> trending = new ArrayList<>();
+            for(int i=0;i<trendingID.size()&&flag<10;i++)
+            {
+                query = "SELECT * from song where id = '"+trendingID.get(i)+"';";
+                dbstatement = dbconnection.prepareStatement(query);
+                ResultSet rs2 = dbstatement.executeQuery();
+                while (rs2.next())
+                {
+                    trending.add(rs2.getString("SongName"));
+                }
+            }
+            return trending;
+
+        }
+        catch(Exception e)
+        {
+            System.out.println("Trending failed");
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

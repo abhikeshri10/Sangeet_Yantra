@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.media.*?>
 
-<AnchorPane fx:id="Pane" prefHeight="646.0" prefWidth="1112.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.SongPlayer">
+<AnchorPane fx:id="Pane" prefHeight="668.0" prefWidth="1286.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.SongPlayer">
     <children>
-        <MenuBar layoutY="2.0" prefHeight="674.0" prefWidth="1112.0">
+        <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="1286.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -15,7 +15,6 @@
                         <MenuItem fx:id="songMenu" mnemonicParsing="false" onAction="#goToSong" text="Songs" />
                         <MenuItem fx:id="historyMenu" mnemonicParsing="false" onAction="#goToHistory" text="History" />
                         <MenuItem fx:id="groupMenu" mnemonicParsing="false" onAction="#goToGroup" text="Group" />
-                        <MenuItem fx:id="recentAdded" mnemonicParsing="false" onAction="#getNewSongs" text="Group" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Offline">
@@ -34,7 +33,7 @@
         <Label fx:id="songName" layoutX="171.0" layoutY="64.0" prefHeight="31.0" prefWidth="57.0" text="Current Song" textOverrun="CLIP" />
         <Label layoutX="290.0" layoutY="66.0" prefHeight="26.0" prefWidth="54.0" text="Label" />
         <Separator layoutX="130.0" layoutY="95.0" prefHeight="12.0" prefWidth="516.0" />
-        <MediaView fx:id="mediaview" fitHeight="200.0" fitWidth="200.0" layoutX="200.0" layoutY="100.0" />
+        <MediaView fx:id="mediaview" fitHeight="200.0" fitWidth="500.0" layoutX="137.0" layoutY="109.0" />
         <Slider fx:id="slider" layoutX="134.0" layoutY="321.0" majorTickUnit="10.0" minorTickCount="5" prefHeight="34.0" prefWidth="505.0" showTickLabels="true" />
         <Button fx:id="playbtn" layoutX="128.0" layoutY="385.0" mnemonicParsing="false" onAction="#PlaySong" prefHeight="26.0" prefWidth="67.0" text="Play" />
         <Button fx:id="nextbtn" layoutX="205.0" layoutY="385.0" mnemonicParsing="false" onAction="#PlayNext" prefHeight="26.0" prefWidth="54.0" text="Next" />
@@ -46,8 +45,8 @@
         <Slider fx:id="volumeSlider" layoutX="524.0" layoutY="391.0" prefHeight="14.0" prefWidth="123.0" showTickLabels="true" />
         <Button fx:id="Repeat" layoutX="445.0" layoutY="385.0" mnemonicParsing="false" onAction="#setRepeat" text="Repeat" />
         <Button fx:id="Shuffle" layoutX="576.0" layoutY="67.0" mnemonicParsing="false" onAction="#Qshuffle" text="Shuffle" />
-        <Button fx:id="allSongbtn" layoutX="2.0" layoutY="28.0" mnemonicParsing="false" onAction="#opendefaultqueue" prefHeight="25.0" prefWidth="89.0" text="Allsongs" />
-      <TextArea fx:id="subtitleArea" editable="false" layoutX="85.0" layoutY="440.0" prefHeight="170.0" prefWidth="294.0" />
+        <Button fx:id="allSongbtn" layoutX="18.0" layoutY="51.0" mnemonicParsing="false" onAction="#opendefaultqueue" prefHeight="25.0" prefWidth="89.0" text="Allsongs" />
+      <TextArea fx:id="subtitleArea" editable="false" layoutX="135.0" layoutY="450.0" prefHeight="160.0" prefWidth="244.0" />
       <ListView layoutX="698.0" layoutY="60.0" prefHeight="561.0" prefWidth="350.0" />
       <Label layoutX="826.0" layoutY="71.0" prefHeight="18.0" prefWidth="67.0" text="QUEUE" />
       <ComboBox fx:id="currentQueueCB" layoutX="794.0" layoutY="101.0" prefWidth="150.0" promptText="Current Queue" />
@@ -61,10 +60,10 @@
       <Label layoutX="784.0" layoutY="440.0" prefHeight="18.0" prefWidth="140.0" text="Delete Song" />
       <ComboBox fx:id="deleteSongsCB" layoutX="784.0" layoutY="475.0" prefHeight="26.0" prefWidth="220.0" promptText="CurreSelect Song to delete" />
       <Button fx:id="deleteSongBT" layoutX="833.0" layoutY="538.0" mnemonicParsing="false" onAction="#deleteSong" text="Delete" />
-      <Button fx:id="localBT" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" onAction="#fetchLocal" prefHeight="26.0" prefWidth="100.0" text="Access Local" />
-      <Button layoutX="621.0" layoutY="480.0" mnemonicParsing="false" text="Like" />
-      <Button layoutX="621.0" layoutY="441.0" mnemonicParsing="false" text="Dislike" />
-      <Button fx:id="downloadBT" layoutX="18.0" layoutY="190.0" mnemonicParsing="false" onAction="#downloadSong" prefHeight="26.0" prefWidth="90.0" text="Download" />
+        <Button layoutX="621.0" layoutY="480.0" mnemonicParsing="false" onAction="#likeSong" text="Like" />
+        <Button layoutX="621.0" layoutY="441.0" mnemonicParsing="false" onAction="#DislikeSong" text="Dislike" />
+      <Button fx:id="newSongs" layoutX="18.0" layoutY="96.0" mnemonicParsing="false" onAction="#newSongs" prefHeight="26.0" prefWidth="90.0" text="New Songs" />
+      <Button fx:id="downloadBT" layoutX="24.0" layoutY="147.0" mnemonicParsing="false" onAction="#downloadSong" prefHeight="26.0" prefWidth="90.0" text="Download" />
         <Slider fx:id="audio5" layoutX="395.0" layoutY="563.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
         <Slider fx:id="audio2" layoutX="395.0" layoutY="472.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
         <Slider fx:id="audio3" layoutX="395.0" layoutY="501.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
@@ -78,5 +77,8 @@
         <Label layoutX="510.0" layoutY="567.0" text="500Hz" />
         <Slider fx:id="balance" layoutX="569.0" layoutY="568.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
         <Label layoutX="605.0" layoutY="587.0" text="Balance" />
+      <TextArea fx:id="trendingTA" editable="false" layoutX="1071.0" layoutY="129.0" prefHeight="225.0" prefWidth="197.0" />
+      <Button layoutX="1092.0" layoutY="394.0" mnemonicParsing="false" onAction="#playTrending" prefHeight="26.0" prefWidth="140.0" text="Play Trending" />
+      <Label layoutX="1114.0" layoutY="80.0" prefHeight="18.0" prefWidth="111.0" text="Trending Songs" />
     </children>
 </AnchorPane>

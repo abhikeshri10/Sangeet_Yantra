@@ -29,4 +29,8 @@ public class QueryType {
     public static final String getPlaylistSongs="26";
     public static final String modifyQueue = "27";
     public static final String getGroupPlaylistSongs = "28";
+    public static final String setNewSongs = "29";
+    public static final String setlikes="31";
+    public static final String addPlayCount = "30";
+    public static final String getTrending = "32";
 }

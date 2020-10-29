@@ -35,21 +35,7 @@ public class SongInfo implements Serializable {
 
         System.out.println(subtitileAddress);
         subtitlefile=new File(subtitileAddress);
-//        BufferedReader reader = null;
-//        try {
-//
-//            reader= new BufferedReader(new InputStreamReader(new FileInputStream(subtitlefile), "UTF-8"));
-//            String line = null;
-//
-//            while ((line = reader.readLine())!=null)
-//            {
-//                System.out.println(line);
-//            }
-//        }
-//        catch (Exception e)
-//        {
-//
-//        }
+
     }
 
 

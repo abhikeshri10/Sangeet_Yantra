@@ -269,16 +269,23 @@ public class OfflineController implements Initializable {
             Media m = new Media(file.toURI().toURL().toString());
             if (player != null) {
                 player.dispose();
-                slider.adjustValue(0);
+                slider.setValue(0);
 
             }
 
             player = new MediaPlayer(m);
 
             mediaview.setMediaPlayer(player);
-
+            this.PlaySong(actionEvent);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void stop(ActionEvent actionEvent) {
+        if(player!=null)
+            player.dispose();
+
+        new SceneChanger().changeScene2("FXML\\Offline.fxml","Offline",nameLb);
     }
 }

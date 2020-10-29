@@ -240,6 +240,32 @@ public class HandleClient implements Runnable{
                     databaseHandler.getGroupPlaylistsongs(playlistname,user_id);
                     break;
                 }
+                case 29:
+                {
+                    int user_id = dataInputStream.read();
+                    databaseHandler.setNewSongs(user_id);
+                    break;
+                }
+                case 30:
+                {
+                    int songid = dataInputStream.read();
+                    databaseHandler.setPlayCount(songid);
+                    break;
+                }
+                case 31:
+                {
+                    int song=dataInputStream.read();;
+                    int user_id = dataInputStream.read();
+                    int value=dataInputStream.read();
+                    databaseHandler.setlikes(song,user_id,value);
+                    break;
+                }
+                case 32:
+                {
+                    List<String > trending = databaseHandler.getTrending();
+                    objectOutputStream.writeObject(trending);
+                    break;
+                }
             }
 
         }
