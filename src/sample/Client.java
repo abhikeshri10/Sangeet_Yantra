@@ -434,4 +434,38 @@ public class Client implements Runnable {
         }
         return null;
     }
+
+    /**
+     * generate code for playlist
+     * @param PlaylistName
+     * @return
+     */
+    public String generateCode(String PlaylistName,int user_id) {
+        try
+        {
+            dataOutputStream.writeUTF(QueryType.generatePlaylistCode);
+            dataOutputStream.writeUTF(PlaylistName);
+            dataOutputStream.write(user_id);
+            String code = (String) objectInputStream.readObject();
+            return code;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return  null;
+    }
+
+    public void playPlaylistFromCode(String text, int user_id) {
+        try
+        {
+            dataOutputStream.writeUTF(QueryType.playPlaylistFromCode);
+            objectOutputStream.writeObject(text);
+            dataOutputStream.write(user_id);
+
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 }

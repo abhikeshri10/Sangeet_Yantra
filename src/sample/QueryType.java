@@ -33,4 +33,6 @@ public class QueryType {
     public static final String setlikes="31";
     public static final String addPlayCount = "30";
     public static final String getTrending = "32";
+    public static final String generatePlaylistCode = "33";
+    public static final String playPlaylistFromCode = "34";
 }

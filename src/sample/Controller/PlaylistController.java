@@ -35,6 +35,9 @@ public class PlaylistController implements Initializable {
     public ComboBox groupPlaylistCB;
     public Button playGroupPlaylistBT;
     public Button playlist;
+    public ComboBox generateCodeCB;
+    public TextField PlaylistCodeTF;
+    public TextField playlistCode;
 
     //    public void setScrollPane(List<String > ls)
 //    {
@@ -87,6 +90,7 @@ public class PlaylistController implements Initializable {
         selectPlaylistCB.getItems().addAll(ClientMain.client.getPlaylist(clientInfo.user_id));
         selectPlaylist2CB.getItems().addAll(ClientMain.client.getPlaylist(clientInfo.user_id));
         groupPlaylistCB.getItems().addAll(ClientMain.client.getGroupPlaylist(clientInfo.user_id));
+        generateCodeCB.getItems().addAll(ClientMain.client.getPlaylist(clientInfo.user_id));
 
     }
 
@@ -154,6 +158,17 @@ public class PlaylistController implements Initializable {
 
     public void playPlaylist(ActionEvent actionEvent) {
         ClientMain.client.setPlaylisttoqueue(selectPlaylistCB.getSelectionModel().getSelectedItem().toString(),clientInfo.user_id);
+        new SceneChanger().changeScene2("FXML\\SongPlayer.fxml","Song", nameLB);
+    }
+
+    public void generateCode(ActionEvent actionEvent) {
+        String code = ClientMain.client.generateCode(generateCodeCB.getSelectionModel().getSelectedItem().toString(),clientInfo.user_id);
+        PlaylistCodeTF.setText(code);
+
+    }
+
+    public void playFromCode(ActionEvent actionEvent) {
+        ClientMain.client.playPlaylistFromCode(playlistCode.getText(),clientInfo.user_id);
         new SceneChanger().changeScene2("FXML\\SongPlayer.fxml","Song", nameLB);
     }
 }

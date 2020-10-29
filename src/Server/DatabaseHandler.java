@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import sample.*;
 public class DatabaseHandler {
     private String USERNAME;
@@ -309,11 +309,15 @@ public class DatabaseHandler {
            {    System.out.println("Playlist Already exists");
                return false;
            }
-           String query = "Insert into playlist Values(?,?,?);";
+           String query = "Insert into playlist Values(?,?,?,?);";
+           char[] ch = randomString();
+           String str2 = String.valueOf(ch);
+           System.out.println(str2);
            dbstatement = dbconnection.prepareStatement(query);
            dbstatement.setString(1,null);
            dbstatement.setString(2,playlistName);
            dbstatement.setInt(3,userid);
+           dbstatement.setString(4,str2);
            int rs = dbstatement.executeUpdate();
            return true;
        }
@@ -321,12 +325,29 @@ public class DatabaseHandler {
        {
            System.out.println("Error in creation of playlist");
            return false;
-
        }
-
-
     }
 
+    /**
+     * generating a random string for the shareable playlist
+     * @return
+     */
+    public char[] randomString()
+    {
+        String charsCaps="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String Chars="abcdefghijklmnopqrstuvwxyz";
+        String nums="0123456789";
+        String symbols="!@#$%^&*()_+-=.,/';:?><~*/-+";
+        String passSymbols=charsCaps + Chars + nums +symbols;
+        Random rnd=new Random();
+        char[] password=new char[10];
+
+        for(int i=0; i<10;i++){
+            password[i]=passSymbols.charAt(rnd.nextInt(passSymbols.length()));
+        }
+        return password;
+
+    }
     public boolean addSongToPlaylist(String playlist, String song) {
        try{
            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -1064,5 +1085,75 @@ public class DatabaseHandler {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * generate playlist code
+     * @param playlistName
+     * @param user_id
+     * @return
+     */
+    public String generatePlaylistCode(String playlistName, int user_id) {
+        try
+        {
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query ="Select * from playlist where PlaylistName = '"+playlistName+"'And UserId ='"+user_id+"';";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet rs = dbstatement.executeQuery();
+            while (rs.next())
+            {
+                String code = rs.getString("shareCode");
+                return code;
+            }
+
+        }
+        catch(Exception e)
+        {
+            System.out.println("Trending failed");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * playPlaylistFromCode
+     * @param code
+     * @param user_id
+     */
+    public void playPlaylistFromCode(String code, int user_id) {
+        try{
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query ="Select * from playlist where shareCode = '"+code+"';";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet rs = dbstatement.executeQuery();
+            int playlistId=0;
+            if (rs.next())
+            {
+               playlistId = rs.getInt("id");
+            }
+            query = "delete from queue where UserId = " + user_id + ";";
+            dbstatement = dbconnection.prepareStatement(query);
+            dbstatement.executeUpdate();
+            query="Select SongId from playlistsong where PlaylistId ='"+playlistId+"';";
+            dbstatement = dbconnection.prepareStatement(query);
+            rs=dbstatement.executeQuery();
+            while(rs.next())
+            {
+                int songid=rs.getInt("SongId");
+                String query1="select songName from song where id = " + songid + ";";
+                dbstatement = dbconnection.prepareStatement(query1);
+                ResultSet getsongname = dbstatement.executeQuery();
+                getsongname.next();
+                String song = getsongname.getString("SongName");
+                query = "INSERT INTO queue VALUES(?,?)";
+                dbstatement = dbconnection.prepareStatement(query);
+                dbstatement.setInt(1, user_id);
+                dbstatement.setString(2, song);
+                dbstatement.executeUpdate();
+            }
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

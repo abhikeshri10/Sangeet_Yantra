@@ -266,6 +266,21 @@ public class HandleClient implements Runnable{
                     objectOutputStream.writeObject(trending);
                     break;
                 }
+                case 33:
+                {
+                    String PlaylistName = dataInputStream.readUTF();
+                    int user_id  = dataInputStream.read();
+                    String code = databaseHandler.generatePlaylistCode(PlaylistName,user_id);
+                    objectOutputStream.writeObject(code);
+                    break;
+                }
+                case 34:
+                {
+                    String code = (String) objectInputStream.readObject();
+                    int user_id = dataInputStream.read();
+                    databaseHandler.playPlaylistFromCode(code,user_id);
+                    break;
+                }
             }
 
         }

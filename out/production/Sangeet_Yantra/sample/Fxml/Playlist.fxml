@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="455.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.PlaylistController">
+<AnchorPane prefHeight="455.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.PlaylistController">
     <children>
-        <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="665.0">
+        <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="737.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -42,6 +42,14 @@
       <Label layoutX="355.0" layoutY="181.0" prefHeight="18.0" prefWidth="107.0" text="Group Playlist" />
       <ComboBox fx:id="groupPlaylistCB" layoutX="323.0" layoutY="216.0" prefWidth="150.0" promptText="Group Playlists" />
       <Button fx:id="playGroupPlaylistBT" layoutX="359.0" layoutY="280.0" mnemonicParsing="false" onAction="#playGroupPlaylist" text="Play playlist" />
+      <ListView layoutX="495.0" layoutY="81.0" prefHeight="289.0" prefWidth="200.0" />
+      <Label layoutX="556.0" layoutY="89.0" prefHeight="18.0" prefWidth="55.0" text="Share" />
+      <ComboBox fx:id="generateCodeCB" layoutX="509.0" layoutY="120.0" prefWidth="150.0" promptText="Select Playlist" />
+      <Button layoutX="518.0" layoutY="155.0" mnemonicParsing="false" onAction="#generateCode" prefHeight="26.0" prefWidth="136.0" text="Generate Code" />
+      <TextField fx:id="PlaylistCodeTF" editable="false" layoutX="521.0" layoutY="194.0" />
+      <Label layoutX="523.0" layoutY="245.0" prefHeight="18.0" prefWidth="142.0" text="Play From Code" />
+      <TextField fx:id="playlistCode" layoutX="521.0" layoutY="280.0" promptText="Enter Playlist Code" />
+      <Button layoutX="532.0" layoutY="322.0" mnemonicParsing="false" onAction="#playFromCode" prefHeight="26.0" prefWidth="116.0" text="Play Playlist" />
     </children>
 
 </AnchorPane>
