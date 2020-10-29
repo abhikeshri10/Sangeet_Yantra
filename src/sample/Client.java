@@ -1,7 +1,5 @@
 package sample;
 
-import Server.*;
-
 import java.io.*;
 import java.net.Socket;
 import java.util.List;
@@ -357,5 +355,30 @@ public class Client implements Runnable {
 
 
         }
+    }
+
+    public void modifyQueue(List<String> newQueue, int user_id) {
+        try{
+            dataOutputStream.writeUTF(QueryType.modifyQueue);
+            objectOutputStream.writeObject(newQueue);
+            dataOutputStream.write(user_id);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setGroupPlaylisttoqueue(String groupPlaylistName, int user_id) {
+        try {
+            dataOutputStream.writeUTF(QueryType.getGroupPlaylistSongs);
+            dataOutputStream.write(user_id);
+            dataOutputStream.writeUTF(groupPlaylistName);
+
+        } catch (IOException e) {
+            System.out.println("Playlist in Client");
+
+
+        }
+
     }
 }

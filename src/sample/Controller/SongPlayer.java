@@ -12,8 +12,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.Parent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.*;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import sample.ClientMain;
 import sample.SceneChanger;
@@ -21,7 +23,9 @@ import sample.Song;
 import sample.SongInfo;
 
 
-import java.io.IOException;
+import javax.swing.*;
+import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.List;
@@ -48,9 +52,21 @@ public class SongPlayer implements Initializable {
     public Button Shuffle;
     public Button allSongbtn;
     public TextArea subtitleArea;
+    public ComboBox currentQueueCB;
+    public Button getCurrentPostitionBT;
+    public TextField newPostion;
+    public Button editPostionBT;
+    public TextField currentPositionTF;
+    public ComboBox selectSongs2CB;
+    public Button addSongBT;
+    public ComboBox deleteSongsCB;
+    public Slider audio1,audio2,audio3,audio4,audio5;
+    public Slider balance;
+    List<String> allsongs;
     boolean test=false;
     Song song =new Song();
     List<String> list1=null;
+    public AudioSpectrumListener spectrumListener;
     
 
     public void PlaySong(ActionEvent actionEvent) {
@@ -98,8 +114,81 @@ public class SongPlayer implements Initializable {
 
 
                     player = new MediaPlayer(m);
+                    AudioEqualizer ae=player.getAudioEqualizer();
+                    ObservableList<EqualizerBand> audiolist=ae.getBands();
+//                    System.out.println(audiolist.size());
+//                    System.out.println(audiolist);
+                    /**
+                     * Equaliser
+                     */
+                    {
+                        audio1.setMin(EqualizerBand.MIN_GAIN);
+                        audio1.setMax(EqualizerBand.MAX_GAIN);
+                        audio1.setValue(0);
+                        audio2.setMin(EqualizerBand.MIN_GAIN);
+                        audio2.setMax(EqualizerBand.MAX_GAIN);
+                        audio2.setValue(0);
+                        audio3.setMin(EqualizerBand.MIN_GAIN);
+                        audio3.setMax(EqualizerBand.MAX_GAIN);
+                        audio3.setValue(0);
+                        audio4.setMin(EqualizerBand.MIN_GAIN);
+                        audio4.setMax(EqualizerBand.MAX_GAIN);
+                        audio4.setValue(0);
+                        audio5.setMin(EqualizerBand.MIN_GAIN);
+                        audio5.setMax(EqualizerBand.MAX_GAIN);
+                        audio5.setValue(0);
+                        audio1.valueProperty().addListener(new ChangeListener<Number>() {
+                        @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
+                            if (player != null) {
+                                player.getAudioEqualizer().getBands().get(1).setGain(newValue.doubleValue());
+                            }
+                        }
+                    });
+                        audio2.valueProperty().addListener(new ChangeListener<Number>() {
+                            @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
+                                if (player != null) {
+                                    player.getAudioEqualizer().getBands().get(2).setGain(newValue.doubleValue());
+                                }
+                            }
+                        });
+                        audio3.valueProperty().addListener(new ChangeListener<Number>() {
+                            @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
+                                if (player != null) {
+                                    player.getAudioEqualizer().getBands().get(3).setGain(newValue.doubleValue());
+                                }
+                            }
+                        });
+                        audio4.valueProperty().addListener(new ChangeListener<Number>() {
+                        @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
+                            if (player != null) {
+                                player.getAudioEqualizer().getBands().get(4).setGain(newValue.doubleValue());
+                            }
+                        }
+                    });
+                        audio5.valueProperty().addListener(new ChangeListener<Number>() {
+                            @Override public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
+                                if (player != null) {
+                                    player.getAudioEqualizer().getBands().get(5).setGain(newValue.doubleValue());
+                                }
+                            }
+                        });
+                        balance.setMin(-1);
+                        balance.setMax(1);
+                        balance.setValue(0);
+                        balance.valueProperty().addListener(new ChangeListener<Number>() {
+                            @Override public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number newValue) {
+                                if(player != null) player.setBalance(newValue.doubleValue());
+                            }
+                        });
+
+
+
+                    }
 
                     mediaview.setMediaPlayer(player);
+
+
+
 
                     player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
                         @Override
@@ -158,7 +247,7 @@ public class SongPlayer implements Initializable {
 
 
                     System.out.println("song started");
-
+                    setSubtitleArea();
 
                     //song.startSong();
                 } catch (Exception e) {
@@ -172,22 +261,49 @@ public class SongPlayer implements Initializable {
             }
 
 
-            //Listi.getChildren().addAll(list);
+//        Listi.getChildren().addAll(list);
 //        Listi.setMaxHeight(200);
 //        Listi.getItems().addAll(data);
 //        Listi.setVisible(true);
-            //  list.setItems(data);
+//        list.setItems(data);
 
 
         }
     }
+    void setSubtitleArea()
+    {      subtitleArea.clear();
+        File subtitilefile =ClientMain.client.songInfo.subtitlefile;
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(subtitilefile), "UTF-8"));
+            String line;
+            while ((line = reader.readLine()) != null)
+            {   if(line.length()>0)
+            {if((line.charAt(0)>='A'&&line.charAt(0)<='Z')||(line.charAt(0)>='a'&&line.charAt(0)<='z'))
+                subtitleArea.appendText(line+"\n");}
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        ListView<String> list = new ListView<String>();
 
 
         list1=ClientMain.client.getSongs(ClientMain.client.clientInfo.user_id);
+        currentQueueCB.getItems().addAll(list1);
+        allsongs = ClientMain.client.getAllSongs();
+        allsongs.removeAll(list1);
+        selectSongs2CB.getItems().addAll(allsongs);
+        deleteSongsCB.getItems().addAll(list1);
+        //selectSongs2CB.getItems().addAll(list1);
+
 //        DoubleProperty widthProp = mediaview.fitWidthProperty();
 //        DoubleProperty heightProp = mediaview.fitHeightProperty();
 //
@@ -288,5 +404,104 @@ public class SongPlayer implements Initializable {
         if(player!=null)
             player.dispose();
         new SceneChanger().changeScene2("FXML\\Group.fxml","Group",songName);
+    }
+
+    public void getCurrentPostion(ActionEvent actionEvent) {
+        int songposition = currentQueueCB.getSelectionModel().getSelectedIndex();
+        currentPositionTF.setText(""+(songposition+1)+"/"+list1.size());
+
+    }
+
+    public void editPosition(ActionEvent actionEvent) {
+        List<String > newQueue = list1;
+        int newposition = Integer.parseInt(newPostion.getText());
+        newposition--;
+        int currentPosition = currentQueueCB.getSelectionModel().getSelectedIndex();
+        if(newposition>currentPosition)
+        {
+            String temp = currentQueueCB.getSelectionModel().getSelectedItem().toString();
+            for(int i=currentPosition;i<newposition;i++)
+            {
+                newQueue.set(i,newQueue.get(i+1));
+
+            }
+            newQueue.set(newposition,temp);
+
+        }
+        else {
+            String temp = currentQueueCB.getSelectionModel().getSelectedItem().toString();
+            for(int i=currentPosition;i>newposition;i--)
+            {
+                newQueue.set(i,newQueue.get(i-1));
+
+            }
+            newQueue.set(newposition,temp);
+        }
+
+        ClientMain.client.modifyQueue(newQueue,ClientMain.client.clientInfo.user_id);
+        new SceneChanger().changeScene2("FXML//SongPlayer.fxml","Song",songName);
+    }
+
+    public void addSong(ActionEvent actionEvent) {
+        List<String > newQueue = list1;
+        if (allsongs.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Select a song to be added");
+
+        }
+        else
+        {
+            String song = selectSongs2CB.getSelectionModel().getSelectedItem().toString();
+            newQueue.add(song);
+            ClientMain.client.modifyQueue(newQueue,ClientMain.client.clientInfo.user_id);
+            new SceneChanger().changeScene2("FXML//SongPlayer.fxml","Song",songName);
+        }
+
+    }
+
+    public void fetchLocal(ActionEvent actionEvent) {
+        try {
+            System.out.println("open song clicked");
+            FileChooser chooser = new FileChooser();
+            File file = chooser.showOpenDialog(null);
+            Media m = new Media(file.toURI().toURL().toString());
+            if (player != null) {
+                player.dispose();
+                slider.adjustValue(0);
+            }
+
+            player = new MediaPlayer(m);
+
+            mediaview.setMediaPlayer(player);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getNewSongs(ActionEvent actionEvent) {
+        new SceneChanger().changeScene2("FXML\\newSongs.fxml","New Songs on server",songName);
+    }
+
+    public void deleteSong(ActionEvent actionEvent) {
+        List<String > newQueue = list1;
+        if (list1.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Select a song to be added");
+
+        }
+        else
+        {   try {
+
+            String song = selectSongs2CB.getSelectionModel().getSelectedItem().toString();
+            newQueue.remove(song);
+            ClientMain.client.modifyQueue(newQueue, ClientMain.client.clientInfo.user_id);
+            new SceneChanger().changeScene2("FXML//SongPlayer.fxml", "Song", songName);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        }
     }
 }

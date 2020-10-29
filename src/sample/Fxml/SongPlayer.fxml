@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.media.*?>
 
-<AnchorPane fx:id="Pane" prefHeight="513.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.SongPlayer">
+<AnchorPane fx:id="Pane" prefHeight="699.0" prefWidth="1112.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.SongPlayer">
     <children>
-        <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="762.0">
+        <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="1112.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -15,6 +15,7 @@
                         <MenuItem fx:id="songMenu" mnemonicParsing="false" onAction="#goToSong" text="Songs" />
                         <MenuItem fx:id="historyMenu" mnemonicParsing="false" onAction="#goToHistory" text="History" />
                         <MenuItem fx:id="groupMenu" mnemonicParsing="false" onAction="#goToGroup" text="Group" />
+                        <MenuItem fx:id="recentAdded" mnemonicParsing="false" onAction="#getNewSongs" text="Group" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Offline">
@@ -42,10 +43,39 @@
         <ListView layoutY="200.0" prefHeight="0.0" prefWidth="0.0" />
         <Button fx:id="SpeedInc" layoutX="334.0" layoutY="385.0" mnemonicParsing="false" onAction="#Fast" prefHeight="26.0" prefWidth="53.0" text="&gt;&gt;&gt;" />
         <Button fx:id="SpeedDec" layoutX="397.0" layoutY="385.0" mnemonicParsing="false" onAction="#Slow" text="&lt;&lt;&lt;" />
-        <Slider fx:id="volumeSlider" layoutX="524.0" layoutY="391.0" prefHeight="14.0" prefWidth="123.0" />
+        <Slider fx:id="volumeSlider" layoutX="524.0" layoutY="391.0" prefHeight="14.0" prefWidth="123.0" showTickLabels="true" />
         <Button fx:id="Repeat" layoutX="445.0" layoutY="385.0" mnemonicParsing="false" onAction="#setRepeat" text="Repeat" />
         <Button fx:id="Shuffle" layoutX="576.0" layoutY="67.0" mnemonicParsing="false" onAction="#Qshuffle" text="Shuffle" />
         <Button fx:id="allSongbtn" layoutX="2.0" layoutY="28.0" mnemonicParsing="false" onAction="#opendefaultqueue" prefHeight="25.0" prefWidth="89.0" text="Allsongs" />
-      <TextArea fx:id="subtitleArea" editable="false" layoutY="83.0" prefHeight="238.0" prefWidth="123.0" />
+      <TextArea fx:id="subtitleArea" editable="false" layoutX="85.0" layoutY="440.0" prefHeight="170.0" prefWidth="294.0" />
+      <ListView layoutX="698.0" layoutY="60.0" prefHeight="561.0" prefWidth="350.0" />
+      <Label layoutX="826.0" layoutY="71.0" prefHeight="18.0" prefWidth="67.0" text="QUEUE" />
+      <ComboBox fx:id="currentQueueCB" layoutX="794.0" layoutY="101.0" prefWidth="150.0" promptText="Current Queue" />
+      <Button fx:id="getCurrentPostitionBT" layoutX="721.0" layoutY="160.0" mnemonicParsing="false" onAction="#getCurrentPostion" text="Get Current postition" />
+      <TextField fx:id="newPostion" layoutX="785.0" layoutY="209.0" promptText="Set new postion (eg 1 , 2)" />
+      <Button fx:id="editPostionBT" layoutX="809.0" layoutY="254.0" mnemonicParsing="false" onAction="#editPosition" prefHeight="26.0" prefWidth="100.0" text="Edit Position" />
+      <TextField fx:id="currentPositionTF" editable="false" layoutX="893.0" layoutY="160.0" prefHeight="26.0" prefWidth="123.0" />
+      <ComboBox fx:id="selectSongs2CB" layoutX="794.0" layoutY="338.0" prefWidth="150.0" promptText="Select Songs" />
+      <Label layoutX="804.0" layoutY="300.0" text="Add Songs to the queue" />
+      <Button fx:id="addSongBT" layoutX="794.0" layoutY="397.0" mnemonicParsing="false" onAction="#addSong" prefHeight="26.0" prefWidth="149.0" text="Add Song to Queue" />
+      <Label layoutX="784.0" layoutY="440.0" prefHeight="18.0" prefWidth="140.0" text="Delete Song" />
+      <ComboBox fx:id="deleteSongsCB" layoutX="784.0" layoutY="475.0" onAction="#deleteSong" prefHeight="26.0" prefWidth="220.0" promptText="CurreSelect Song to delete" />
+      <Button layoutX="833.0" layoutY="538.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="localBT" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" onAction="#fetchLocal" prefHeight="26.0" prefWidth="100.0" text="Access Local" />
+      <Button layoutX="584.0" layoutY="437.0" mnemonicParsing="false" text="Like" />
+      <Button layoutX="639.0" layoutY="437.0" mnemonicParsing="false" text="Dislike" />
+      <Slider fx:id="audio5" layoutX="395.0" layoutY="563.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
+      <Slider fx:id="audio2" layoutX="395.0" layoutY="472.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
+      <Slider fx:id="audio3" layoutX="395.0" layoutY="501.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
+      <Slider fx:id="audio4" layoutX="395.0" layoutY="531.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
+      <Slider fx:id="audio1" layoutX="395.0" layoutY="442.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
+      <Label layoutX="404.0" layoutY="587.0" prefHeight="17.0" prefWidth="77.0" text="Equaliser" />
+      <Label layoutX="510.0" layoutY="441.0" text="32Hz" />
+      <Label layoutX="510.0" layoutY="467.0" text="64Hz" />
+      <Label layoutX="510.0" layoutY="493.0" text="125Hz" />
+      <Label layoutX="510.0" layoutY="530.0" text="150Hz" />
+      <Label layoutX="510.0" layoutY="567.0" text="500Hz" />
+      <Slider fx:id="balance" layoutX="569.0" layoutY="568.0" prefHeight="14.0" prefWidth="100.0" showTickMarks="true" />
+      <Label layoutX="605.0" layoutY="587.0" text="Balance" />
     </children>
 </AnchorPane>

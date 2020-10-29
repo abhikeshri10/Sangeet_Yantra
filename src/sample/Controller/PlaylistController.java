@@ -83,7 +83,6 @@ public class PlaylistController implements Initializable {
         List<String> songs = ClientMain.client.getAllSongs();
         System.out.println(songs);
 
-
         addSong2CB.getItems().addAll(songs);
         selectPlaylistCB.getItems().addAll(ClientMain.client.getPlaylist(clientInfo.user_id));
         selectPlaylist2CB.getItems().addAll(ClientMain.client.getPlaylist(clientInfo.user_id));
@@ -149,7 +148,8 @@ public class PlaylistController implements Initializable {
         new SceneChanger().changeScene2("FXML\\Group.fxml","Group",nameLB);
     }
     public void playGroupPlaylist(ActionEvent actionEvent) {
-     
+        ClientMain.client.setGroupPlaylisttoqueue(groupPlaylistCB.getSelectionModel().getSelectedItem().toString(),clientInfo.user_id);
+        new SceneChanger().changeScene2("FXML\\SongPlayer.fxml","Song", nameLB);
     }
 
     public void playPlaylist(ActionEvent actionEvent) {
