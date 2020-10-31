@@ -4,10 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import sample.Client;
-import sample.ClientInfo;
-import sample.ClientMain;
-import sample.SceneChanger;
+import sample.*;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -57,14 +54,16 @@ public class Register {
 
             else if(password.length() < 8 || !m.matches()) {
                 this.password1TF.setText("");
-                JOptionPane.showMessageDialog(null, "Sign up Successfully");
+                this.password2TF.setText("");
+            JOptionPane.showMessageDialog(null, "Password format incorrect atleast one capital one small one number and one special character");
 
                 return ;
             }
             else
             {
-                ClientInfo new_Client = new ClientInfo(name, email, phone, username, password);
-                boolean check = ClientMain.client.createClient(new_Client);
+                ClientInfo new_Client = new ClientInfo(name, email, phone, username, Hash.getSha256(password));
+                System.out.println("Clinet info created");
+                boolean check =  ClientMain.client.createClient(new_Client);
                 if (check) {
                     JOptionPane.showMessageDialog(null, "Sign up Successfully");
 

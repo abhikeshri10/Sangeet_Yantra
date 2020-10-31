@@ -56,7 +56,7 @@ public class OfflineController implements Initializable {
     public ComboBox deleteSongsCB;
     List<String> allsongs;
     boolean test=false;
-    Song song =new Song();
+//    Song song =new Song();
     List<String> list1= new ArrayList<String>();
     File currentSong ;
     File[] offlinefiles;

@@ -36,7 +36,7 @@ public class HandleClient implements Runnable{
             e.printStackTrace();
         }
 
-         t = new Thread(this);
+        t = new Thread(this);
         t.start();
     }
 
@@ -58,6 +58,7 @@ public class HandleClient implements Runnable{
                     Boolean register = databaseHandler.createUser(clientInfo);
                     dataOutputStream.writeUTF(String.valueOf(register));
                     System.out.println("User Added");
+
                     break;
                 }
                 case 3: {
@@ -279,6 +280,20 @@ public class HandleClient implements Runnable{
                     String code = (String) objectInputStream.readObject();
                     int user_id = dataInputStream.read();
                     databaseHandler.playPlaylistFromCode(code,user_id);
+                    break;
+                }
+                case 35:
+                {
+                    int userid = dataInputStream.read();
+                    List<String > pastRecommends = databaseHandler.getpastRecommendation(userid);
+                    objectOutputStream.writeObject(pastRecommends);
+                    break;
+                }
+                case 37:
+                {
+                    int user_id = dataInputStream.read();
+                    List<String > recommends = databaseHandler.getRecommends(user_id);
+                    objectOutputStream.writeObject(recommends);
                     break;
                 }
             }

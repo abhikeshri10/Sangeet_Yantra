@@ -19,10 +19,10 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import sample.*;
 
-
 import javax.swing.*;
 import java.io.*;
 import java.net.MalformedURLException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.*;
 
@@ -58,8 +58,14 @@ public class SongPlayer implements Initializable {
     public Slider balance;
     public TextArea trendingTA;
     List<String> allsongs;
+    File filesong;
     boolean test=false;
-    Song song =new Song();
+    public DataInputStream dataInputStream;
+    public DataOutputStream dataOutputStream;
+    public ObjectInputStream objectInputStream;
+    public ObjectOutputStream objectOutputStream;
+    public Socket s;
+    public boolean isConnected;
     List<String> list1=new ArrayList<>();
     List<String> trending = new ArrayList<String>();
 
@@ -90,12 +96,10 @@ public class SongPlayer implements Initializable {
             if (check) {
 //                System.out.println("Executed");
                 try {
-                    Media m = new Media(ClientMain.client.songInfo.file.toURI().toURL().toString());
+                    getfile(Listi.getSelectionModel().getSelectedItem().toString());
+
+                    Media m = new Media(ClientMain.client.song.file.toURI().toURL().toString());
                     songName.setText(Listi.getSelectionModel().getSelectedItem().toString());
-
-
-
-
 
 
                     // subtitle.getTrackID();
@@ -267,7 +271,8 @@ public class SongPlayer implements Initializable {
             String line;
             while ((line = reader.readLine()) != null)
             {   if(line.length()>0)
-            {if((line.charAt(0)>='A'&&line.charAt(0)<='Z')||(line.charAt(0)>='a'&&line.charAt(0)<='z'))
+            {
+                if((line.charAt(0)>='A'&&line.charAt(0)<='Z')||(line.charAt(0)>='a'&&line.charAt(0)<='z'))
                 subtitleArea.appendText(line+"\n");}
             }
         } catch (UnsupportedEncodingException e) {
@@ -279,10 +284,21 @@ public class SongPlayer implements Initializable {
         }
 
     }
+
+    private void getfile(String songn) throws IOException, ClassNotFoundException {
+        dataOutputStream.writeUTF(QueryType.getsongfile);
+        dataOutputStream.writeUTF(songn);
+        ClientMain.client.song= (Song) objectInputStream.readObject();
+
+
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        ListView<String> list = new ListView<String>();
-
+    //connect to serversong
+        String ip = "localhost";
+        int port = 6007;
+        this.connectToServer(ip,port);
 
         list1=ClientMain.client.getSongs(ClientMain.client.clientInfo.user_id);
         currentQueueCB.getItems().addAll(list1);
@@ -424,6 +440,8 @@ public class SongPlayer implements Initializable {
         }
 
         ClientMain.client.modifyQueue(newQueue,ClientMain.client.clientInfo.user_id);
+        if(player!=null)
+            player.dispose();
         new SceneChanger().changeScene2("FXML//SongPlayer.fxml","Song",songName);
     }
 
@@ -439,6 +457,8 @@ public class SongPlayer implements Initializable {
             String song = selectSongs2CB.getSelectionModel().getSelectedItem().toString();
             newQueue.add(song);
             ClientMain.client.modifyQueue(newQueue,ClientMain.client.clientInfo.user_id);
+            if(player!=null)
+                player.dispose();
             new SceneChanger().changeScene2("FXML//SongPlayer.fxml","Song",songName);
         }
 
@@ -492,11 +512,12 @@ public class SongPlayer implements Initializable {
     }
 
     public void downloadSong(ActionEvent actionEvent) {
-        File file =  ClientMain.client.songInfo.file;
+        File file =  ClientMain.client.song.file;
         try {
             //FileReader fileReader = new FileReader(file);
             String newPath = ClientMain.client.Downloadpath+"\\"+ClientMain.client.songInfo.SongName+".mp3";
             File download = new File(newPath);
+
             file.createNewFile();
             FileInputStream instream = new FileInputStream(file);
             FileOutputStream outstream = new FileOutputStream(download);
@@ -522,6 +543,8 @@ public class SongPlayer implements Initializable {
     }
 
     public void offlineFeatures(ActionEvent actionEvent) {
+        if(player!=null)
+            player.dispose();
         new SceneChanger().changeScene2("FXML\\Offline.fxml","Offline",songName);
 
     }
@@ -555,6 +578,31 @@ public class SongPlayer implements Initializable {
     public void playTrending(ActionEvent actionEvent) {
     List<String > newQueue = trending;
         ClientMain.client.modifyQueue(newQueue,ClientMain.client.clientInfo.user_id);
+        if(player!=null)
+            player.dispose();
         new SceneChanger().changeScene2("FXML\\SongPlayer.fxml","Songs",songName);
+    }
+
+    public void goToRecommendation(ActionEvent actionEvent) {
+        if(player!=null)
+            player.dispose();
+        new SceneChanger().changeScene2("FXML\\Recommendation.fxml","Recommendation",songName);
+
+    }
+    public boolean connectToServer(String serverIP, int serverPort) {
+        try{
+            s = new Socket(serverIP, serverPort);
+            dataOutputStream = new DataOutputStream(s.getOutputStream());
+            objectOutputStream = new ObjectOutputStream(s.getOutputStream());
+            dataInputStream = new DataInputStream(s.getInputStream());
+            objectInputStream = new ObjectInputStream(s.getInputStream());
+            isConnected = true;
+            System.out.println("Server Connected");
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Could not connect to server.");
+        }
+        return false;
     }
 }

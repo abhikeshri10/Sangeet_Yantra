@@ -18,6 +18,7 @@ public class Client implements Runnable {
     public static ClientInfo clientInfo;
     public static SongInfo songInfo;
     public static String Downloadpath;
+    public static Song song;
     public boolean connectToServer(String serverIP, int serverPort) {
         try {
             s = new Socket(serverIP, serverPort);
@@ -65,7 +66,7 @@ public class Client implements Runnable {
         try {
             dataOutputStream.writeUTF(QueryType.register);
             objectOutputStream.writeObject(clientInfo);
-
+            System.out.println("Register client called");
             return Boolean.parseBoolean(dataInputStream.readUTF());
         } catch (IOException e) {
 
@@ -467,5 +468,35 @@ public class Client implements Runnable {
         {
             e.printStackTrace();
         }
+    }
+
+    public List<String> getpastRecommendation(int user_id) {
+        try
+        {
+            dataOutputStream.writeUTF(QueryType.getpastRecommendation);
+            dataOutputStream.write(user_id);
+            List<String> pastRecommends = (List<String>) objectInputStream.readObject();
+            return pastRecommends;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<String> getRecommends(int user_id) {
+        try
+        {
+            dataOutputStream.writeUTF(QueryType.getRecommends);
+            dataOutputStream.write(user_id);
+            List<String> recommends = (List<String>) objectInputStream.readObject();
+            return recommends;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

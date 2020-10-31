@@ -34,7 +34,7 @@ public class LoginPageController implements Initializable {
 
     public void login(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
 
-        ClientMain.client.clientInfo = ClientMain.client.loginClient(usernameTF.getText(),passwordPF.getText());
+        ClientMain.client.clientInfo = ClientMain.client.loginClient(usernameTF.getText(),Hash.getSha256(passwordPF.getText()));
         if(ClientMain.client.clientInfo!=null)
         {
             System.out.println("Successfully logged in");

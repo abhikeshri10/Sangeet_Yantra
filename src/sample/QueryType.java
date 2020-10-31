@@ -35,4 +35,7 @@ public class QueryType {
     public static final String getTrending = "32";
     public static final String generatePlaylistCode = "33";
     public static final String playPlaylistFromCode = "34";
+    public static final String getpastRecommendation = "35";
+    public static final String getsongfile = "36";
+    public static final String getRecommends = "37";
 }

@@ -22,9 +22,9 @@
                         <MenuItem fx:id="offline" mnemonicParsing="false" onAction="#offlineFeatures" text="Offline Features" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu mnemonicParsing="false" text="Recommended">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem mnemonicParsing="false" onAction="#goToRecommendation" text="Recommendation" />
                     </items>
                 </Menu>
             </menus>
