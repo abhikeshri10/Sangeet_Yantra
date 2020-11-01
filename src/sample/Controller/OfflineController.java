@@ -286,6 +286,6 @@ public class OfflineController implements Initializable {
         if(player!=null)
             player.dispose();
 
-        new SceneChanger().changeScene2("FXML\\Offline.fxml","Offline",nameLb);
+        new SceneChanger().changeScene2("FXML\\Offline.fxml","Offline",songName);
     }
 }

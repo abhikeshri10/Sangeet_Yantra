@@ -21,44 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9215da85-e6e0-40f3-83c8-dc7a7c5ba8f1" name="Default Changelist" comment="added register logic and added trending feature">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/DatabaseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/DatabaseHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/HandleClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/HandleClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/StartServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/StartServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/LoginPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/LoginPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/OfflineController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/RecommendationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/RecommendationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/Register.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/Register.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$10.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$11.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$12.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer$9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Controller/SongPlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Fxml/SongPlayer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Fxml/SongPlayer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/QueryType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/QueryType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Song.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/Song.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/SongInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/sample/SongInfo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/DatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/DatabaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/HandleClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/HandleClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/StartServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/StartServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller/LoginPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller/LoginPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller/OfflineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller/OfflineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller/RecommendationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller/RecommendationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller/SongPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller/SongPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Fxml/SongPlayer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Fxml/SongPlayer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/QueryType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/QueryType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Song.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/SongInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/SongInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Fxml/LoginPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Fxml/LoginPage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +118,8 @@
       <workItem from="1604153042482" duration="4485000" />
       <workItem from="1604161610357" duration="1135000" />
       <workItem from="1604162791426" duration="1630000" />
-      <workItem from="1604164824970" duration="1408000" />
+      <workItem from="1604164824970" duration="2471000" />
+      <workItem from="1604204369733" duration="4016000" />
     </task>
     <task id="LOCAL-00001" summary="added register logic and added trending feature">
       <created>1603980231046</created>
@@ -201,22 +167,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1536.824@0.0.1536.824" timestamp="1603290107758" />
-    <state width="1493" height="208" key="GridCell.Tab.0.bottom" timestamp="1604166078424">
+    <state width="1493" height="208" key="GridCell.Tab.0.bottom" timestamp="1604209030243">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1604166078424" />
-    <state width="1493" height="208" key="GridCell.Tab.0.center" timestamp="1604166078423">
+    <state width="1493" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1604209030243" />
+    <state width="1493" height="208" key="GridCell.Tab.0.center" timestamp="1604209030243">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1604166078423" />
-    <state width="1493" height="208" key="GridCell.Tab.0.left" timestamp="1604166078421">
+    <state width="1493" height="208" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1604209030243" />
+    <state width="1493" height="208" key="GridCell.Tab.0.left" timestamp="1604209030243">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1604166078421" />
-    <state width="1493" height="208" key="GridCell.Tab.0.right" timestamp="1604166078424">
+    <state width="1493" height="208" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1604209030243" />
+    <state width="1493" height="208" key="GridCell.Tab.0.right" timestamp="1604209030243">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1604166078424" />
+    <state width="1493" height="208" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1604209030243" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1604157612788">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

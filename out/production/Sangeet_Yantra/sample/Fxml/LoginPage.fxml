@@ -9,6 +9,6 @@
       <PasswordField fx:id="passwordPF" layoutX="226.0" layoutY="128.0" promptText="Enter your password" />
       <Button fx:id="loginBT" layoutX="275.0" layoutY="188.0" mnemonicParsing="false" onAction="#login" text="Login " />
       <Button fx:id="registerBT" layoutX="274.0" layoutY="239.0" mnemonicParsing="false" onAction="#goToRegister" text="SignUp" />
-      <Button fx:id="homeBT" layoutX="276.0" layoutY="281.0" mnemonicParsing="false" onAction="#openHome" text="Button" />
+<!--      <Button fx:id="homeBT" layoutX="276.0" layoutY="281.0" mnemonicParsing="false" onAction="#openHome" text="Button" />-->
    </children>
 </AnchorPane>

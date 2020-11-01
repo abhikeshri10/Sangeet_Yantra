@@ -24,7 +24,7 @@ public class DatabaseHandler {
     }
 
     /**
-     *
+     * Creating a new user //Register
      * @param clientInfo
      * @return
      */
@@ -118,6 +118,10 @@ public class DatabaseHandler {
 
     }
 
+    /**
+     * Getting the list of artist present on the server
+     * @return
+     */
     public List<String> getArtist()
     {   try{
         dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -139,6 +143,11 @@ public class DatabaseHandler {
         }
         return null;
     }
+
+    /**
+     * Getting the list of genre that we have
+     * @return
+     */
     public List<String> getGenre() {
         try{
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -161,6 +170,11 @@ public class DatabaseHandler {
         return null;
     }
 
+    /**
+     * Loading the song info like song Name subtitile file
+     * @param text
+     * @return
+     */
     public SongInfo loadSong(String text) {
         try {
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -255,7 +269,13 @@ public class DatabaseHandler {
     }
 
 
-
+    /**
+     * Setting user features of the user
+     * @param user_id
+     * @param artist
+     * @param genre
+     * @param language
+     */
     public void setFeatures(int user_id, String artist, String genre, String language) {
         try {
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -277,7 +297,7 @@ public class DatabaseHandler {
 
     /**
      * Get playlist corresponding to the user
-     * todo add group playlist
+     *
      * @param userid
      * @return
      */
@@ -304,7 +324,7 @@ public class DatabaseHandler {
     }
 
     /**
-     *
+     * Creating a playlist
      * @param userid
      * @param playlistName
      * @return
@@ -358,6 +378,13 @@ public class DatabaseHandler {
         return password;
 
     }
+
+    /**
+     * Adding song to the pre-existing playlist
+     * @param playlist
+     * @param song
+     * @return
+     */
     public boolean addSongToPlaylist(String playlist, String song) {
        try{
            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -422,6 +449,10 @@ public class DatabaseHandler {
        }
     }
 
+    /**
+     * getting the list of albums that we have
+     * @return
+     */
     public List<String> getAlbum() {
         try{
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -443,6 +474,11 @@ public class DatabaseHandler {
         return null;
     }
 
+    /**
+     * getting the history of song played by the users
+     * @param userid
+     * @return
+     */
     public List<String> getHistory(int userid) {
         try{
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -475,6 +511,11 @@ public class DatabaseHandler {
         return null;
     }
 
+    /**
+     * Adding entry to history table
+     * @param userid
+     * @param songid
+     */
     public void addHistory(int userid, int songid) {
         try{
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -501,7 +542,7 @@ public class DatabaseHandler {
     }
 
     /**
-     *
+     * Creating a group where users can add their songs and playlist
      * @param groupName
      * @param userid
      * @return
@@ -548,7 +589,12 @@ public class DatabaseHandler {
         }
     }
 
-
+    /**
+     * Getting the groups of the user created by him
+     *
+     * @param userid
+     * @return
+     */
     public List<String> getGroupsCreated(int userid) {
         try {
             System.out.println("Group Request from "+userid);
@@ -574,6 +620,10 @@ public class DatabaseHandler {
         }
     }
 
+    /**
+     * Get the list of users that we have
+     * @return
+     */
     public List<String> getUsers() {
         try {
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -593,6 +643,12 @@ public class DatabaseHandler {
         }
     }
 
+    /**
+     * Admin can add users to the group
+     * @param groupName
+     * @param userName
+     * @return
+     */
     public boolean addUserToGroup(String groupName, String userName) {
         try{
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -628,6 +684,11 @@ public class DatabaseHandler {
         }
     }
 
+    /**
+     * Getting a list of allt he group that the user is currently a part of
+     * @param userid
+     * @return
+     */
     public List<String> getAllGroups(int userid) {
         try {
             System.out.println("Group Request from "+userid);
@@ -665,7 +726,11 @@ public class DatabaseHandler {
         }
     }
 
-
+    /**
+     * Getting a playlist correspomding to the group
+     * @param userid
+     * @return
+     */
     public List<String> getGroupPlaylist(int userid) {
         try {
             System.out.println("Group playlist call");
@@ -715,6 +780,12 @@ public class DatabaseHandler {
         }
     }
 
+    /**
+     * Adding a playlist to a group of which the user is member
+     * @param groupname
+     * @param playlistName
+     * @return
+     */
     public boolean addPlaylisttoGroup(String groupname, String playlistName) {
         try {
 
@@ -747,6 +818,11 @@ public class DatabaseHandler {
             return false;
         }
     }
+
+    /**
+     * Setting the queue to deafult like all songs
+     * @param userid
+     */
     public void settoDefault(int userid) {
         try {
             String query = "delete from queue where UserId = " + userid + ";";
@@ -758,6 +834,12 @@ public class DatabaseHandler {
 
         }
     }
+
+    /**
+     * Getting songs of a particular album
+     * @param albumname
+     * @param userid
+     */
     public void getalbumSongs(String albumname, int userid) {
         try {
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -794,6 +876,11 @@ public class DatabaseHandler {
 
 
     }
+
+    /**
+     * Getting all the songs present on the server
+     * @return
+     */
     public List<String> getAllsongs() {
         try {
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -818,6 +905,11 @@ public class DatabaseHandler {
 
     }
 
+    /**
+     * Getting songs corresponding to a specified artist and updating the queue simultaneously
+     * @param artistname
+     * @param userid
+     */
     public void getArtistsongs(String artistname, int userid) {
         try {
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -858,6 +950,11 @@ public class DatabaseHandler {
 
     }
 
+    /**
+     * Getting songs of a particular playlist
+     * @param playlistname
+     * @param userid
+     */
     public void getPlaylistsongs(String playlistname, int userid) {
         try {
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -894,6 +991,11 @@ public class DatabaseHandler {
 
     }
 
+    /**
+     * modifying the current queue
+     * @param newQueue
+     * @param user_id
+     */
     public void modifyQueue(List<String> newQueue, int user_id) {
         try {
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -915,6 +1017,11 @@ public class DatabaseHandler {
 
     }
 
+    /**
+     * Get groupplaylistsongs function
+     * @param playlistname
+     * @param userid
+     */
     public void getGroupPlaylistsongs(String playlistname, int userid) {
         try {
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -992,7 +1099,7 @@ public class DatabaseHandler {
     }
 
     /**
-     *
+     * set likes and dislike table
      * @param songid
      * @param user_id
      * @param value
@@ -1057,6 +1164,10 @@ public class DatabaseHandler {
         }
     }
 
+    /**
+     * Gettting a list of trending songs on the server
+     * @return
+     */
     public List<String> getTrending() {
         try
         {
@@ -1167,6 +1278,11 @@ public class DatabaseHandler {
         }
     }
 
+    /**
+     * Getting recommendation bbased on previous day
+     * @param userid
+     * @return
+     */
     public List<String> getpastRecommendation(int userid) {
         try{
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -1207,6 +1323,11 @@ public class DatabaseHandler {
         return  null;
     }
 
+    /**
+     * setting a song file to be sent through  stream 2
+     * @param text
+     * @return
+     */
     public Song setsongfile(String text) {
         try {
             dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
@@ -1329,3 +1450,4 @@ public class DatabaseHandler {
         return  null;
     }
 }
+//happy ending :)
