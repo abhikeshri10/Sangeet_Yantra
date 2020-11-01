@@ -20,13 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9215da85-e6e0-40f3-83c8-dc7a7c5ba8f1" name="Default Changelist" comment="added register logic and added trending feature">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/40985964-52fc-450b-983b-1184138f0990.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/40985964-52fc-450b-983b-1184138f0990.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/40985964-52fc-450b-983b-1184138f0990/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/40985964-52fc-450b-983b-1184138f0990/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/40985964-52fc-450b-983b-1184138f0990/storage_v2/_src_/schema/student.O4L-jw.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/40985964-52fc-450b-983b-1184138f0990/storage_v2/_src_/schema/student.O4L-jw.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/40985964-52fc-450b-983b-1184138f0990/storage_v2/_src_/schema/trail.BvKXBg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/40985964-52fc-450b-983b-1184138f0990/storage_v2/_src_/schema/trail.BvKXBg.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sangeet_Yantra.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Sangeet_Yantra.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/DatabaseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/DatabaseHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/HandleClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/HandleClient.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/StartServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sangeet_Yantra/Server/StartServer.class" afterDir="false" />
@@ -90,13 +84,11 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="oracle&#10;mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/mysql-connector-java-5.1.49" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager" selected="Application.ClientMain">
     <configuration name="ClientMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -121,17 +113,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -173,7 +154,6 @@
       <workItem from="1604161610357" duration="1135000" />
       <workItem from="1604162791426" duration="1630000" />
       <workItem from="1604164824970" duration="1408000" />
-      <workItem from="1604202965848" duration="757000" />
     </task>
     <task id="LOCAL-00001" summary="added register logic and added trending feature">
       <created>1603980231046</created>
@@ -205,10 +185,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="added register logic and added trending feature" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="163" y="0" key="#Project_Structure" timestamp="1604203003678">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="163" y="0" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1604203003678" />
     <state x="206" y="253" key="#SQL_Dialects" timestamp="1603958050989">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -225,33 +201,21 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1536.824@0.0.1536.824" timestamp="1603290107758" />
-    <state x="480" y="249" key="DetectedRootsChooserDialog" timestamp="1604202999739">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1493" height="208" key="GridCell.Tab.0.bottom" timestamp="1604166078424">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="480" y="249" key="DetectedRootsChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1604202999739" />
-    <state x="389" y="105" key="FileChooserDialogImpl" timestamp="1604202998650">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1604202998650" />
-    <state width="1323" height="187" key="GridCell.Tab.0.bottom" timestamp="1604203724742">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1323" height="187" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1604203724742" />
     <state width="1493" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1604166078424" />
-    <state width="1323" height="187" key="GridCell.Tab.0.center" timestamp="1604203724742">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1493" height="208" key="GridCell.Tab.0.center" timestamp="1604166078423">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1323" height="187" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1604203724742" />
     <state width="1493" height="208" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1604166078423" />
-    <state width="1323" height="187" key="GridCell.Tab.0.left" timestamp="1604203724742">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1493" height="208" key="GridCell.Tab.0.left" timestamp="1604166078421">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1323" height="187" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1604203724742" />
     <state width="1493" height="208" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1604166078421" />
-    <state width="1323" height="187" key="GridCell.Tab.0.right" timestamp="1604203724742">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1493" height="208" key="GridCell.Tab.0.right" timestamp="1604166078424">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1323" height="187" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1604203724742" />
     <state width="1493" height="208" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1604166078424" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1604157612788">
       <screen x="0" y="0" width="1536" height="824" />
