@@ -1,11 +1,13 @@
 package Server;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import sample.*;
 public class DatabaseHandler {
@@ -15,6 +17,7 @@ public class DatabaseHandler {
     private Connection dbconnection;
     private PreparedStatement dbstatement;
     SongInfo songinfo;
+    Song song;
     DatabaseHandler() {
         USERNAME = "root";
         PASSWORD = "";
@@ -40,6 +43,7 @@ public class DatabaseHandler {
             dbstatement.setString(6,clientInfo.password);
             dbstatement.setBoolean(7,true);
             dbstatement.executeUpdate();
+            System.out.println("Register success");
             return true;
         }
         catch (SQLException sqle)
@@ -172,9 +176,15 @@ public class DatabaseHandler {
                 String SongAddress=rs.getString("SongAddress");
                 String Date_Created=rs.getString("DateCreated");
                 int ImageId=rs.getInt("ImageId");
-                songinfo =new SongInfo(id,SongName,AlbumId,Genre,SongAddress,Date_Created,ImageId);
-//                System.out.println(dbstatement);
-//                System.out.println(SongAddress);
+
+                SongAddress.replace("mp3","srt");
+                String srt = new String(".srt");
+                String subtitileAddress = SongAddress.substring(0,SongAddress.length()-4)+srt;
+
+                //System.out.println(subtitileAddress);
+                File subtitlefile=new File(subtitileAddress);
+                songinfo =new SongInfo(id,SongName,AlbumId,Genre,subtitlefile,Date_Created,ImageId);
+
                 return songinfo;
             }
             return null;
@@ -1155,5 +1165,167 @@ public class DatabaseHandler {
         {
             e.printStackTrace();
         }
+    }
+
+    public List<String> getpastRecommendation(int userid) {
+        try{
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query = "SELECT * from history where UserId = '"+userid+"';";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet rs = dbstatement.executeQuery();
+            List<Integer> songId = new ArrayList<>();
+            while (rs.next())
+            {
+                Timestamp time = rs.getTimestamp("Time");
+                Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+//                System.out.println(time.getHours());
+//                System.out.println(currentTime.getHours());
+                if(time.getHours()==currentTime.getHours()&&time.getDay()!=currentTime.getDay())
+                {
+                    songId.add(rs.getInt("SongId"));
+                }
+            }
+            List<Integer> newSongId =songId.stream().distinct().collect(Collectors.toList());
+            List<String> pastRecommends = new ArrayList<>();
+            for(int i=0;i<newSongId.size();i++)
+            {   //System.out.println(newSongId.get(i));
+                query = "SELECT * from song where id = '"+newSongId.get(i)+"';";
+                dbstatement = dbconnection.prepareStatement(query);
+                ResultSet rs2 = dbstatement.executeQuery();
+                while (rs2.next())
+                {
+                    pastRecommends.add(rs2.getString("SongName"));
+                   // System.out.println(pastRecommends.get(i));
+                }
+            }
+            return pastRecommends;
+
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return  null;
+    }
+
+    public Song setsongfile(String text) {
+        try {
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            String query= "Select * from song WHERE SongName ='"+text+"';";
+            dbstatement = dbconnection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs= dbstatement.executeQuery();
+            while(rs.next())
+            {
+                int id=rs.getInt("id");
+                String SongName=rs.getString("SongName");
+                int AlbumId=rs.getInt("AlbumId");
+                String Genre=rs.getString("Genre");
+                String SongAddress=rs.getString("SongAddress");
+                String Date_Created=rs.getString("DateCreated");
+                int ImageId=rs.getInt("ImageId");
+                //songinfo =new SongInfo(id,SongName,AlbumId,Genre,SongAddress,Date_Created,ImageId);
+                File file=new File(SongAddress);
+                song=new Song(SongAddress);
+                System.out.println(song.file);
+//                System.out.println(dbstatement);
+//                System.out.println(SongAddress);
+                return song;
+            }
+            return null;
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Error in fetching Song");
+            return null;
+        }
+
+    }
+
+    /**
+     * get recommends from the user features his likes his group likes
+     * @param user_id
+     * @return
+     */
+
+    public List<String> getRecommends(int user_id) {
+
+        try{
+            List<String> recommends = new ArrayList<String>();
+            List<Integer> temprecommends = new ArrayList<>();
+            List<String> artist = new ArrayList<>();
+            List<String> genre = new ArrayList<>();
+
+            dbconnection = DriverManager.getConnection(CONNECTIONURL, USERNAME, PASSWORD);
+            // based on user likes
+            String query = "Select * from songlikes where userId = '"+user_id+"'And fav = 1;";
+            dbstatement = dbconnection.prepareStatement(query);
+            ResultSet rs = dbstatement.executeQuery();
+            while (rs.next())
+            {
+                temprecommends.add(rs.getInt("songId"));
+
+            }
+            //based on user features
+            //artists genre
+            query = "Select * from user_features where id = '"+user_id+"';";
+            dbstatement = dbconnection.prepareStatement(query);
+            rs = dbstatement.executeQuery();
+            while (rs.next())
+            {
+                artist.add(rs.getString("ArtistName"));
+                genre.add(rs.getString("Genre"));
+
+            }
+          //continue with artist and genre for artist search for artist id and for genre directly search from the
+            //genre query
+            for(int i=0;i<genre.size();i++) {
+                query = "select  * from song where genre = '" + genre.get(i) + "';";
+                dbstatement = dbconnection.prepareStatement(query);
+                rs = dbstatement.executeQuery();
+                while (rs.next())
+                {
+                    temprecommends.add(rs.getInt("id"));
+                }
+            }
+
+            List<Integer> artistId = new ArrayList<>();
+            for(int i=0;i<artist.size();i++)
+            {
+                query = "Select * from artist where ArtistName = '"+artist.get(i)+"';";
+                dbstatement = dbconnection.prepareStatement(query);
+                rs = dbstatement.executeQuery();
+                while (rs.next())
+                {
+                    artistId.add(rs.getInt("id"));
+                }
+
+            }
+            // songId from artist Id
+            for(int i=0;i<artistId.size();i++)
+            {
+                query = "select * from songartist where ArtistId = '"+artistId.get(i)+"';";
+                dbstatement = dbconnection.prepareStatement(query);
+                rs = dbstatement.executeQuery();
+                while (rs.next())
+                {
+                    temprecommends.add(rs.getInt("SongId"));
+                }
+            }
+            List<Integer> temp = temprecommends.stream().collect(Collectors.toList());
+            for(int i=0;i<temp.size();i++)
+            {
+                query = "select * from song where id = '"+temp.get(i)+"';";
+                dbstatement = dbconnection.prepareStatement(query);
+                rs = dbstatement.executeQuery();
+                while (rs.next())
+                {
+                    recommends.add(rs.getString("SongName"));
+                }
+            }
+            return recommends;
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return  null;
     }
 }
