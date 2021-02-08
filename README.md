@@ -3,7 +3,7 @@
 ## Introduction ##
 Sangeet Yantra is a Java-based music playing/streaming application. A project built for the love of music ,the best stress buster.
 
-[Java[forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com)
 ## Features ##
 
 * A user can login / register.
