@@ -5,18 +5,29 @@ Sangeet Yantra is a Java-based music playing/streaming application. A project bu
 
 ##Features##
 
-  *A user can login / register.
-  *New users choose the languages, artists and genres they like.
-  *Basic media player features like play, pause, play next, repeat, shuffle, seekbar, adjust volume, length of the song in front of each song.etc.
-  *A user can see his most played and recently played songs.
-  *A user can create custom playlists.
-  *History of songs played.
-  *Editable queue to play songs.
-  *Like / dislike a song.
-  *Show new songs added to the server.
-  *Download a song for playing offline.
-  *Filters for searching songs (like album, artist, etc.).
-  *Display lyrics of songs.
+*A user can login / register.
+  
+*New users choose the languages, artists and genres they like.
+  
+*Basic media player features like play, pause, play next, repeat, shuffle, seekbar, adjust volume, length of the song in front of each song.etc.
+  
+*A user can see his most played and recently played songs.
+
+*A user can create custom playlists.
+  
+*History of songs played.
+
+*Editable queue to play songs.
+
+*Like / dislike a song.
+  
+*Show new songs added to the server.
+
+*Download a song for playing offline.
+
+*Filters for searching songs (like album, artist, etc.).
+
+*Display lyrics of songs.
   *Search for users and create a group.
   *Have group playlists where each member can add their music.
   *Play videos.
